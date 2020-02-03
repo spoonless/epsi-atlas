@@ -1,0 +1,981 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Les services Web avec Java &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Annexe : XML" href="annexe_xml.html" />
+    <link rel="prev" title="Les services Web SOAP / WSDL" href="web_services.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+          <li><a href="web_services.html">Les services Web SOAP / WSDL</a> &raquo;</li>
+        
+      <li>Les services Web avec Java</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="annexe_xml.html" class="btn btn-neutral float-right" title="Annexe : XML" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="web_services.html" class="btn btn-neutral" title="Les services Web SOAP / WSDL" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="les-services-web-avec-java">
+<h1>Les services Web avec Java<a class="headerlink" href="#les-services-web-avec-java" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour ce chapitre, vous aurez besoin de l’outil SoapUI. <strong>Vous devez le
+télécharger</strong> à l’adresse
+<a class="reference external" href="https://www.soapui.org/downloads/soapui/source-forge.html">https://www.soapui.org/downloads/soapui/source-forge.html</a></p>
+</div>
+<div class="section" id="la-quete-de-l-interoperabilite">
+<h2>La quête de l’interopérabilité<a class="headerlink" href="#la-quete-de-l-interoperabilite" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une problématique courante dans la mise en place de systèmes
+d’information et de savoir comment échanger des informations entre
+plusieurs processus. Cette problématique est souvent résumée par la
+notion
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Interop%C3%A9rabilit%C3%A9">d’interopérabilité</a>.
+D’un point de vue technique, l’interopérabilité est rendue plus complexe
+par un ou plusieurs facteurs :</p>
+<ul class="simple">
+<li><p>les programmes sont écrits dans des langages différents</p></li>
+<li><p>les processus s’exécutent sur des machines différentes</p></li>
+<li><p>les machines appartiennent à des réseaux différents</p></li>
+</ul>
+<p>Avant l’an 2000, on trouve des solutions telles que Sun RPC, CORBA,
+DCOM, RMI. À partir des années 2000, le succès des réseaux IP, de HTTP
+et de XML apporte une nouvelle perspective : définir un protocole
+d’échange de messages XML <em>via</em> HTTP entre deux processus.</p>
+<p>Ce protocole originellement défini par Microsoft puis maintenu par le W3
+s’appelle <a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a>. Depuis <a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> a été enrichi de nombreuses
+spécifications et l’ensemble de ces technologies sont désignées sous le
+terme <strong>WS-*</strong>.</p>
+<p>WS-* est un ensemble de technologies, il ne s’agit ni d’un modèle de
+conception ni d’un modèle d’architecture.</p>
+</div>
+<div class="section" id="soap-structure-des-messages">
+<h2>SOAP : structure des messages<a class="headerlink" href="#soap-structure-des-messages" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> est une recommandation pour
+l’échange de messages au format XML entre un expéditeur (<em>SOAP sender</em>) et
+un destinataire (<em>SOAP receiver</em>). La structure des messages SOAP est
+identique qu’elle provienne de l’expéditeur (requête) ou du destinataire
+(réponse). Un message est constitué par une enveloppe (<em>SOAP
+envelope</em>) qui peut contenir un en-tête (<em>SOAP header</em>) et ensuite
+une charge utile (<em>SOAP body</em>).</p>
+<p>Pour une utilisation avec le protocole HTTP, le message doit être envoyé
+avec la méthode POST à l’URL du service (appelée aussi <strong>endpoint</strong>)</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Exemple de message SOAP</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;soapenv:Envelope</span>
+   <span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span>
+   <span class="na">xmlns:m=</span><span class="s">&quot;http://www.mymeteo.com/meteo&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header&gt;</span>
+   <span class="nt">&lt;/soapenv:Header&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;m:releve&gt;</span>
+         <span class="nt">&lt;m:temperature&gt;</span>
+            <span class="nt">&lt;m:valeur&gt;</span>6.0<span class="nt">&lt;/m:valeur&gt;</span>
+            <span class="nt">&lt;m:unite&gt;</span>celsius<span class="nt">&lt;/m:unite&gt;</span>
+         <span class="nt">&lt;/m:temperature&gt;</span>
+         <span class="nt">&lt;m:lieu&gt;</span>
+            <span class="nt">&lt;m:ville&gt;</span>Bordeaux<span class="nt">&lt;/m:ville&gt;</span>
+         <span class="nt">&lt;/m:lieu&gt;</span>
+      <span class="nt">&lt;/m:releve&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Dans l’exemple ci-dessus le message contient de toute évidence un relevé
+météorologique pour la ville de bordeaux. Ce message peut aussi bien
+être une requête d’un expéditeur qu’une réponse d’un destinataire (la
+structure des messages est la même).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Du fait de son utilisation exclusive du XML pour la composition des
+messages, une bonne compréhension de <a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> nécessite une connaissance
+approfondie de XML (<em>Cf.</em> <a class="reference internal" href="annexe_xml.html#annexe-xml"><span class="std std-ref">le complément au cours sur
+XML</span></a>).</p>
+</div>
+<p>Un message <a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> est défini pour le namespace XML
+<a class="reference external" href="http://schemas.xmlsoap.org/soap/envelope/">http://schemas.xmlsoap.org/soap/envelope/</a></p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Structure d’un message SOAP</span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!-- l&#39;enveloppe du message --&gt;</span>
+<span class="nt">&lt;soapenv:Envelope</span>
+   <span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- l&#39;en-tête du message --&gt;</span>
+  <span class="nt">&lt;soapenv:Header&gt;</span>
+    <span class="c">&lt;!-- les éventuelles méta-informations --&gt;</span>
+  <span class="nt">&lt;/soapenv:Header&gt;</span>
+
+  <span class="c">&lt;!-- le corps de la requête --&gt;</span>
+  <span class="nt">&lt;soapenv:Body&gt;</span>
+    <span class="c">&lt;!-- le message (payload) --&gt;</span>
+  <span class="nt">&lt;/soapenv:Body&gt;</span>
+
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</pre></div>
+</div>
+</div>
+<p><a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> définit un format pour un type de réponse particulière : une <em>SOAP
+fault</em>. Une <em>SOAP fault</em> signale un problème lors du traitement du
+service.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Une réponse contenant une SOAP fault</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;soap:Envelope</span> <span class="na">xmlns:soap=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soap:Body&gt;</span>
+      <span class="nt">&lt;soap:Fault&gt;</span>
+         <span class="nt">&lt;faultcode&gt;</span>soap:Server<span class="nt">&lt;/faultcode&gt;</span>
+         <span class="nt">&lt;faultstring&gt;</span>Internal server error<span class="nt">&lt;/faultstring&gt;</span>
+      <span class="nt">&lt;/soap:Fault&gt;</span>
+   <span class="nt">&lt;/soap:Body&gt;</span>
+<span class="nt">&lt;/soap:Envelope&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Pour l’élément <code class="docutils literal notranslate"><span class="pre">faultcode</span></code>, on peut utiliser les valeurs :</p>
+<ul class="simple">
+<li><p>{<a class="reference external" href="http://schemas.xmlsoap.org/soap/envelope/">http://schemas.xmlsoap.org/soap/envelope/</a>}:Server pour signaler que
+l’origine de l’incident provient du traitement du serveur</p></li>
+<li><p>{<a class="reference external" href="http://schemas.xmlsoap.org/soap/envelope/">http://schemas.xmlsoap.org/soap/envelope/</a>}:Client pour signaler que
+l’origine de l’incident provient de la requête du client</p></li>
+</ul>
+</div>
+<div class="section" id="web-service-description-language-wsdl">
+<h2>Web Service Description Language (WSDL)<a class="headerlink" href="#web-service-description-language-wsdl" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La condition pour utiliser un service Web <a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> est de connaître les
+opérations disponibles et le format des messages autorisés en entrée
+et/ou en sortie de ses opérations. <strong>WSDL</strong> (<em>Web Service Description
+Language</em>) est un langage XML permettant la description complète d’un
+service Web. Ainsi un fichier WSDL est analysable par programme et on
+trouve des outils dans différents langages de programmation pour générer
+du code (les <em>stubs</em>) facilitant le développement des programmes (client
+ou serveur).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La plupart des <em>stacks</em> <a class="reference external" href="http://www.w3.org/TR/soap/">SOAP</a> donne accès au WSDL en ligne (en le
+générant dynamiquement si nécessaire).</p>
+<p>Par exemple, pour les serveurs d’application Java EE, le WSDL est
+disponible à la même URL que le service en ajoutant <strong>wsdl</strong> comme
+paramètre.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Exemple d’URL pour accéder au WSDL</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>http://localhost:8080/MeteoService?wsdl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Exemple de WSDL</span><a class="headerlink" href="#id7" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span class="nt">&lt;definitions</span>
+  <span class="na">xmlns=</span><span class="s">&quot;http://schemas.xmlsoap.org/wsdl/&quot;</span>
+  <span class="na">xmlns:soap=</span><span class="s">&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;</span>
+  <span class="na">xmlns:wsam=</span><span class="s">&quot;http://www.w3.org/2007/05/addressing/metadata&quot;</span>
+  <span class="na">xmlns:tns=</span><span class="s">&quot;http://www.mymeteo.com/webservices/meteo&quot;</span>
+  <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
+  <span class="na">xmlns:ns1=</span><span class="s">&quot;http://www.mymeteo.com/meteo&quot;</span>
+  <span class="na">targetNamespace=</span><span class="s">&quot;http://www.mymeteo.com/webservices/meteo&quot;</span>
+  <span class="na">name=</span><span class="s">&quot;MeteoService&quot;</span>
+<span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Les types de données au format XML schema --&gt;</span>
+  <span class="nt">&lt;types&gt;</span>
+    <span class="nt">&lt;xs:schema</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span> <span class="na">targetNamespace=</span><span class="s">&quot;http://www.mymeteo.com/meteo&quot;</span>
+               <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;xs:complexType</span> <span class="na">name=</span><span class="s">&quot;temperature&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;xs:sequence&gt;</span>
+          <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;valeur&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:double&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;unite&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/xs:sequence&gt;</span>
+      <span class="nt">&lt;/xs:complexType&gt;</span>
+
+      <span class="nt">&lt;xs:complexType</span> <span class="na">name=</span><span class="s">&quot;lieu&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;xs:sequence&gt;</span>
+          <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;ville&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/xs:sequence&gt;</span>
+      <span class="nt">&lt;/xs:complexType&gt;</span>
+
+      <span class="nt">&lt;xs:complexType</span> <span class="na">name=</span><span class="s">&quot;releve&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;xs:sequence&gt;</span>
+          <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;temperature&quot;</span> <span class="na">type=</span><span class="s">&quot;ns1:temperature&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;lieu&quot;</span> <span class="na">type=</span><span class="s">&quot;ns1:lieu&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/xs:sequence&gt;</span>
+      <span class="nt">&lt;/xs:complexType&gt;</span>
+
+      <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;lieu&quot;</span> <span class="na">type=</span><span class="s">&quot;ns1:lieu&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;releve&quot;</span> <span class="na">type=</span><span class="s">&quot;ns1:releve&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/xs:schema&gt;</span>
+  <span class="nt">&lt;/types&gt;</span>
+
+  <span class="c">&lt;!--</span>
+<span class="c">    La description de tous les messages possibles.</span>
+<span class="c">    Un message est défini par un ensemble de parties (une partie pour le payload</span>
+<span class="c">    et une partie par en-tête)</span>
+<span class="c">  --&gt;</span>
+  <span class="nt">&lt;message</span> <span class="na">name=</span><span class="s">&quot;releveMeteo&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;part</span> <span class="na">name=</span><span class="s">&quot;partLieu&quot;</span> <span class="na">element=</span><span class="s">&quot;ns1:lieu&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/message&gt;</span>
+
+  <span class="nt">&lt;message</span> <span class="na">name=</span><span class="s">&quot;releveMeteoResponse&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;part</span> <span class="na">name=</span><span class="s">&quot;partReleve&quot;</span> <span class="na">element=</span><span class="s">&quot;ns1:releve&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/message&gt;</span>
+
+  <span class="c">&lt;!--</span>
+<span class="c">    Description des interfaces (indépendantes de SOAP)</span>
+<span class="c">    Une interface est composée d&#39;un ensemble d&#39;opérations.</span>
+<span class="c">    Chaque opération est définie par les messages en entrée et en sortie.</span>
+<span class="c">  --&gt;</span>
+  <span class="nt">&lt;portType</span> <span class="na">name=</span><span class="s">&quot;MeteoService&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;operation</span> <span class="na">name=</span><span class="s">&quot;releveMeteo&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span>
+        <span class="na">wsam:Action=</span><span class="s">&quot;http://www.mymeteo.com/webservices/meteo/MeteoService/releveMeteoRequest&quot;</span>
+        <span class="na">message=</span><span class="s">&quot;tns:releveMeteo&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;output</span>
+        <span class="na">wsam:Action=</span><span class="s">&quot;http://www.mymeteo.com/webservices/meteo/MeteoService/releveMeteoResponse&quot;</span>
+        <span class="na">message=</span><span class="s">&quot;tns:releveMeteoResponse&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/operation&gt;</span>
+  <span class="nt">&lt;/portType&gt;</span>
+
+  <span class="c">&lt;!-- Liaison des interfaces avec le protocole SOAP --&gt;</span>
+  <span class="nt">&lt;binding</span> <span class="na">name=</span><span class="s">&quot;MeteoServicePortBinding&quot;</span> <span class="na">type=</span><span class="s">&quot;tns:MeteoService&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;soap:binding</span> <span class="na">transport=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/http&quot;</span> <span class="na">style=</span><span class="s">&quot;document&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;operation</span> <span class="na">name=</span><span class="s">&quot;releveMeteo&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;soap:operation</span> <span class="na">soapAction=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;input&gt;</span>
+        <span class="nt">&lt;soap:body</span> <span class="na">use=</span><span class="s">&quot;literal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/input&gt;</span>
+      <span class="nt">&lt;output&gt;</span>
+        <span class="nt">&lt;soap:body</span> <span class="na">use=</span><span class="s">&quot;literal&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/output&gt;</span>
+    <span class="nt">&lt;/operation&gt;</span>
+  <span class="nt">&lt;/binding&gt;</span>
+
+  <span class="c">&lt;!--</span>
+<span class="c">    Localisation du service</span>
+<span class="c">    Dans le cas d&#39;un binding SOAP avec un transport HTTP, on trouve ici l&#39;URL du service.</span>
+<span class="c">  --&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;MeteoService&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;port</span> <span class="na">name=</span><span class="s">&quot;MeteoServicePort&quot;</span> <span class="na">binding=</span><span class="s">&quot;tns:MeteoServicePortBinding&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;soap:address</span> <span class="na">location=</span><span class="s">&quot;http://www.mymeteo.com/ws/meteo&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/port&gt;</span>
+  <span class="nt">&lt;/service&gt;</span>
+<span class="nt">&lt;/definitions&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="developper-un-service-web-soap">
+<h2>Développer un service Web SOAP<a class="headerlink" href="#developper-un-service-web-soap" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour le langage Java, on dispose de JAX-WS qui est
+l’API permettant d’implémenter des services Web et JAXB (Java API for
+XML Binding) permettant d’associer une classe Java à une représentation
+XML.</p>
+<p>On distingue deux approches pour développer un service Web WS-* :</p>
+<dl class="simple">
+<dt><em>Contract first</em></dt><dd><p>On définit le contrat du service en spécifiant le WSDL et on utilise
+des outils pour générer le code des <em>stubs</em>.</p>
+</dd>
+<dt><em>Contract last</em></dt><dd><p>On développe le service et on utilise des outils pour générer le
+WSDL.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Accéder à un service Web</p>
+<p>Testez le service Web SOAP disponible à cette adresse :
+<a class="reference external" href="http://ws-meteo.herokuapp.com/">http://ws-meteo.herokuapp.com/</a></p>
+<p>Pour tester ce service Web, vous pouvez utiliser le client
+<a class="reference external" href="https://www.soapui.org/downloads/soapui/source-forge.html">SoapUI</a>.</p>
+</div>
+</div>
+<div class="section" id="les-outils-java-de-generation">
+<h2>Les outils Java de génération<a class="headerlink" href="#les-outils-java-de-generation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il est possible d’utiliser le <a class="reference external" href="https://www.mojohaus.org/jaxws-maven-plugin/">plugin maven JAX-WS</a>
+pour générer les classes Java à partir d’un fichier WSDL. Il est possible de
+développer une application cliente et/ou une application serveur à partir des
+classes générées.</p>
+<div class="section" id="wsdl-java-contract-first">
+<span id="jaxws-gentools"></span><h3>WSDL → Java (Contract first)<a class="headerlink" href="#wsdl-java-contract-first" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si on dispose du fichier WSDL, on peut générer le code Java. On dit que l’on
+part du contrat de service : c’est l’approche <em>contract first</em>. On utilise
+pour cela l’outil <code class="file docutils literal notranslate"><span class="pre">wsimport</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Extrait d’un fichier pom.xml pour la déclaration du plugin JAX-WS</span><a class="headerlink" href="#id8" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;plugins&gt;</span>
+    <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.sun.xml.ws<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>jaxws-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>2.3.2<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+          <span class="nt">&lt;id&gt;</span>wsimport<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;goals&gt;</span>
+            <span class="nt">&lt;goal&gt;</span>wsimport<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;configuration&gt;</span>
+            <span class="nt">&lt;wsdlDirectory&gt;</span>src/main/wsdl<span class="nt">&lt;/wsdlDirectory&gt;</span>
+            <span class="nt">&lt;sourceDestDir&gt;</span>src/main/java<span class="nt">&lt;/sourceDestDir&gt;</span>
+            <span class="nt">&lt;xnocompile&gt;</span>true<span class="nt">&lt;/xnocompile&gt;</span>
+          <span class="nt">&lt;/configuration&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+      <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+  <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>La configuration ci-dessus déclare pour Maven de sélectionner tous les fichiers
+<code class="file docutils literal notranslate"><span class="pre">*.wsdl</span></code> qui se trouvent dans le répertoire <code class="file docutils literal notranslate"><span class="pre">src/main/wsdl</span></code> et de
+générer le code Java correspondant dans le répertoire <code class="file docutils literal notranslate"><span class="pre">src/main/java</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>Pour générer les fichiers depuis Eclipse, faites un clic droit sur votre
+projet et sélectionnez <span class="guilabel">Run As &gt; Maven generate-sources</span>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="consommer-un-service-web-avec-jax-ws">
+<h2>Consommer un service Web avec JAX-WS<a class="headerlink" href="#consommer-un-service-web-avec-jax-ws" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une application cliente d’un service Web SOAP peut utiliser un <em>stub</em>.
+Un <em>stub</em> est une classe générée qui masque la complexité des échanges de
+messages avec le serveur.</p>
+<p>Il est possible de créer un client à partir du code généré par
+<a class="reference internal" href="#jaxws-gentools"><span class="std std-ref">wsimport</span></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Exemple d’accès à la SEI pour un client</span><a class="headerlink" href="#id9" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// L&#39;URL du WSDL (peut-être un fichier sur disque ou un lien HTTP)</span>
+<span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URL</span> <span class="n">wsdlDocumentLocation</span> <span class="o">=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">URL</span><span class="o">(</span><span class="s">&quot;file:HelloService.wsdl&quot;</span><span class="o">);</span>
+
+<span class="c1">// Le qualified name du service spécifié par les attributs</span>
+<span class="c1">// targetNamespace et name de la balise racine dans le WSDL</span>
+<span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">namespace</span><span class="o">.</span><span class="na">QName</span> <span class="n">serviceName</span> <span class="o">=</span>
+             <span class="k">new</span> <span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">namespace</span><span class="o">.</span><span class="na">QName</span><span class="o">(</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">,</span><span class="s">&quot;HelloService&quot;</span><span class="o">);</span>
+
+<span class="c1">// Creation d&#39;une stub vers le service Web</span>
+<span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">Service</span> <span class="n">service</span> <span class="o">=</span> <span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">wsdlDocumentLocation</span><span class="o">,</span> <span class="n">serviceName</span><span class="o">);</span>
+
+<span class="c1">// La SEI offrant les méthodes du service Web sous la forme d&#39;un interface Java</span>
+<span class="c1">// L&#39;interface est celle générée par wsimport</span>
+<span class="n">HelloService</span> <span class="n">helloService</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">getPort</span><span class="o">(</span><span class="n">HelloService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+<span class="c1">// Exemple d&#39;appel du service</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">helloService</span><span class="o">.</span><span class="na">sayHello</span><span class="o">(</span><span class="s">&quot;world&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+</div>
+<p>Le code précédent pose un problème : le client utilise l’URL du service
+spécifiée dans la section <em>wsdl:service</em> du WSDL. Il est souvent utile
+de pouvoir changer dynamiquement l’URL du <em>endpoint</em>.</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">Modification de l’URL du endpoint du service</span><a class="headerlink" href="#id10" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+
+<span class="c1">// La SEI offrant les méthodes du service Web sous la forme d&#39;un interface Java</span>
+<span class="c1">// L&#39;interface est celle générée par wsimport</span>
+<span class="n">HelloService</span> <span class="n">helloService</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="na">getPort</span><span class="o">(</span><span class="n">HelloService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+<span class="c1">// Un service implémente l&#39;interface javax.xml.ws.BindingProvider</span>
+<span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">BindingProvider</span> <span class="n">bp</span> <span class="o">=</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">BindingProvider</span><span class="o">)</span> <span class="n">helloService</span><span class="o">;</span>
+
+<span class="c1">// ENDPOINT_ADDRESS_PROPERTY est une propriété donnant l&#39;URL du endpoint</span>
+<span class="n">bp</span><span class="o">.</span><span class="na">getRequestContext</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">xml</span><span class="o">.</span><span class="na">ws</span><span class="o">.</span><span class="na">BindingProvider</span><span class="o">.</span><span class="na">ENDPOINT_ADDRESS_PROPERTY</span><span class="o">,</span>
+                           <span class="s">&quot;http://monendpoint.com/monservice&quot;</span><span class="o">);</span>
+
+<span class="c1">// Exemple d&#39;appel du service</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">helloService</span><span class="o">.</span><span class="na">sayHello</span><span class="o">(</span><span class="s">&quot;world&quot;</span><span class="o">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Exercice<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Écrire un programme client d’un service Web</p>
+<p>Écrivez une client pour le service Web SOAP disponible à cette adresse :
+<a class="reference external" href="http://ws-meteo.herokuapp.com/">http://ws-meteo.herokuapp.com/</a>.</p>
+<p>Par exemple, vous pouvez écrire un programme qui accepte le nom d’une
+ville en paramètre et qui affiche la température obtenue pour cette
+ville après un appel au service Web.</p>
+<dl>
+<dt>Modèle de projet</dt><dd><p>Vous pouvez télécharger un modèle de projet Maven. Ajoutez
+un fichier WSDL dans le répertoire <code class="file docutils literal notranslate"><span class="pre">src/main/wsdl</span></code> et faites générer
+les classes Java à partir de ce contrat. Pour cela, vous devez lancer
+la cible Maven <code class="docutils literal notranslate"><span class="pre">generate-sources</span></code>. Dans Eclipse, vous pouvez appeler
+Maven en faisant un clic droit sur le nom de votre projet et en choisissant
+<span class="guilabel">Run As &gt; Maven generate-sources</span>.</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/b9ba0284aa7a253743c206f27293e606/ws-client-template.zip"><code class="xref download docutils literal notranslate"><span class="pre">ws-client-template.zip</span></code></a></p>
+</div></blockquote>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="implementer-des-services-web-avec-jax-ws">
+<span id="jaws-sei"></span><h2>Implémenter des services Web avec JAX-WS<a class="headerlink" href="#implementer-des-services-web-avec-jax-ws" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’implémentation d’un service Web passe par l’écriture et
+l’implémentation d’une <strong>SEI</strong> (Service Endpoint Implementation). Cette
+interface et son implémentation peuvent être fournies par le développeur
+ou peuvent être générées à partir d’un ficher WSDL (<em>Cf.</em> ci-dessous).</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Une SEI avec JAX-WS SOAP</span><a class="headerlink" href="#id11" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.jws.WebMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebParam</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebResult</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.soap.SOAPBinding</span><span class="o">;</span>
+
+<span class="nd">@WebService</span><span class="o">(</span><span class="n">targetNamespace</span><span class="o">=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">)</span>
+<span class="nd">@SOAPBinding</span><span class="o">(</span><span class="n">parameterStyle</span> <span class="o">=</span> <span class="n">SOAPBinding</span><span class="o">.</span><span class="na">ParameterStyle</span><span class="o">.</span><span class="na">BARE</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HelloService</span> <span class="o">{</span>
+
+  <span class="nd">@WebMethod</span>
+  <span class="nd">@WebResult</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;helloMessage&quot;</span><span class="o">,</span> <span class="n">targetNamespace</span> <span class="o">=</span> <span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHello</span><span class="o">(</span>
+      <span class="nd">@WebParam</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;who&quot;</span><span class="o">,</span> <span class="n">targetNamespace</span><span class="o">=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">La classe d’implémentation de la SEI</span><a class="headerlink" href="#id12" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.jws.WebService</span><span class="o">;</span>
+
+<span class="nd">@WebService</span><span class="o">(</span><span class="n">endpointInterface</span><span class="o">=</span><span class="s">&quot;fr.epsi.atlas.HelloService&quot;</span><span class="o">,</span>
+    <span class="n">targetNamespace</span><span class="o">=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">,</span> <span class="n">serviceName</span><span class="o">=</span><span class="s">&quot;HelloService&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloServiceImpl</span> <span class="kd">implements</span> <span class="n">HelloService</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il est également possible de définir une SEI directement avec une classe
+Java sans passer par une interface :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.jws.WebMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebParam</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebResult</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.soap.SOAPBinding</span><span class="o">;</span>
+
+<span class="nd">@WebService</span><span class="o">(</span><span class="n">targetNamespace</span><span class="o">=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">,</span> <span class="n">serviceName</span><span class="o">=</span><span class="s">&quot;HelloService&quot;</span><span class="o">)</span>
+<span class="nd">@SOAPBinding</span><span class="o">(</span><span class="n">parameterStyle</span> <span class="o">=</span> <span class="n">SOAPBinding</span><span class="o">.</span><span class="na">ParameterStyle</span><span class="o">.</span><span class="na">BARE</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloService</span> <span class="o">{</span>
+  <span class="nd">@WebMethod</span>
+  <span class="nd">@WebResult</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;helloMessage&quot;</span><span class="o">,</span> <span class="n">targetNamespace</span> <span class="o">=</span> <span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHello</span><span class="o">(</span>
+      <span class="nd">@WebParam</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;who&quot;</span><span class="o">,</span> <span class="n">targetNamespace</span><span class="o">=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="o">)</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">&quot;Hello &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Cette <strong>SEI</strong> permet de gérer un échange de messages comme celui-ci :</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">Message de l’expéditeur</span><a class="headerlink" href="#id13" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;soapenv:Envelope</span>
+  <span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span>
+  <span class="na">xmlns:hel=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Header/&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;hel:who&gt;</span>world<span class="nt">&lt;/hel:who&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">Message du destinataire</span><a class="headerlink" href="#id14" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;soapenv:Envelope</span> <span class="na">xmlns:soapenv=</span><span class="s">&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;soapenv:Body&gt;</span>
+      <span class="nt">&lt;helloMessage</span> <span class="na">xmlns=</span><span class="s">&quot;http://spoonless.github.io/ws/hello&quot;</span><span class="nt">&gt;</span>Hello world<span class="nt">&lt;/helloMessage&gt;</span>
+   <span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="nt">&lt;/soapenv:Envelope&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Nous allons maintenant décrire les annotations Java utilisées pour
+transformer la classe <code class="docutils literal notranslate"><span class="pre">HelloService</span></code> en service Web :</p>
+<dl>
+<dt><a class="reference external" href="https://docs.oracle.com/javase/10/docs/api/javax/jws/WebService.html">&#64;WebService</a></dt><dd><p>Désigne une classe comme étant une SEI ou une implémentation d’une
+SEI. Elle possède entre-autres les attributs suivants :</p>
+<dl class="simple">
+<dt>serviceName</dt><dd><p>Le nom du service tel qu’exposé dans le WSDL</p>
+</dd>
+<dt>targetNamespace</dt><dd><p>Le namespace XML du service tel qu’exposé dans le WSDL</p>
+</dd>
+<dt>endpointInterface</dt><dd><p>Désigne l’interface Java correspondante au SEI. À spécifier sur
+la classe d’implémentation du SEI.</p>
+</dd>
+</dl>
+</dd>
+<dt><a class="reference external" href="https://docs.oracle.com/javase/10/docs/api/javax/jws/soap/SOAPBinding.html">&#64;SOAPBinding</a></dt><dd><p>Indique le support SOAP pour le service. Les informations données
+par les attributs de cette annotation correspondent pour la plupart
+à celles que l’on trouve dans la section <code class="docutils literal notranslate"><span class="pre">binding</span></code> du WSDL. Cette
+annotation possède entre-autres les attributs suivants :</p>
+<dl class="simple">
+<dt>style</dt><dd><p>Définit s’il s’agit d’un service RPC ou Document.</p>
+</dd>
+<dt>parameterStyle</dt><dd><p>Détermine si un paramètre de la méthode représente la charge
+utile du message SOAP (le body) ou si ce paramètre doit être
+encapsulé (<em>wrapped</em>) dans un élément racine XML nommé d’après le
+nom de l’opération SOAP.</p>
+</dd>
+</dl>
+</dd>
+<dt><a class="reference external" href="https://docs.oracle.com/javase/10/docs/api/javax/jws/WebMethod.html">&#64;WebMethod</a></dt><dd><p>Indique si la méthode correspond à une opération du service Web</p>
+</dd>
+<dt><a class="reference external" href="https://docs.oracle.com/javase/10/docs/api/javax/jws/WebParam.html">&#64;WebParam</a></dt><dd><p>Cette annotation permet d’associer le paramètre de la méthode sur
+laquelle elle porte à une partie d’un message (l’élément <code class="docutils literal notranslate"><span class="pre">part</span></code> de
+<code class="docutils literal notranslate"><span class="pre">message</span></code> dans le WSDL). Elle possède les attributs suivants :</p>
+<dl class="simple">
+<dt>name</dt><dd><p>le nom de l’élément XML</p>
+</dd>
+<dt>targetNamespace</dt><dd><p>l’espace de nom de l’élément XML</p>
+</dd>
+<dt>header</dt><dd><p>un booléen indiquant si l’élément XML correspond à un en-tête ou
+s’il s’agit du corps du message.</p>
+</dd>
+<dt>mode</dt><dd><p>Il s’agit d’une énumération pouvant prendre les valeurs IN, OUT
+ou INOUT. Pour les valeurs OUT et INOUT, le type du paramètre
+est obligatoirement de type
+<a class="reference external" href="https://docs.oracle.com/javase/10/docs/api/javax/xml/ws/Holder.html">javax.xml.ws.Holder&lt;T&gt;</a>.
+IN signifie que l’élément est extrait du message de l’expéditeur
+tandis que OUT indique que l’élément fait partie de la réponse.</p>
+</dd>
+</dl>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHello</span><span class="o">(</span>
+     <span class="nd">@WebParam</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span>
+     <span class="nd">@WebParam</span><span class="o">(</span><span class="n">header</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span> <span class="n">UserCredentials</span> <span class="n">userCredentials</span><span class="o">,</span>
+     <span class="nd">@WebParam</span><span class="o">(</span><span class="n">header</span><span class="o">=</span><span class="kc">true</span><span class="o">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Mode</span><span class="o">.</span><span class="na">OUT</span><span class="o">)</span> <span class="n">Holder</span><span class="o">&lt;</span><span class="n">ServerInfo</span><span class="o">&gt;</span> <span class="n">serverInfo</span><span class="o">);</span>
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference external" href="https://docs.oracle.com/javase/10/docs/api/javax/jws/WebResult.html">&#64;WebResult</a></dt><dd><p>Cette annotation a la même sémantique que l’annotation <code class="docutils literal notranslate"><span class="pre">&#64;WebParam</span></code>
+sauf qu’elle est ajoutée à la méthode et qu’elle porte sur la valeur
+de retour de la méthode. Elle possède les attributs suivants :</p>
+<dl class="simple">
+<dt>name</dt><dd><p>le nom de l’élément XML</p>
+</dd>
+<dt>targetNamespace</dt><dd><p>l’espace de nom de l’élément XML</p>
+</dd>
+<dt>header</dt><dd><p>un booléan indiquant si l’élément XML correspond à un en-tête ou
+s’il s’agit du corps du message.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>Avec JAX-WS, les exceptions lancées par une méthode d’une SEI sont
+automatiquement transformées en SOAP fault.</p>
+</div>
+<div class="section" id="deployer-un-service-web-dans-un-serveur-tomcat">
+<h2>Déployer un service Web dans un serveur Tomcat<a class="headerlink" href="#deployer-un-service-web-dans-un-serveur-tomcat" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Tomcat ne gère pas directement le déploiement de service Web JAX-WS. Vous pouvez
+ajouter <code class="docutils literal notranslate"><span class="pre">jaxws-rt</span></code> dans votre projet. Cette bibliothèque fournit les classes
+nécessaires pour développer une application compatible JAX-WS.</p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">Dépendance avec jaxws-rt dans le fichier pom.xml</span><a class="headerlink" href="#id15" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.sun.xml.ws<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jaxws-rt<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.3.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Dans le fichier <code class="file docutils literal notranslate"><span class="pre">web.xml</span></code> de déploiement, il faut déclarer un <em>listener</em>
+fourni par <em>jaxws-rt</em> :</p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">Déclaration du listener dans le fichier web.xml</span><a class="headerlink" href="#id16" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;listener&gt;</span>
+  <span class="nt">&lt;listener-class&gt;</span>com.sun.xml.ws.transport.http.servlet.WSServletContextListener<span class="nt">&lt;/listener-class&gt;</span>
+<span class="nt">&lt;/listener&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Il faut ensuite déclarer les services dans le fichier <code class="file docutils literal notranslate"><span class="pre">sun-jaxws.xml</span></code>. Ce
+fichier devra être présent dans le répertoire <code class="file docutils literal notranslate"><span class="pre">WEB-INF</span></code> de l’application.
+Pour un projet Maven, il faut donc ajouter le fichier :file`src/main/webapp/WEB-INF/sun-jaxws.xml`.</p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">Exemple de contenu du fichier sun-jaxws.xml</span><a class="headerlink" href="#id17" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;endpoints</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/jax-ws/ri/runtime&quot;</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;endpoint</span> <span class="na">name=</span><span class="s">&quot;meteoService&quot;</span>
+                  <span class="na">implementation=</span><span class="s">&quot;fr.epsi.atlas.HelloServiceImpl&quot;</span>
+                  <span class="na">url-pattern=</span><span class="s">&quot;/hello&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/endpoints&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Ce fichier permet de déclarer chaque <em>endpoint</em> en fournissant son nom,
+sa classe d’implémentation Java et le motif d’URL pour lequel le service est
+disponible.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il n’est pas nécessaire de fournir de document WSDL, le serveur le générera
+automatiquement lorsque l’on ajoute <code class="docutils literal notranslate"><span class="pre">?wsdl</span></code> à la fin de l’URL du <em>endpoint</em>.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Exercice<a class="headerlink" href="#id2" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Écrire un service Web</p>
+<blockquote>
+<div><p>Reprenez l’implémentation de la SEI donnée en exemple <a class="reference internal" href="#jaws-sei"><span class="std std-ref">plus haut</span></a>
+et créez une application Web incorporant ce service. Déployez ensuite cette
+application dans un serveur Tomcat. Vérifiez que le service fonctionne en
+utilisant par exemple
+<a class="reference external" href="https://sourceforge.net/projects/soapui/">SoapUI</a>.</p>
+<p>Vous pouvez ensuite écrire un programme Java client de votre service.</p>
+<dl>
+<dt>Modèle de projet</dt><dd><p>Vous pouvez télécharger un modèle de projet Maven.</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/bfb53a8092464bb0cab1562caad2ce48/ws-template.zip"><code class="xref download docutils literal notranslate"><span class="pre">ws-template.zip</span></code></a></p>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="pour-aller-plus-loin">
+<h2>Pour aller plus loin<a class="headerlink" href="#pour-aller-plus-loin" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="simple">
+<dt>SOAP</dt><dd><p><a class="reference external" href="https://www.w3schools.com/xml/xml_soap.asp">https://www.w3schools.com/xml/xml_soap.asp</a></p>
+</dd>
+<dt>WSDL</dt><dd><p><a class="reference external" href="https://www.w3schools.com/xml/xml_wsdl.asp">https://www.w3schools.com/xml/xml_wsdl.asp</a></p>
+</dd>
+<dt>Tutoriels JAX-WS</dt><dd><p><a class="reference external" href="http://www.mkyong.com/tutorials/jax-ws-tutorials/">http://www.mkyong.com/tutorials/jax-ws-tutorials/</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="annexe_xml.html" class="btn btn-neutral float-right" title="Annexe : XML" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="web_services.html" class="btn btn-neutral float-left" title="Les services Web SOAP / WSDL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

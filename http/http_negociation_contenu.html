@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Le protocole HTTP et les API Web" name="description" />
+<meta content="HTTP, API Web, Rest, Restful Web Service" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP : la négociation de contenu &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="HTTP : les liens" href="http_liens.html" />
+    <link rel="prev" title="HTTP : les cas d’utilisation" href="http_cas_utilisation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+          <li><a href="api_web.html">HTTP, REST et les API Web</a> &raquo;</li>
+        
+      <li>HTTP : la négociation de contenu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="http_liens.html" class="btn btn-neutral float-right" title="HTTP : les liens" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_cas_utilisation.html" class="btn btn-neutral" title="HTTP : les cas d’utilisation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-la-negociation-de-contenu">
+<h1>HTTP : la négociation de contenu<a class="headerlink" href="#http-la-negociation-de-contenu" title="Lien permanent vers ce titre">¶</a></h1>
+<p>La forme des messages échangés entre un client et un serveur n’est
+absolument pas prescrite par HTTP. Par forme, il faut comprendre aussi
+bien le format, le jeu de caractères (charset) mais aussi la langue
+utilisée (s’il s’agit d’une forme textuelle). On dit que le client et le
+serveur n’échangent que des <strong>représentations</strong>. Différents clients et
+serveurs peuvent avoir des capacités ou des préférences différentes
+concernant la forme d’une représentation. HTTP définit ainsi la
+possibilité de décrire le contenu d’un message grâce aux en-têtes
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-type</a>
+et
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.3.2">Content-Language</a>.
+Mais HTTP permet aussi à un client et à un serveur de se mettre d’accord
+sur la forme de représentation souhaitée. Ce mécanisme s’appelle la
+<strong>négociation de contenu</strong>. On distingue deux méthodes de négociation de
+contenu :</p>
+<dl class="simple">
+<dt>La négociation proactive</dt><dd><p>Le serveur sélectionne la représentation la plus appropriée en
+fonction des préférences du client que ce dernier transmet dans la
+requête.</p>
+</dd>
+<dt>La négociation réactive</dt><dd><p>Le serveur répond à un client non pas une représentation, mais une
+liste de liens vers des représentations en précisant la forme de
+chacune. Le client peut alors choisir parmi cette liste la
+représentation qui lui convient le mieux.</p>
+</dd>
+</dl>
+<p>Dans la suite de ce chapitre, nous nous bornerons à détailler la
+négociation de contenu proactive.</p>
+<div class="section" id="la-negociation-de-type-de-contenu">
+<h2>La négociation de type de contenu<a class="headerlink" href="#la-negociation-de-type-de-contenu" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Parfois, un serveur peut disposer de plusieurs représentations pour une
+même ressource. Par exemple, il peut présenter un série de données dans
+une page HTML et sous un format CSV. Le client peut alors suggérer au
+serveur une liste de formats MIME correspondant à ses préférences.
+L’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.2">Accept</a> permet
+au client de fournir une liste de types MIME séparés par une virgule.
+Bien évidemment, l’en-tête <code class="docutils literal notranslate"><span class="pre">Accept</span></code> n’a de sens que si le client
+s’attend à recevoir une représentation de la part du serveur (ou s’il
+utilise la méthode <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> pour tester l’existence de ce format).</p>
+<p>Négociation de contenu sur le type de représentation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">individu</span><span class="o">/</span><span class="mo">00001</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Host</span><span class="p">:</span> <span class="n">www</span><span class="o">.</span><span class="n">monserveur</span><span class="o">.</span><span class="n">fr</span>
+<span class="n">Accept</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">,</span><span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">,</span><span class="n">application</span><span class="o">/</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>Dans l’exemple précédent, l’ordre dans la liste n’a pas d’importance, le
+client annonce au serveur qu’il peut indifféremment fournir une
+représentation au format HTML, texte brut ou un document PDF. Si le
+serveur ne peut fournir aucune de ces représentations, il doit
+considérer qu’il ne peut pas fournir de réponse acceptable pour ce
+client. Dans ce cas, le serveur peut :</p>
+<ul class="simple">
+<li><p>Répondre par un code statut <strong>406</strong> (Not Acceptable)</p></li>
+<li><p>Ignorer l’en-tête et retourner une représentation de son choix. En
+effet, on considère que la décision de traiter ou non la réponse
+revient en dernier lieu au client.</p></li>
+</ul>
+<p>Le client peut affiner sa négociation en annonçant que si plusieurs
+représentations sont disponibles, certaines seront préférées à d’autres.
+Cela se fait à l’aide du paramètre <strong>q</strong> (quality value) qui donne une
+pondération entre 0 et 1. Lorsque le paramètre <code class="docutils literal notranslate"><span class="pre">q</span></code> n’est pas précisé,
+sa valeur implicite est 1 (la plus forte préférence). Une valeur de 0
+signifie que la représentation associée n’est pas acceptable pour ce
+client.</p>
+<p>Négociation de contenu avec pondération des formats</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">individu</span><span class="o">/</span><span class="mo">00001</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Host</span><span class="p">:</span> <span class="n">www</span><span class="o">.</span><span class="n">monserveur</span><span class="o">.</span><span class="n">fr</span>
+<span class="n">Accept</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">,</span><span class="n">application</span><span class="o">/</span><span class="n">xhtml</span><span class="o">+</span><span class="n">xml</span><span class="p">,</span><span class="n">application</span><span class="o">/</span><span class="n">xml</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="o">*/*</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.8</span>
+</pre></div>
+</div>
+<p>Dans l’exemple précédent, le client annonce au serveur qu’il préfére les
+formats HTML et XHTML (q=1 est ici implicite) au format XML simple
+(q=0.9). Sinon il accepte de recevoir n’importe quel format
+(*/*;q=0.8). Ainsi, si un serveur dispose d’une représentation HTML,
+XML et PDF pour une ressource, il doit retourner à ce client le format
+HTML. Notez que cette valeur de l’en-tête <code class="docutils literal notranslate"><span class="pre">Accept</span></code> est celle par
+défaut du navigateur Firefox.</p>
+</div>
+<div class="section" id="la-negociation-de-jeu-de-caracteres">
+<h2>La négociation de jeu de caractères<a class="headerlink" href="#la-negociation-de-jeu-de-caracteres" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le client peut négocier avec le serveur le jeu de caractères (charset)
+utilisé dans la réponse grâce à l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.3">Accept-Charset</a> :</p>
+<p>Négociation de contenu sur l’encodage</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">individu</span><span class="o">/</span><span class="mo">00001</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Host</span><span class="p">:</span> <span class="n">www</span><span class="o">.</span><span class="n">monserveur</span><span class="o">.</span><span class="n">fr</span>
+<span class="n">Accept</span><span class="o">-</span><span class="n">Charset</span><span class="p">:</span> <span class="n">iso</span><span class="o">-</span><span class="mi">8859</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="o">*</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.3</span>
+</pre></div>
+</div>
+<p>Si le serveur ne peut pas fournir de représentation utilisant un des
+jeux caractères spécifiés par l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.3">Accept-Charset</a>,
+il doit considérer que sa représentation n’est pas acceptable par le
+client. Dans ce cas, le serveur peut :</p>
+<ul class="simple">
+<li><p>Répondre par un code statut <strong>406</strong> (Not Acceptable)</p></li>
+<li><p>Ignorer l’en-tête et retourner une représentation utilisant le code
+caractères de son choix. En effet, on considère que la décision de
+traiter ou non la réponse revient en dernier lieu au client.</p></li>
+</ul>
+</div>
+<div class="section" id="la-negociation-de-langue">
+<h2>La négociation de langue<a class="headerlink" href="#la-negociation-de-langue" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si la réponse contient des données textuelles destinées à être lues par
+des individus, le client peut négocier la langue qui devrait être
+utilisée grâce à l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-5.3.5">Accept-Language</a>.
+Si le serveur ne peut pas satisfaire les exigences du client, il est
+tout de même sensé retourner ce qu’il juge la meilleure réponse afin de
+ne pas empêcher l’utilisateur d’accéder à l’information.</p>
+<p>Négociation de contenu sur la langue du document</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span> <span class="o">/</span><span class="n">individu</span><span class="o">/</span><span class="mo">00001</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Host</span><span class="p">:</span> <span class="n">www</span><span class="o">.</span><span class="n">monserveur</span><span class="o">.</span><span class="n">fr</span>
+<span class="n">Accept</span><span class="o">-</span><span class="n">Language</span><span class="p">:</span> <span class="n">fr</span><span class="p">,</span><span class="n">fr</span><span class="o">-</span><span class="n">fr</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">en</span><span class="o">-</span><span class="n">us</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">en</span><span class="p">;</span><span class="n">q</span><span class="o">=</span><span class="mf">0.3</span>
+</pre></div>
+</div>
+<p>La valeur de l’en-tête <code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code> de l’exemple ci-dessus est
+celle du navigateur Firefox pour un utilisateur français. On peut le
+traduire de la façon suivante : le client préfère les documents écrits
+en langue française (fr). Sinon, le client préfère les documents
+français (fr-fr;q=0.8). Sinon, le client préfère les documents écrits en
+américain (en-us;q=0.5). Sinon le client préfère les document écrits en
+langue anglaise (en;q=0.3).</p>
+<p>La négociation de contenu proactive pour la langue est une technique
+utilisée pour internationaliser un site Web.</p>
+</div>
+<div class="section" id="l-en-tete-vary">
+<h2>L’en-tête Vary<a class="headerlink" href="#l-en-tete-vary" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.4">Vary</a> est très
+utile pour donner au client un indice sur le type de négociation de
+contenu proactive qu’il peut réaliser. En effet, lorsqu’un serveur
+dispose de plus d’une représentation et qu’il répond à un client, il
+peut ajouter l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.4">Vary</a> qui
+indique la liste des en-têtes pouvant l’influencer dans son processus de
+sélection et de représentation de la réponse.</p>
+<p>Exemple de découverte d’une négociation de contenu proactive</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HEAD</span> <span class="o">/</span><span class="n">individu</span><span class="o">/</span><span class="mo">00001</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Host</span><span class="p">:</span> <span class="n">www</span><span class="o">.</span><span class="n">monserveur</span><span class="o">.</span><span class="n">fr</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<span class="n">Host</span><span class="p">:</span> <span class="n">www</span><span class="o">.</span><span class="n">monserveur</span><span class="o">.</span><span class="n">fr</span>
+<span class="n">Vary</span><span class="p">:</span> <span class="n">Accept</span><span class="p">,</span> <span class="n">Accept</span><span class="o">-</span><span class="n">Language</span>
+<span class="n">Content</span><span class="o">-</span><span class="nb">type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span><span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Language</span><span class="p">:</span> <span class="n">en</span><span class="o">-</span><span class="n">us</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">length</span><span class="p">:</span> <span class="mi">532</span>
+</pre></div>
+</div>
+<p>Dans l’exemple ci-dessus, le client peut savoir grâce à une requête
+<code class="docutils literal notranslate"><span class="pre">HEAD</span></code> que le serveur retourne par défaut une représentation texte
+brut en UTF-8 rédigée en américain. De plus, l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.4">Vary</a> indique
+que le serveur accepte la négociation de contenu proactive sur le type
+de la représentation (<code class="docutils literal notranslate"><span class="pre">Accept</span></code>) et sur la langue
+(<code class="docutils literal notranslate"><span class="pre">Accept-Language</span></code>).</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http_liens.html" class="btn btn-neutral float-right" title="HTTP : les liens" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_cas_utilisation.html" class="btn btn-neutral float-left" title="HTTP : les cas d’utilisation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

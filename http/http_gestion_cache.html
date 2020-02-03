@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Le protocole HTTP et les API Web" name="description" />
+<meta content="HTTP, API Web, Rest, Restful Web Service" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP : la gestion du cache &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+      <li>HTTP : la gestion du cache</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-la-gestion-du-cache">
+<span id="http-gestion-cache"></span><h1>HTTP : la gestion du cache<a class="headerlink" href="#http-la-gestion-du-cache" title="Lien permanent vers ce titre">¶</a></h1>
+<p>La gestion du cache décrite par la <a class="reference external" href="https://tools.ietf.org/html/rfc7234">RFC
+7234</a> est une part importante de
+HTTP. En effet, HTTP étant utilisé sur des réseaux peu fiables, la
+gestion du cache permet d’améliorer les performances ou de palier à des
+défaillances. Si un élément intermédiaire du réseau, ou même le client,
+dispose d’un système de mise en cache, il peut l’utiliser s’il sait que
+les données qu’il contient sont à jour ou si le serveur distant est
+temporairement indisponible.</p>
+<p>HTTP ne préconise pas d’implémentation particulière pour un système de
+gestion de cache (en fait HTTP ne considère pas la gestion de cache
+comme obligatoire mais comme fortement recommandée). Par contre, HTTP
+propose des en-têtes de requête et de réponse permettant aux différents
+éléments d’un réseau (agent utilisateur, serveur d’origine et
+intermédiaire) de fournir des informations aux autres éléments sur la
+fraîcheur des informations et sur la stratégie de cache à privilégier.</p>
+<p>Typiquement, un client pourra fournir des préférences sur le fait qu’il
+accepte ou non des données issues d’un cache. Un serveur indiquera un
+moyen de déterminer la date limite de fraîcheur de la réponse. Quant aux
+intermédiaires, ils peuvent se signaler s’ils décident de répondre en
+lieu et place du serveur d’origine.</p>
+<p>La gestion de cache HTTP est un sujet complexe car elle implique de
+comprendre et d’utiliser des stratégies différentes ainsi que la mise en
+place d’heuristiques de calcul afin d’éviter des incohérences dans les
+réponses qui peuvent être fournies par un cache HTTP. Dans le suite du
+chapitre, nous nous limiterons donc aux principes généraux.</p>
+<p>Les navigateurs Web les plus courants implémentent tous un cache local
+pour l’utilisateur.</p>
+<div class="section" id="serveur-d-origine-et-intermediaires">
+<h2>Serveur d’origine et intermédiaires<a class="headerlink" href="#serveur-d-origine-et-intermediaires" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un serveur d’origine est celui qui fait autorité pour répondre à une
+requête. Par exemple, il peut s’agir du serveur qui détient un document
+particulier. En théorie, un client qui souhaite obtenir ce document doit
+faire une requête HTTP au serveur d’origine. Cependant, HTTP supporte le
+recours à des intermédiaires, formant ainsi une chaîne de connexions
+entre le client qui émet la requête initiale (appelé agent utilisateur
+ou <em>user agent</em>) et le serveur d’origine. Un intermédiaire agit à la
+fois comme un serveur (car il doit retourner une réponse à une requête
+cliente) et comme un client (car il doit obtenir l’information auprès de
+l’élément suivant dans la chaîne de connexions).</p>
+<p>HTTP définit trois types d’intermédiaires :</p>
+<dl class="simple">
+<dt>proxy (serveur mandataire)</dt><dd><p>Un <strong>proxy</strong> est utilisé par un client pour transmettre des messages
+à sa place. Il est en général configuré pour accepter (ou refuser)
+des requêtes pour des URI particulières. Dans des organisations, un
+proxy est souvent utilisé pour transmettre des requêtes depuis un
+réseau interne vers un réseau publique (Internet). On résume
+l’action d’un proxy en disant qu’il se substitue à un client pour
+des requêtes vers N serveurs.</p>
+</dd>
+<dt>gateway ou reverse proxy (passerelle)</dt><dd><p>Une <strong>gateway</strong> (ou reverse proxy) est un intermédiaire qui agit
+comme un serveur d’origine. Les reverse proxies sont souvent
+utilisés comme des accelérateurs HTTP (pour la mise en place de
+cache). Ils peuvent également permettre d’isoler des serveurs
+d’origine d’un réseau publique ou non sécurisé. On résume l’action
+d’un reverse proxy en disant qu’il se substitue à N clients pour des
+requêtes vers un serveur.</p>
+</dd>
+<dt>tunnel</dt><dd><p>Un <strong>tunnel</strong> agit comme un relais entre deux connexions sans
+changer la nature des messages échangés. Un tunnel est utilisé pour
+établir des connexions sécurisées ou pour utiliser un protocole
+tiers à travers HTTP. Dans la mesure où HTTP impose que les messages
+circulant dans un tunnel ne peuvent pas être mis en cache, ce type
+d’intermédiaire ne nous intéressera pas dans ce chapitre.</p>
+</dd>
+</dl>
+<p>Un <strong>proxy</strong> et un <strong>reverse proxy</strong> sont souvent pourvus d’un système
+de gestion cache. Dans le cas d’un reverse proxy utilisé comme
+accélérateur, il s’agit même de la principale raison de sa mise en
+place. Ces intermédiaires vont donc pouvoir décider d’écourter la chaîne
+de connexions en répondant directement à partir des données dont ils
+disposent en cache. Ils auront également besoin de contacter de temps en
+temps le serveur d’origine (directement ou indirectement) pour
+renouveler le contenu de leur cache.</p>
+</div>
+<div class="section" id="principe-generale-de-la-gestion-du-cache">
+<h2>Principe générale de la gestion du cache<a class="headerlink" href="#principe-generale-de-la-gestion-du-cache" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un cache est un ensemble de réponses précédemment reçues. Chaque réponse
+est associée à un clé d’identification. Si une nouvelle requête est
+émise avec la même clé d’identification, alors le gestionnaire du cache
+peut fournir une réponse à la place du serveur d’origine. La clé
+d’identification d’un cache correspond à l’URI de la ressource ainsi que
+la méthode HTTP de la requête et <em>certains</em> en-têtes de la requête. Le
+gestionnaire de cache est également responsable de la mise à jour et de
+la suppression des réponses stockées dans le cache</p>
+<p>Les clients (agent utilisateur ou intermédiaires) peuvent disposer d’un
+gestionnaire de cache. Ce gestionnaire sera consulté avant d’émettre la
+requête vers le serveur.</p>
+<p>Un client disposant d’un gestionnaire de cache suivra un algorithme
+proche de celui-ci :</p>
+<ul class="simple">
+<li><p>Si la requête ne correspond à aucune réponse en cache, alors la
+requête est émise au serveur. Si la réponse l’autorise alors elle
+sera mise en cache. La reponse du serveur est utilisée comme réponse
+à la requête.</p></li>
+<li><p>Si la requête invalide le cache, alors la requête est émise au
+serveur. En cas de succès, le gestionnaire de cache invalide une
+éventuelle réponse en cache. La reponse du serveur est utilisée comme
+réponse à la requête.</p></li>
+<li><p>Si la requête correspond à une réponse déjà en cache, le gestionnaire
+de cache vérifie la fraîcheur de la réponse en cache :</p>
+<ul>
+<li><p>Si la réponse en cache ne nécessite pas de revalidation auprès du
+serveur alors elle est utilisée directement comme réponse à la
+requête.</p></li>
+<li><p>Si la réponse en cache nécessite une revalidation auprès du
+serveur alors la revalidation est effectuée :</p>
+<ul>
+<li><p>Si le serveur considère que la réponse en cache est toujours
+valide, alors elle est utilisée directement comme réponse à la
+requête.</p></li>
+<li><p>Si le serveur considère que cette réponse n’est plus valide, le
+cache est mis à jour à partir de la réponse du serveur et la
+réponse du serveur est utilisée comme réponse à la requête.</p></li>
+<li><p>Si la requête au serveur échoue, soit une erreur est retournée
+en réponse à la requête soit le réponse en cache est utilisée
+comme réponse à la requête.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="la-fraicheur-d-une-reponse">
+<h2>La fraîcheur d’une réponse<a class="headerlink" href="#la-fraicheur-d-une-reponse" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La capacité d’un gestionnaire de cache à juger de la fraîcheur
+(<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-4.2">freshness</a>)
+d’une réponse en cache est un mécanisme fondamental pour la gestion de
+cache. Une réponse en cache est considérée comme « fraîche » si elle peut
+être utilisée comme réponse sans que le serveur d’origine n’ait à la
+revalider.</p>
+<p>La fraîcheur est déduite à partir d’une date limite. Cette date limite
+de fraîcheur est soit donnée par le serveur d’origine soit déduite à
+partir d’informations fournies par le serveur d’origine.</p>
+<p>Le serveur peut fournir un des deux en-têtes suivants dans sa réponse
+pour permettre de calculer la date limite de fraîcheur :</p>
+<dl>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.3">Expires</a></dt><dd><p>L’en-tête de réponse
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.3">Expires</a>
+permet au serveur de donner la date limite de fraîcheur de sa
+réponse. Cela ne signifie pas qu’après cette date, la ressource
+cesse d’être valide ou même n’existera plus. Il s’agit juste de
+forcer un gestionnaire de cache à effectuer une requête de
+validation une fois cette date passée.</p>
+<p>Si le serveur ne souhaite pas que sa réponse soit mise en cache, il
+peut fournir une date passée dans l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.3">Expires</a>.</p>
+<p>En général, un gestionnaire de cache ne tiendra compte de l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.3">Expires</a> que
+s’il est accompagné de l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.1.2">Date</a>.
+Ce dernier donne la date du serveur au moment de la génération de la
+réponse. Cela permet au client d’effectuer d’éventuelles corrections
+d’horloge s’il existe des différences entre la date du serveur et la
+date du client.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La réponse du serveur avec l’en-tête Expires</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Mon, 26 Mar 2018 15:00:00 GMT</span>
+<span class="na">Expires</span><span class="o">:</span> <span class="l">Fri, 1 Jan 2021 00:00:00 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sat, 24 Mar 2018 08:32:00 GMT</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service
+always on as in the concept of utility computing.
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2">Cache-Control</a></dt><dd><p><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2">Cache-Control</a>
+est l’en-tête au cœur de la gestion de cache en HTTP 1.1. Il est
+assez complexe à appréhender car il peut porter plusieurs
+informations et son interprétation change selon qu’il apparaît dans
+un requête ou dans une réponse. Pour l’instant, disons simplement
+que
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2">Cache-Control</a>
+peut être utilisé pour retourner la directive
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.8">max-age</a>
+qui indique <strong>le nombre de secondes avant que la réponse ne soit
+plus fraîche</strong>.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La réponse du serveur avec l’en-tête Cache-Control et la directive
+<code class="docutils literal notranslate"><span class="pre">max-age</span></code></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Mon, 26 Mar 2018 15:00:00 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sat, 24 Mar 2018 08:32:00 GMT</span>
+<span class="na">Cache-control</span><span class="o">:</span> <span class="l">max-age=3600</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service
+always on as in the concept of utility computing.
+</pre></div>
+</div>
+<p>Si une réponse contient un en-tête <code class="docutils literal notranslate"><span class="pre">Expires</span></code> et un en-tête
+<code class="docutils literal notranslate"><span class="pre">Cache-Control</span></code>, alors un client capable d’interpréter les deux
+en-têtes doit <strong>ignorer</strong> l’en-tête <code class="docutils literal notranslate"><span class="pre">Expires</span></code>.</p>
+</dd>
+</dl>
+<p>Si la réponse du serveur ne contient ni l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.3">Expires</a>, ni
+l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2">Cache-Control</a> mais
+que la méthode HTTP de la requête est
+<a class="reference internal" href="http.html#cacheable"><span class="std std-ref">cacheable</span></a>, alors le gestionnaire de
+cache peut appliquer une heuristique afin de déduire une date limite de
+fraîcheur.</p>
+</div>
+<div class="section" id="la-revalidation">
+<h2>La revalidation<a class="headerlink" href="#la-revalidation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lorsqu’un gestionnaire de cache détecte qu’une donnée n’est plus
+fraîche. Il doit demander une revalidation auprès du serveur d’origine.
+La revalidation consiste à émettre une <a class="reference internal" href="http_requetes_conditionnelles.html#requetes-conditionnelles"><span class="std std-ref">requête
+conditionnelle</span></a> basée sur la
+date de dernière modification ou sur l’entity-tag selon les informations
+fournies précédemment par le serveur.</p>
+<p>Le résultat de la revalidation dépend du résultat de la requête
+conditionnelle :</p>
+<ul class="simple">
+<li><p>Si le serveur répond 304 (Not modified), alors la réponse en cache
+est utilisée comme réponse à la requête.</p></li>
+<li><p>Si le serveur retourne une réponse complète avec un code 2XX, alors
+le serveur informe que la réponse en cache n’est plus valide. La
+réponse retournée par le serveur est celle utilisée pour répondre à
+la requête et le cache est mis à jour en accord avec la réponse du
+serveur.</p></li>
+<li><p>Si le serveur ne répond pas (ou répond une erreur 5XX), alors il est
+possible de retourner l’erreur du serveur comme réponse (ou un
+<strong>504</strong> Gateway Timeout). Il est également possible de considérer que
+la réponse en cache est toujours valide afin de palier à une
+défaillance du réseau.</p></li>
+</ul>
+</div>
+<div class="section" id="les-directives-de-strategie-de-cache">
+<h2>Les directives de stratégie de cache<a class="headerlink" href="#les-directives-de-strategie-de-cache" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le serveur peut fournir des directives grâce à l’en-tête de réponse
+<code class="docutils literal notranslate"><span class="pre">Cache-Control</span></code>. Si le serveur souhaite fournir plusieurs directives,
+il lui suffit de les séparer par une virgule. Ces directives doivent
+être prises en charge par tous les caches traitant cette réponse. Parmi
+les directives possibles on retiendra :</p>
+<dl>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.3">no-store</a></dt><dd><p>La directive
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.3">no-store</a>
+indique qu’aucun cache ne peut stocker la réponse à cette requête.
+Elle est utilisée pour désactiver le support du cache pour cette
+réponse.</p>
+<p>Attention, les directives ne sont pas fiables. Même si elles sont
+émises par un serveur, leur application dépend de l’implémentation
+des agents utilisateurs et des intermédiaires. Ainsi, la directive
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.3">no-store</a>
+ne suffit pas à garantir la confidentialité d’une réponse.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.2">no-cache</a></dt><dd><p>La directive
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.2">no-cache</a>
+indique que le gestionnaire de cache ne pourra pas utiliser la
+réponse en cache sans l’avoir préalablement revalidée auprès du
+serveur. Cette directive n’empêche pas de stocker la réponse dans le
+cache mais impose que cette réponse ne soit jamais considérée comme
+« fraîche ».</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.1">must-revalidate</a></dt><dd><p>La directive
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.1">must-revalidate</a>
+indique que lorsque le gestionnaire de cache devra revalider cette
+réponse, il ne devra jamais utiliser la réponse en cache si jamais
+la revalidation échoue. Autrement dit, la revalidation doit réussir
+pour que la réponse en cache puisse être à nouveau utilisée.</p>
+</dd>
+</dl>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La réponse du serveur avec l’en-tête Cache-Control</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Mon, 26 Mar 2018 15:00:00 GMT</span>
+<span class="na">Last-Modified</span><span class="o">:</span> <span class="l">Sat, 24 Mar 2018 08:32:00 GMT</span>
+<span class="na">Cache-control</span><span class="o">:</span> <span class="l">no-cache, must-revalidate</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service
+always on as in the concept of utility computing.
+</pre></div>
+</div>
+<p>Dans l’exemple ci-dessus, le serveur notifie à un gestionnaire de cache
+qu’il ne peut pas utiliser cette réponse à nouveau sans avoir émis une
+requête de validation (signification de
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.2">no-cache</a>).
+Si cette requête de validation échoue, alors il doit impérativement
+retourner une erreur (signification de
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.2.1">must-revalidate</a>).</p>
+<p>Le client peut également utiliser l’en-tête <code class="docutils literal notranslate"><span class="pre">Cache-Control</span></code> afin de
+spécifier des directives sur la façon dont un cache peut-être utilisé
+dans <a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.2.1">le traitement de la
+requête</a>.</p>
+</div>
+<div class="section" id="l-invalidation-de-cache">
+<h2>L’invalidation de cache<a class="headerlink" href="#l-invalidation-de-cache" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une clé de cache est invalidée si une requête est émise pour une URI en
+cache avec une méthode HTTP qui peut modifier l’état du serveur :
+c’est-à-dire les méthodes non sûres <code class="docutils literal notranslate"><span class="pre">POST</span></code>, <code class="docutils literal notranslate"><span class="pre">PUT</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> et
+<code class="docutils literal notranslate"><span class="pre">PATCH</span></code>. Le cache ne sera invalidé que si la réponse est un succès
+(code statut 2XX ou 3XX).</p>
+<p>La difficulté de la mise en place d’un cache HTTP provient souvent du
+fait qu’il est possible d’atteindre un serveur d’origine sans passer
+nécessairement par le même gestionnaire de cache. Ainsi, si une réponse
+est mise en cache et qu’une requête <code class="docutils literal notranslate"><span class="pre">PUT</span></code> est émise vers la même
+ressource sans passer par le gestionnaire de cache, alors la réponse en
+cache devient invalide. Cependant, le gestionnaire de cache ne pourra
+détecter cette modification qu’une fois la date de fraîcheur dépassée
+pour la réponse. Il peut donc y avoir un temps de latence entre le
+moment où une ressource est modifiée et le moment où le gestionnaire de
+cache prend en compte cette modification.</p>
+</div>
+<div class="section" id="enrichissement-des-en-tetes-par-les-intermediaires">
+<h2>Enrichissement des en-têtes par les intermédiaires<a class="headerlink" href="#enrichissement-des-en-tetes-par-les-intermediaires" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les intermédiaires peuvent signaler leur présence en ajoutant des
+en-têtes dans la requête et dans la réponse. Dans le cadre de la gestion
+du cache, nous retiendrons plus particulièrement deux en-têtes :</p>
+<dl>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7230#section-5.7.1">Via</a></dt><dd><p>L’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7230#section-5.7.1">Via</a> sert
+simplement à un intermédiaire à signaler sa présence en indiquant
+son nom et sa version. Cet en-tête n’est pas spécifique à la gestion
+de cache, mais il est utile de le connaître pour détecter la
+présence d’intermédiaire dans un échange client/serveur. Dans
+l’exemple ci-dessous, on supposera qu’il existe un proxy Squid
+utilisé comme intermédiaire.</p>
+<p>La requête émise par le client</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La requête vue par le serveur</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">1.1 squid</span>
+</pre></div>
+</div>
+<p>La réponse du serveur</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Content-language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service
+always on as in the concept of utility computing.
+</pre></div>
+</div>
+<p>La réponse du serveur vue par le client</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Content-language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">1.1 squid</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service
+always on as in the concept of utility computing.
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.1">Age</a></dt><dd><p>L’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7234#section-5.1">Age</a> permet
+à un intermédiaire de signaler qu’il a retourné une réponse en cache
+sans s’adresser au serveur d’origine. L’intermédiaire indique
+explicitement l’âge en secondes de la réponse depuis la dernière
+validation par le serveur d’origine.</p>
+<p>La requête émise par le client</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La réponse retournée par le cache d’un intermédiaire</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Content-language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+<span class="na">Age</span><span class="o">:</span> <span class="l">22</span>
+<span class="na">Via</span><span class="o">:</span> <span class="l">1.1 squid</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service
+always on as in the concept of utility computing.
+</pre></div>
+</div>
+<p>Dans l’exemple ci-dessus, le proxy Squid signale qu’il a directement
+retourné la réponse sans interroger le serveur d’origine. Le proxy
+estime que la réponse retournée a été validée par le serveur
+d’origine il y a 22 secondes.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

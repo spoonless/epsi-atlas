@@ -1,0 +1,757 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Le protocole HTTP et les API Web" name="description" />
+<meta content="HTTP, API Web, Rest, Restful Web Service" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTTP : les cas d’utilisation &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="HTTP : la négociation de contenu" href="http_negociation_contenu.html" />
+    <link rel="prev" title="Le protocole HTTP" href="http.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+          <li><a href="api_web.html">HTTP, REST et les API Web</a> &raquo;</li>
+        
+      <li>HTTP : les cas d’utilisation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="http_negociation_contenu.html" class="btn btn-neutral float-right" title="HTTP : la négociation de contenu" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http.html" class="btn btn-neutral" title="Le protocole HTTP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="http-les-cas-d-utilisation">
+<h1>HTTP : les cas d’utilisation<a class="headerlink" href="#http-les-cas-d-utilisation" title="Lien permanent vers ce titre">¶</a></h1>
+<p>À travers différents cas d’utilisation, nous allons clarifier le rôle
+des méthodes HTTP et exploiter différents codes statut.</p>
+<div class="section" id="obtenir-la-representation-d-une-ressource">
+<h2>Obtenir la représentation d’une ressource<a class="headerlink" href="#obtenir-la-representation-d-une-ressource" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lorsqu’un client désire obtenir la représentation d’une ressource auprès
+d’un serveur, il utilise <strong>toujours</strong> la méthode <code class="docutils literal notranslate"><span class="pre">GET</span></code>. En cas du
+succès, le serveur doit répondre le code 200 ainsi que la représentation
+de la ressource.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Content-language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+
+A Web Service is a method of communication between two electronic devices over a network.
+It is a software function provided at a network address over the web with the service always on
+as in the concept of utility computing.
+</pre></div>
+</div>
+</div>
+<div class="section" id="obtenir-uniquement-les-meta-informations-d-une-ressource">
+<h2>Obtenir uniquement les meta-informations d’une ressource<a class="headerlink" href="#obtenir-uniquement-les-meta-informations-d-une-ressource" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un client peut souhaiter obtenir des meta-informations sur une
+ressource. Par exemple, il souhaite vérifier qu’une ressource existe
+sans nécessairement obtenir sa représentation. Dans ce cas, il doit
+utiliser la méthode <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>. Cette méthode se comporte comme la méthode
+<code class="docutils literal notranslate"><span class="pre">GET</span></code> mais sans retourner le corps du message</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">HEAD</span> <span class="nn">/web+service</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.dictionary.info</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Content-language</span><span class="o">:</span> <span class="l">en</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">226</span>
+</pre></div>
+</div>
+<p>Pour une requête <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>, le serveur peut ou non retourner les
+informations relatives à la taille du message (l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7230#section-3.3.2">Content-length</a>).</p>
+</div>
+<div class="section" id="creer-une-ressource-dont-on-connait-l-uri">
+<h2>Créer une ressource dont on connait l’URI<a class="headerlink" href="#creer-une-ressource-dont-on-connait-l-uri" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lorsqu’un client veut créer une ressource sur le serveur, il faut
+distinguer le cas où le client connaît l’URI finale de la ressource du
+cas où c’est au serveur de déterminer l’URI finale. Dans le cas où
+l’utilisateur connaît l’URI, la méthode sera <strong>toujours</strong> un <code class="docutils literal notranslate"><span class="pre">PUT</span></code>. En
+cas de succès, le serveur devrait répondre le code 201.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">PUT</span> <span class="nn">/individu/David+Gayerie</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">91</span>
+
+<span class="p">{</span><span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Gayerie&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;firstname&quot;</span> <span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;email&quot;</span> <span class="p">:</span> <span class="s2">&quot;david.gayerie@yopmail.com&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">0</span>
+</pre></div>
+</div>
+<p>Dans l’exemple ci-dessus, le client souhaite créer une nouvelle
+ressource identifiée par l’URI <a class="reference external" href="http://exemple.fr/individu/David+Gayerie">http://exemple.fr/individu/David+Gayerie</a>.</p>
+<p>La plupart du temps, la ressource créée par le serveur n’est pas
+strictement conforme à la représentation transmise par le client. Le
+serveur peut, par exemple, ajouter des données telles que la date de
+création ou la version. Dans la sémantique HTTP, le serveur est libre
+d’ignorer tout ou partie des informations transmises par le client et de
+rajouter les informations qui lui semble nécessaires. Ainsi un client ne
+peut jamais être sûr que la représentation transmise au serveur
+correspondra bien à celle obtenue par en réponse à une requête <code class="docutils literal notranslate"><span class="pre">GET</span></code>
+sur l’URI de la ressource. Pour éviter au client de faire une requête
+<code class="docutils literal notranslate"><span class="pre">GET</span></code> supplémentaire, on admet qu’une requête <code class="docutils literal notranslate"><span class="pre">PUT</span></code> peut retourner
+une représentation de la ressource qui vient d’être créée.</p>
+</div>
+<div class="section" id="creer-une-ressource-dont-on-ne-connait-pas-l-uri">
+<h2>Créer une ressource dont on ne connait pas l’URI<a class="headerlink" href="#creer-une-ressource-dont-on-ne-connait-pas-l-uri" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans le cas où l’utilisateur ne connaît pas l’URI finale de la
+ressource, la méthode sera <strong>toujours</strong> un <code class="docutils literal notranslate"><span class="pre">POST</span></code>. En cas de succès,
+le serveur devrait répondre le code 201 et un en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>
+donnant au client l’URI de la nouvelle ressource.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/individu/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded; charset=utf-8</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">65</span>
+
+name=Gayerie&amp;firstname=David&amp;email=david.gayerie@yopmail.com
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://exemple.fr/individu/000001</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">0</span>
+</pre></div>
+</div>
+<p>Dans l’exemple ci-dessus, le client souhaite créer une ressource et le
+serveur décide d’identifier cette nouvelle ressource par l’URI
+<a class="reference external" href="http://exemple.fr/individu/000001">http://exemple.fr/individu/000001</a>. Dans ce cas, la méthode <code class="docutils literal notranslate"><span class="pre">POST</span></code> a la
+sémantique d’un ajout d’une ressource à un ensemble (celui des
+individus).</p>
+<p>La plupart du temps, la ressource créée par le serveur n’est pas
+strictement conforme à la représentation transmise par le client. Le
+serveur peut, par exemple, ajouter des données telles que la date de
+création ou la version. Dans la sémantique HTTP, le serveur est libre
+d’ignorer tout ou partie des informations transmises par le client et de
+rajouter les informations qui lui semble nécessaires. Ainsi un client ne
+peut jamais être sûr que la représentation transmise au serveur
+correspondra bien à celle obtenue par en réponse à une requête <code class="docutils literal notranslate"><span class="pre">GET</span></code>
+sur l’URI fournie par l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>.
+Pour éviter au client de faire une requête <code class="docutils literal notranslate"><span class="pre">GET</span></code> supplémentaire, on
+admet qu’une requête <code class="docutils literal notranslate"><span class="pre">POST</span></code> peut retourner une représentation de la
+ressource qui vient d’être créée.</p>
+</div>
+<div class="section" id="supprimer-l-acces-a-une-ressource">
+<h2>Supprimer l’accès à une ressource<a class="headerlink" href="#supprimer-l-acces-a-une-ressource" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">DELETE</span> <span class="nn">/individu/000001</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No content</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mettre-a-jour-une-ressource">
+<h2>Mettre à jour une ressource<a class="headerlink" href="#mettre-a-jour-une-ressource" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La mise à jour complète d’une ressource existante se fait grâce à la
+méthode <code class="docutils literal notranslate"><span class="pre">PUT</span></code>.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">PUT</span> <span class="nn">/individu/David+Gayerie</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">91</span>
+
+<span class="p">{</span><span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Gayerie&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;firstname&quot;</span> <span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;email&quot;</span> <span class="p">:</span> <span class="s2">&quot;david.gayerie@yopmail.com&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No content</span>
+</pre></div>
+</div>
+<p>La requête de l’exemple ci-dessus est strictement identique à celle de
+la section <a class="reference external" href="#creer_une_ressource_put">*Créer une ressource dont on connaît
+l’URI*</a>. Seule la réponse du serveur fait
+la différence : 204 signifie que la requête a été acceptée mais sans
+préciser une création (cela signifie que l’opération a été une mise à
+jour). Le client ne sait pas <em>a priori</em> s’il demande une création ou une
+modification. Cela correspond parfaitement à la caractéristique
+d’idempotence de la méthode <code class="docutils literal notranslate"><span class="pre">PUT</span></code> : la requête peut donc être répétée
+1 à N fois et produira la même résultat sur le serveur.</p>
+<p>Nous verrons avec les requêtes conditionnelles que le client peut, s’il
+le désire, s’assurer que sa requête est bien une requête de mise à jour.</p>
+</div>
+<div class="section" id="mettre-a-jour-partiellement-une-ressource">
+<h2>Mettre à jour partiellement une ressource<a class="headerlink" href="#mettre-a-jour-partiellement-une-ressource" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> a été introduite par la <a class="reference external" href="https://tools.ietf.org/html/rfc5789">RFC
+5789</a> afin de fournir une méthode
+pour la mise à jour partielle d’une ressource.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">PATCH</span> <span class="nn">/individu/David+Gayerie</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">application/json-patch+json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">53</span>
+
+<span class="p">{</span><span class="nt">&quot;op&quot;</span> <span class="p">:</span> <span class="s2">&quot;add&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;path&quot;</span> <span class="p">:</span> <span class="s2">&quot;/taille&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;value&quot;</span> <span class="p">:</span> <span class="mi">174</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No content</span>
+</pre></div>
+</div>
+<p>La difficulté de l’utilisation de la méthode <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> vient de la
+nécessité pour le serveur et le client de partager un format de
+représentation permettant de décrire les modifications à apporter.
+L’exemple précédent utilise le format JSON patch proposé par la <a class="reference external" href="https://tools.ietf.org/html/rfc6902">RFC
+6902</a>. Le client demande au
+serveur d’ajouter l’attribut « taille » à la ressource avec pour valeur le
+nombre 174. JSON patch a précisément été créé pour être utilisé
+conjointement avec la méthode <code class="docutils literal notranslate"><span class="pre">PATCH</span></code>.</p>
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> est relativement peu implémentée et utilisée. Même
+si la mise à jour partielle semble une opération élémentaire sur des
+données, des utilisations judicieuses de <code class="docutils literal notranslate"><span class="pre">POST</span></code> et <code class="docutils literal notranslate"><span class="pre">PUT</span></code> suffisent
+généralement à produire une API Web efficace.</p>
+</div>
+<div class="section" id="executer-un-processus-de-traitement">
+<h2>Exécuter un processus de traitement<a class="headerlink" href="#executer-un-processus-de-traitement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il est parfois utile de demander à un serveur de traiter de
+l’information pour obtenir un résultat. Le résultat n’est pas une
+ressource dont le serveur serait le dépositaire. Il s’agit juste d’une
+information qui est calculée mais non conservée par le serveur. Dans ce
+cas, le client doit utiliser la méthode <code class="docutils literal notranslate"><span class="pre">POST</span></code>.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/calculatrice</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.monserveur.fr</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">40</span>
+
+operande=2&amp;operande=3&amp;operation=addition
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">1</span>
+
+5
+</pre></div>
+</div>
+<p>Dans l’exemple précédent, la réponse ne contient ni l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a> ni
+l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.4.2">Content-location</a>.
+Cela signifie que la réponse à la requête <code class="docutils literal notranslate"><span class="pre">POST</span></code> n’est associée à
+aucune ressource du serveur. Donc, il s’agit bien d’un simple résultat
+de traitement.</p>
+</div>
+<div class="section" id="connaitre-les-methodes-autorisees">
+<h2>Connaître les méthodes autorisées<a class="headerlink" href="#connaitre-les-methodes-autorisees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si un client tente d’appliquer une méthode HTTP interdite sur une
+ressource, le serveur répond généralement par le code statut 405 (Method
+not allowed).</p>
+<p>Afin de permettre au client d’être informé de la liste des méthodes
+autorisées pour une URI, le serveur peut ajouter l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.4.1">Allow</a> dans sa
+réponse. Cet en-tête liste les méthodes autorisées séparées par une
+virgule.</p>
+<p>Le client peut également émettre une requête avec la méthode <code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code>
+pour obtenir cet en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.4.1">Allow</a> :</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">OPTIONS</span> <span class="nn">/individu/David+Gayerie</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+</pre></div>
+</div>
+<p>La réponse du serveur en cas de succès</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">31</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain</span>
+<span class="na">Allow</span><span class="o">:</span> <span class="l">GET, HEAD, DELETE, PUT, OPTIONS</span>
+
+GET, HEAD, DELETE, PUT, OPTIONS
+</pre></div>
+</div>
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code> est souvent désactivée sur les serveurs Web pour
+des raisons de sécurité. Le comble est donc que la plupart des requêtes
+OPTIONS aboutissent à un code d’erreur 405 (method not allowed).</p>
+</div>
+<div class="section" id="traitement-asynchrone-d-une-requete">
+<h2>Traitement asynchrone d’une requête<a class="headerlink" href="#traitement-asynchrone-d-une-requete" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Parfois, le serveur ne peut pas traiter complètement une requête dans un
+temps acceptable. Dans ce cas, il peut retourner le code 202 qui
+signifie qu’il a bien compris et accepté la requête mais qu’il ne l’a
+pas encore traitée.</p>
+<p>La requête</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">DELETE</span> <span class="nn">/individu/000001</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+</pre></div>
+</div>
+<p>La réponse du serveur lorsque la requête est traitée en asynchrone</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://exemple.fr/jobs/1948321</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">53</span>
+
+Traitement http://exemple.fr/jobs/1948321 en cours...
+</pre></div>
+</div>
+<p>Dans l’exemple ci-dessus, la requête a conduit à la création d’une
+ressource temporaire représentant le traitement en cours. L’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>
+donne l’URI où le client pourra se rendre pour consulter l’état du
+traitement.</p>
+</div>
+<div class="section" id="les-redirections">
+<h2>Les redirections<a class="headerlink" href="#les-redirections" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les redirections correspondent aux codes statut de la famille 3XX. Elles
+permettent au serveur de réorienter le client vers une nouvelle URI. À
+la réception d’un code de redirection, le client doit comprendre que
+pour terminer sa requête, il doit exécuter une nouvelle requête vers une
+URI fournie dans la réponse par le serveur grâce à l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>.</p>
+<div class="section" id="evolution-du-service">
+<h3>Évolution du service<a class="headerlink" href="#evolution-du-service" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Le cas le plus simple d’utilisation des redirections est celui où le
+serveur évolue dans le temps. Des évolutions peuvent entraîner une
+modification des URI. Plutôt que de retourner simplement une erreur, le
+serveur propose une redirection pour assurer une continuité du service.
+Dans ce cas, le serveur peut retourner un code statut <strong>301</strong> (Moved
+Permanently) avec un en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>
+donnant la nouvelle URI.</p>
+<p>Le serveur signale un changement de l’URI du service</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">301</span> <span class="ne">Moved Permanently</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://mon.nouveau.serveur.fr/ma/ressource/cible</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uri-volatile-et-canonicalisation-d-uri">
+<span id="canonicalisation"></span><h3>URI volatile et canonicalisation d’URI<a class="headerlink" href="#uri-volatile-et-canonicalisation-d-uri" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Nous verrons que dans une architecture REST, une ressource ne doit être
+identifié que par une seule URI. Pourtant il existe de nombreux cas
+d’utilisation où l’on désire rendre accessible la représentation d’une
+ressource à partir de différentes URI. Par exemple, imaginons une suite
+de news, chaque article dispose de sa propre URI mais on peut souhaiter
+exposer une URI permettant d’accéder au dernier article publié. Cette
+URI désignera forcément dans le temps des ressources différentes. Elle
+est volatile. Dans ce cas, le serveur peut retourner pour cette URI le
+code statut <strong>307</strong> (Temporary redirect) qui demande au client de
+refaire la même requête vers l’URI donnée en réponse par l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>.</p>
+<p>Requête sur une URI <em>volatile</em></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/articles/latest</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.mynews.fr</span>
+</pre></div>
+</div>
+<p>Redirection du serveur…</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">307</span> <span class="ne">Temporary redirect</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://www.mynews.fr/articles/les+nouvelles+du+monde.html</span>
+</pre></div>
+</div>
+<p>La redirection est coûteuse car elle oblige le client à émettre une
+nouvelle requête vers le serveur. Si le serveur peut répondre
+directement, il peut renvoyer une code 2XX avec le message attendu et
+ajouter l’en-tête de réponse
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.4.2">Content-location</a>
+qui indique au client la véritable URI pour cette ressource (appelée URI
+canonique).</p>
+<p>… ou canonicalisation grâce à l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.4.2">Content-location</a></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Location</span><span class="o">:</span> <span class="l">http://www.mynews.fr/articles/les+nouvelles+du+monde.html</span>
+<span class="na">Cache-control</span><span class="o">:</span> <span class="l">no-store</span>
+<span class="na">Content-type</span><span class="o">:</span> <span class="l">text/plain</span>
+<span class="na">Content-length</span><span class="o">:</span> <span class="l">35</span>
+
+Il n&#39;y pas de nouvelle du monde :(
+</pre></div>
+</div>
+</div>
+<div class="section" id="separer-le-traitement-de-la-requete-de-son-resultat">
+<h3>Séparer le traitement de la requête de son résultat<a class="headerlink" href="#separer-le-traitement-de-la-requete-de-son-resultat" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Nous avons vu précédemment qu’il est possible de réaliser des requêtes
+asynchrones en HTTP. Mais il existe d’autres cas pour lesquels le
+serveur ne souhaite pas retourner directement de réponse au client.</p>
+<p>Dans la navigation Web, un cas répandu est le
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Post-Redirect-Get">POST/Redirect/GET</a>.
+La méthode <code class="docutils literal notranslate"><span class="pre">POST</span></code> n’est pas idempotente. Lorsqu’un utilisateur remonte
+dans son historique de navigation jusqu’à une requête <code class="docutils literal notranslate"><span class="pre">POST</span></code>, le
+navigateur n’a pas d’autre choix que de demander à l’utilisateur s’il
+désire soumettre à nouveau cette requête. Il est donc souhaitable de
+faire disparaître les méthodes non idempotentes de l’historique de
+navigation. Or un navigateur Web ne conserve pas l’historique d’une
+requête dont la réponse est une redirection (ou plus exactement, il lui
+substitue la requête de redirection). Il est donc possible de supprimer
+les requêtes <code class="docutils literal notranslate"><span class="pre">POST</span></code> de l’historique de navigation en s’assurant que
+les réponses sont toujours des redirections avec une méthode <code class="docutils literal notranslate"><span class="pre">GET</span></code>
+vers une page de résultat : il s’agit du modèle du POST/Redirect/GET.
+Pour cela, le développeur de site Web doit s’assurer que le code statut
+en réponse à une méthode <code class="docutils literal notranslate"><span class="pre">POST</span></code> est un code <strong>303</strong> (See Other).
+L’en-tête de réponse
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>
+indique à quelle URI le client doit soumettre la requête <code class="docutils literal notranslate"><span class="pre">GET</span></code> de
+redirection.</p>
+<p>Une requête <code class="docutils literal notranslate"><span class="pre">POST</span></code></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/individu/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">exemple.fr</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded; charset=utf-8</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">65</span>
+
+name=Gayerie&amp;firstname=David&amp;email=david.gayerie@yopmail.com
+</pre></div>
+</div>
+<p>La réponse du serveur avec une redirection</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">303</span> <span class="ne">See Other</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://exemple.fr/individu/000001</span>
+</pre></div>
+</div>
+<p>302, 303 et 307 : quelles différences ?
+HTTP définit trois codes statut de redirection assez proches : 302
+(Found), 303 (See Other) et 307 (Temporary Redirect). Il existe
+cependant une différence majeure entre ces trois codes qui correspond à
+des cas d’utilisation différents.</p>
+<dl class="simple">
+<dt>302</dt><dd><p>Il s’agit d’un code hérité de HTTP 1.0. Sa signification est
+ambiguë. C’est d’ailleurs pour cela que les codes 303 et 307 ont
+fait leur apparition dans HTTP 1.1. Pour une application serveur, il
+est déconseillé de s’en servir. Pour une application cliente, il est
+conseillé de le traiter comme un code statut 303</p>
+</dd>
+<dt>303</dt><dd><p>Ce code stipule que la requête <strong>a été traitée</strong> par le serveur.
+Cependant le client ne peut connaître le résultat que s’il soumet
+une requête <code class="docutils literal notranslate"><span class="pre">GET</span></code> à l’URI fournie en réponse dans l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>.</p>
+</dd>
+<dt>307</dt><dd><p>Ce code stipule que la requête <strong>n’a pas été traitée</strong> par le
+serveur. Le client doit donc soumettre à nouveau <strong>la même</strong> requête
+quelle que soit la méthode à l’URI fournie en réponse dans l’en-tête
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.1.2">Location</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http_negociation_contenu.html" class="btn btn-neutral float-right" title="HTTP : la négociation de contenu" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http.html" class="btn btn-neutral float-left" title="Le protocole HTTP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

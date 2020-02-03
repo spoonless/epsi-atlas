@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Annexe : XML &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="prev" title="Les services Web avec Java" href="java_ws.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+          <li><a href="web_services.html">Les services Web SOAP / WSDL</a> &raquo;</li>
+        
+      <li>Annexe : XML</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+      
+        <a href="java_ws.html" class="btn btn-neutral" title="Les services Web avec Java" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="annexe-xml">
+<span id="id1"></span><h1>Annexe : XML<a class="headerlink" href="#annexe-xml" title="Lien permanent vers ce titre">¶</a></h1>
+<p><strong>L’Extensible Markup Language</strong> (XML) est un langage de balisage
+générique. Il permet de représenter des données de manière arborescente
+(ou sous la forme d’un graphe en utilisant des références XML).</p>
+<p>Le XML ne définit pas de balise mais simplement une façon de présenter
+un document afin qu’il soit bien formé (<strong>well-formed</strong>). Le XML est
+défini par la <a class="reference external" href="http://www.w3.org/TR/xml/">recommandation du W3</a>.</p>
+<div class="section" id="structure-du-langage">
+<h2>Structure du langage<a class="headerlink" href="#structure-du-langage" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le XML est composé par des nœuds (<strong>XML Nodes</strong>) reliés entre eux sous
+une forme arborescente. Un nœud ne peut donc avoir au plus qu’un seul
+nœud parent et, dans un document, un seul nœud n’a pas de parent : il
+s’agit du nœud racine (<strong>root node</strong>).</p>
+<p>Il existe différents types de nœuds XML :</p>
+<dl class="simple">
+<dt><strong>Element</strong></dt><dd><p>Un élément sera représenté dans le document par une balise. Un nœud
+racine est obligatoirement de type élément. Seuls les nœuds de type
+élément peuvent avoir des fils (<em>i.e.</em> être parent d’un autre nœud)</p>
+</dd>
+<dt><strong>Attribute</strong></dt><dd><p>Un attribut permet d’associer une valeur à un élément</p>
+</dd>
+<dt><strong>Text</strong></dt><dd><p>Un simple fragment de texte</p>
+</dd>
+<dt><strong>Processing instruction</strong></dt><dd><p>Une portion contenant des instructions traitables par une
+application et délimitée par <code class="docutils literal notranslate"><span class="pre">&lt;?</span> <span class="pre">?&gt;</span></code></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="structure-du-document">
+<h2>Structure du document<a class="headerlink" href="#structure-du-document" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un document XML est un document texte qui peut optionnellement commencer
+par le prologue suivant :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+</pre></div>
+</div>
+<p>On précise ainsi la version du langage XML et l’encodage du document.</p>
+<p>Un élément est représenté par une balise. Attention en XML, une balise
+doit obligatoirement être fermée !</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Un balise sans corps</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;myelement/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Un balise avec un corps</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;myelement&gt;&lt;/myelement&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Un attribut est positionné sur la balise ouvrante représentant
+l’élément.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Un balise avec attribut</span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;myelement</span> <span class="na">myattr=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>En XML, un attribut a obligatoirement une valeur (qui peut être une
+chaîne de caractères vide) et cette dernière est obligatoirement
+délimitée par <strong>“</strong> ou <strong>« </strong>.</p>
+<p>En XML, les caractères &amp; “  » &lt; &gt; sont des caractères réservés et doivent
+être échappés par les entités XML &amp;amp; &amp;apos; &amp;quot; &amp;lt; &amp;gt;.</p>
+<p>Il est possible de définir tout ou partie d’un nœud texte comme une
+section <strong>CDATA</strong> protégée dans laquelle il n’est plus nécessaire
+d’échapper les caractères spéciaux.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Section CDATA</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;myelement&gt;</span>
+  je dois échapper les caractères <span class="ni">&amp;amp;</span> <span class="ni">&amp;apos;</span> <span class="ni">&amp;quot;</span> <span class="ni">&amp;lt;</span> <span class="ni">&amp;gt;</span>
+  <span class="cp">&lt;![CDATA[Je ne dois pas échapper les caractères &amp; &#39; &quot; &lt; &gt; dans cette section]]&gt;</span>
+<span class="nt">&lt;/myelement&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Un document XML qui respecte les règles de structure du langage et d’un
+document est dit <strong>bien formé</strong> (well-formed).</p>
+</div>
+<div class="section" id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="hint admonition">
+<p class="admonition-title">XML bien formé</p>
+<p>Les exemples de documents XML ci-dessous sont-ils bien formés ? Et si
+non, pourquoi.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;cours&gt;
+  &lt;intitulé&gt;Web services&lt;/intitulé&gt;
+  &lt;enseignant&gt;D. Gayerie&lt;/enseignant&gt;
+&lt;/cours&gt;
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;cours&gt;
+  &lt;code id=&quot;I4WS&quot;&gt;
+  &lt;intitulé&gt;Web services&lt;/intitulé&gt;
+  &lt;enseignant&gt;D. Gayerie&lt;/enseignant&gt;
+&lt;/cours&gt;
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;cours&gt;
+  &lt;intitulé&gt;Génie logiciel&lt;/intitulé&gt;
+&lt;/cours&gt;
+&lt;cours&gt;
+  &lt;intitulé&gt;Web services&lt;/intitulé&gt;
+&lt;/cours&gt;
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;test&gt;
+  &lt;question&gt;Ce document est-il valide ?&lt;/question&gt;
+  &lt;exemple&gt;
+  &lt;![CDATA[
+  &lt;document&gt;&lt;/DOCUMENT&gt;
+  ]]&gt;
+  &lt;/exemple&gt;
+&lt;/test&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="espaces-de-noms-xml">
+<h2>Espaces de noms XML<a class="headerlink" href="#espaces-de-noms-xml" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un élément ou un attribut d’un document XML peut être associé à un
+espace de nom. Un espace de nom XML (<strong>XML namespace</strong>) est identifié
+par une URI. Un espace de nom est déclaré grâce à l’attribut <code class="docutils literal notranslate"><span class="pre">xmlns</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Déclaration d’un espace de nom XML</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;programme</span> <span class="na">xmlns=</span><span class="s">&quot;http://formation.fr/syllabus&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;cours</span> <span class="na">code=</span><span class="s">&quot;I4GL&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intitulé&gt;</span>Génie logiciel<span class="nt">&lt;/intitulé&gt;</span>
+  <span class="nt">&lt;/cours&gt;</span>
+  <span class="nt">&lt;cours</span> <span class="na">code=</span><span class="s">&quot;I4WS&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intitulé&gt;</span>Web services<span class="nt">&lt;/intitulé&gt;</span>
+  <span class="nt">&lt;/cours&gt;</span>
+<span class="nt">&lt;/programme&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Un espace de nom XML s’applique à l’élément portant l’attribut <code class="docutils literal notranslate"><span class="pre">xmlns</span></code>
+<strong>et</strong> à tous les éléments fils.</p>
+<p>Il est possible de mélanger dans un même document XML des éléments
+appartenant à des espaces de noms différents.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Document XML contenant plusieurs espaces de nom</span><a class="headerlink" href="#id7" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Exemple MathML<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;math</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1998/Math/MathML&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;mrow&gt;</span>
+        <span class="nt">&lt;mroot&gt;</span>
+          <span class="nt">&lt;mrow&gt;&lt;mi&gt;</span>b<span class="nt">&lt;/mi&gt;&lt;/mrow&gt;</span>
+          <span class="nt">&lt;mrow&gt;&lt;mn&gt;</span>3<span class="nt">&lt;/mn&gt;&lt;/mrow&gt;</span>
+        <span class="nt">&lt;/mroot&gt;</span>
+      <span class="nt">&lt;/mrow&gt;</span>
+    <span class="nt">&lt;/math&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Afin de résoudre les cas ambigus, un espace de nom peut être identifié
+par un préfixe.</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Document XML contenant plusieurs espaces de nom avec un préfixe</span><a class="headerlink" href="#id8" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;h:html</span> <span class="na">xmlns:h=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+        <span class="na">xmlns:ma=</span><span class="s">&quot;http://www.w3.org/1998/Math/MathML&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h:body&gt;</span>
+    <span class="nt">&lt;h:h1&gt;</span>Exemple MathML<span class="nt">&lt;/h:h1&gt;</span>
+    <span class="nt">&lt;ma:math&gt;</span>
+      <span class="nt">&lt;ma:mrow&gt;</span>
+        <span class="nt">&lt;ma:mroot&gt;</span>
+          <span class="nt">&lt;ma:mrow&gt;&lt;ma:mi&gt;</span>b<span class="nt">&lt;/ma:mi&gt;&lt;/ma:mrow&gt;</span>
+          <span class="nt">&lt;ma:mrow&gt;&lt;ma:mn&gt;</span>3<span class="nt">&lt;/ma:mn&gt;&lt;/ma:mrow&gt;</span>
+        <span class="nt">&lt;/ma:mroot&gt;</span>
+      <span class="nt">&lt;/ma:mrow&gt;</span>
+    <span class="nt">&lt;/ma:math&gt;</span>
+  <span class="nt">&lt;/h:body&gt;</span>
+<span class="nt">&lt;/h:html&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>L’espace de nom sans préfixe est appelé l’espace de nom par défaut
+(<strong>default XML namespace</strong>).</p>
+<p>Ainsi, un élément XML est défini par :</p>
+<dl class="simple">
+<dt>Son nom</dt><dd><p>Le nom apparaît dans la balise du document.
+Exemple : body</p>
+</dd>
+<dt>Son espace de nom</dt><dd><p>L’espace de nom est donné par l’attribut xmlns de l’élément, un
+préfixe ou est hérité de l’élément parent.
+Exemple : <a class="reference external" href="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</a></p>
+</dd>
+<dt>Son nom qualifié (qualified name ou QName)</dt><dd><p>L’association de l’espace de nom et du nom de l’élement. Il s’agit
+en fait du nom complet de l’élement.
+Exemple : {<a class="reference external" href="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</a>}:body</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="schemas-xml">
+<h2>Schémas XML<a class="headerlink" href="#schemas-xml" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un document XML est <strong>valide</strong> (valid) si le <em>QName</em> et l’ordre des
+éléments sont conformes à un document de validation.</p>
+<p>Un <strong>schéma XML</strong> (XSD) permet d’écrire un document de validation au
+format XML.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Exemple de schéma XML</span><a class="headerlink" href="#id9" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;schema</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
+        <span class="na">xmlns:tns=</span><span class="s">&quot;http://formation.fr/syllabus&quot;</span>
+        <span class="na">targetNamespace=</span><span class="s">&quot;http://formation.fr/syllabus&quot;</span>
+        <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;programme&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;complexType&gt;</span>
+      <span class="nt">&lt;sequence&gt;</span>
+        <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;cours&quot;</span> <span class="na">type=</span><span class="s">&quot;tns:typeCours&quot;</span>
+         <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/sequence&gt;</span>
+    <span class="nt">&lt;/complexType&gt;</span>
+  <span class="nt">&lt;/element&gt;</span>
+  <span class="nt">&lt;complexType</span> <span class="na">name=</span><span class="s">&quot;typeCours&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;sequence&gt;</span>
+      <span class="nt">&lt;element</span> <span class="na">name=</span><span class="s">&quot;intitulé&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span>
+       <span class="na">maxOccurs=</span><span class="s">&quot;1&quot;</span> <span class="na">minOccurs=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/sequence&gt;</span>
+    <span class="nt">&lt;attribute</span> <span class="na">name=</span><span class="s">&quot;code&quot;</span> <span class="na">type=</span><span class="s">&quot;string&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/complexType&gt;</span>
+<span class="nt">&lt;/schema&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pour-aller-plus-loin">
+<h2>Pour aller plus loin…<a class="headerlink" href="#pour-aller-plus-loin" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="simple">
+<dt>XML</dt><dd><p><a class="reference external" href="https://www.w3schools.com/xml/">https://www.w3schools.com/xml/</a></p>
+</dd>
+<dt>XML namespace</dt><dd><p><a class="reference external" href="https://www.w3schools.com/xml/xml_namespaces.asp">https://www.w3schools.com/xml/xml_namespaces.asp</a></p>
+</dd>
+<dt>XML schema</dt><dd><p><a class="reference external" href="https://www.w3schools.com/xml/xml_schema.asp">https://www.w3schools.com/xml/xml_schema.asp</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="java_ws.html" class="btn btn-neutral float-left" title="Les services Web avec Java" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

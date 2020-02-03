@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Le protocole HTTP et les API Web" name="description" />
+<meta content="HTTP, API Web, Rest, Restful Web Service" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>REST &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Les API Web avec Spring MVC" href="spring_mvc_apiweb.html" />
+    <link rel="prev" title="HTTP : les liens" href="http_liens.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+          <li><a href="api_web.html">HTTP, REST et les API Web</a> &raquo;</li>
+        
+      <li>REST</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="spring_mvc_apiweb.html" class="btn btn-neutral float-right" title="Les API Web avec Spring MVC" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_liens.html" class="btn btn-neutral" title="HTTP : les liens" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rest">
+<h1>REST<a class="headerlink" href="#rest" title="Lien permanent vers ce titre">¶</a></h1>
+<p>REST est un style d’architecture pour les systèmes hypermédia
+distribués.</p>
+<p>En 2000, Roy Fielding a formalisé l’architecture REST dans le chapitre 5
+de sa <a class="reference external" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">thèse de
+doctorat</a>.
+En 2007, Leonard Richardson et Sam Ruby présentent ROA (Resource
+Oriented Architecture) dans leur ouvrage <em>RESTful Web Services</em>. ROA est
+devenu depuis le modèle d’application de REST pour les API Web.</p>
+<p>Le modèle REST a été conçu au moment de l’évolution de HTTP vers sa
+version 1.1 afin d’assurer les évolutions nécessaires du World Wide Web
+dans les années 1990. HTTP est ainsi le premier protocole basé sur une
+architecture REST.</p>
+<p><strong>REST est le modèle d’architecture du Web !</strong> Cela ne signifie pas que
+l’ensemble du Web se conforme au modèle décrit par REST mais cela
+signifie que HTTP a été conçu selon ce modèle (principalement pour des
+raisons de scalabilité et de fiabilité). Dans ce chapitre nous prendrons
+donc HTTP comme exemple pour illustrer notre propos, mais il faut garder
+à l’esprit que REST est un modèle plus général.</p>
+<p>Depuis 2007, beaucoup de développeurs Web ont voulu créer des
+applications <em>RESTful</em>… sans réellement comprendre ce que REST
+signifie et implique. Il en a résulté une tour de Babel d’articles et de
+posts sur le Web (voire de publication d’ouvrages) expliquant ce que
+devait être une application <em>RESTful</em>… mais sans véritable rapport
+avec REST voire en étant en complète contradiction avec le modèle
+d’architecture auquel les auteurs souhaitaient se conformer.</p>
+<div class="section" id="la-ressource">
+<h2>La ressource<a class="headerlink" href="#la-ressource" title="Lien permanent vers ce titre">¶</a></h2>
+<p>REST est un style d’architecture <strong>orienté ressource</strong>. Mais qu’est-ce
+qu’une ressource ?</p>
+<blockquote>
+<div><p>Any information that can be named can be a resource</p>
+<p class="attribution">—Roy Fielding - <a class="reference external" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Thèse de doctorat</a></p>
+</div></blockquote>
+<p>Dans le domaine du Web, la notion d’adressabilité (<em>addressability</em>)
+vient renforcer celle de nommage. Une ressource Web est donc quelque
+chose qui est adressable à partir d’une URI.</p>
+<p>Par exemple, cette page est adressable à partir d’une URI, elle est donc une
+ressource Web.</p>
+<p>Une ressource Web peut être accessible à partir de plusieurs URI. Une
+bonne pratique consiste à considérer qu’une des URI est l’URI
+<em>canonique</em>.</p>
+<p>Par exemple une ressource peut être constituée par la liste des
+modules d’une formation. Elle peut être adressable à partir d’une URI
+précise mais également d’une URI plus volatile comme celle donnant la
+liste des modules pour la formation en cours. Ces deux URI désignent la
+même ressource pendant une période :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://formation.fr/bordeaux/informatique/web+services/2018">http://formation.fr/bordeaux/informatique/web+services/2018</a> (URI canonique)</p>
+<p><a class="reference external" href="http://formation.fr/bordeaux/informatique/web+services/actuellement">http://formation.fr/bordeaux/informatique/web+services/actuellement</a></p>
+</div></blockquote>
+<p>Nous avons vu dans les <a class="reference internal" href="http_cas_utilisation.html#canonicalisation"><span class="std std-ref">cas d’utilisation de HTTP</span></a>, que la
+canonicalisation pouvait se traduire par une redirection avec un code
+statut 307 (Temporary Redirect) ou par l’en-tête de réponse
+<code class="docutils literal notranslate"><span class="pre">Content-Location</span></code>.</p>
+</div>
+<div class="section" id="uri-informative-ou-uri-opaque">
+<h2>URI informative ou URI opaque ?<a class="headerlink" href="#uri-informative-ou-uri-opaque" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Concevoir des URI descriptives et hiérarchiques semble <em>a priori</em> une
+bonne pratique. Par exemple, si l’on considère cette URI :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://formation.fr/bordeaux/informatique/web+services/2018">http://formation.fr/bordeaux/informatique/web+services/2018</a> (URI canonique)</p>
+</div></blockquote>
+<p>La structure de cette URI est porteuse d’information et le lecteur
+comprend facilement qu’elle suit un modèle du type :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://formation.fr">http://formation.fr</a>/{ville}/{spécialité}/{module}/{année}</p>
+</div></blockquote>
+<p>Cette bonne pratique ne relève absolument pas d’une contrainte de
+l’architecture REST. Il s’agit souvent d’une erreur d’interprétation des
+développeurs de penser que REST repose avant tout sur la conception
+d’une API basée sur des chemins d’URI. Une URI est simplement un nom
+donné à une ressource. Pour notre exemple, l’URI suivante est tout aussi
+valide :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://formation.fr/b54adc00-67f9-11d9-9669-0800200c9a66">http://formation.fr/b54adc00-67f9-11d9-9669-0800200c9a66</a></p>
+</div></blockquote>
+<p>Dans une architecture REST, les noms ne servent qu’à désigner les
+ressources. Il n’y a aucune règle particulière à connaître et à partager
+sur la signification de ces noms. Pour le Web, les URI sont la plupart
+du temps imposées par le serveur mais le client n’a pas à connaître les
+règles qui prévalent à leur construction. Cela donne beaucoup plus de
+liberté au serveur si son évolution implique de formaliser les URI
+différemment. On dit ainsi qu’une URI doit être <strong>opaque</strong> pour le
+client.</p>
+<p>On trouve malheureusement énormément de littératures sur les
+soi-disantes règles à respecter dans la façon de créer des URI pour des
+<em>API RESTful</em>. On peut prendre comme exemple l’ouvrage de Mark Massé :
+<a class="reference external" href="http://shop.oreilly.com/product/0636920021575.do">REST API Design Rulebook</a>.
+Il nous explique ainsi qu’une URI désignant
+un document doit se terminer par un nom au singulier et une URI
+désignant une collection doit se terminer par un nom au pluriel. Ces
+règles stylistiques sont certes utiles pour améliorer la lisibilité mais
+elles n’ont aucun rapport avec REST. Pire, elles véhiculent l’idée qu’un
+client pourrait tirer partie de ces règles pour deviner les URI des
+ressources du serveur.</p>
+</div>
+<div class="section" id="ressource-contre-rpc">
+<h2>Ressource contre RPC<a class="headerlink" href="#ressource-contre-rpc" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il existe une autre grande famille de modèles d’architecture pour les
+échanges entre processus : le <strong>RPC</strong> (Remote Procedure Call). L’idée
+générale est de permettre d’invoquer une procédure à travers un réseau
+pour la faire exécuter sur un serveur et récupérer le résultat par le
+client.</p>
+<p>Il existe une différence de perspective entre une approche RPC et une
+approche orientée ressource telle que REST. Avec le RPC, la conception
+du service se focalise sur le traitement et sur l’appel à une procédure
+comme on le ferait dans un langage impératif. Dans une approche orientée
+ressource, la conception du service se focalise sur l’information et on
+tend à uniformiser les opérations disponibles pour manipuler cette
+information (les méthodes HTTP <code class="docutils literal notranslate"><span class="pre">GET</span></code>, <code class="docutils literal notranslate"><span class="pre">PUT</span></code>, <code class="docutils literal notranslate"><span class="pre">POST</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> et
+<code class="docutils literal notranslate"><span class="pre">PATCH</span></code> en sont une très bonne illustration). Si l’approche orientée
+ressource peut sembler plus restrictive dans un premier temps, elle est
+en fait beaucoup plus simple à implémenter et beaucoup plus facile à
+généraliser.</p>
+<p>Ainsi, une URI doit représenter une ressource et non pas une procédure.</p>
+<p>Même si l’utilisation d’URI informatives n’est pas une exigence de REST,
+elle sont parfois utiles pour détecter une API orientée RPC. Le jeu
+d’URI suivant n’est pas correct du point de vue d’une architecture
+orientée ressources :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://formation.fr/bordeaux/informatique/web+services/inscrire?nom=John&amp;prenom=Doe">http://formation.fr/bordeaux/informatique/web+services/inscrire?nom=John&amp;prenom=Doe</a></p>
+<p><a class="reference external" href="http://formation.fr/bordeaux/informatique/web+services/desinscrire?id=1337">http://formation.fr/bordeaux/informatique/web+services/desinscrire?id=1337</a></p>
+<p><a class="reference external" href="http://formation.fr/bordeaux/informatique/web+services/valider?id=1337">http://formation.fr/bordeaux/informatique/web+services/valider?id=1337</a></p>
+</div></blockquote>
+<p>Chacune de ces URI semble désigner une action (inscrire, désinscrire,
+valider) pour un individu.</p>
+<p>La distinction entre orienté ressource et RPC est fondamentale. Pour
+HTTP qui est orienté ressource, l’action est portée par la méthode
+employée dans la requête (GET, POST, PUT, DELETE…) pas par l’URI.</p>
+</div>
+<div class="section" id="la-representation">
+<h2>La représentation<a class="headerlink" href="#la-representation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans une architecture REST, un client et un serveur n’échangent pas une
+ressource mais des représentations, c’est-à-dire <strong>un ensemble de
+données relatives à l’état courant d’une ressource</strong>. Ainsi, on peut
+dire que, du point de vue du client, la nature d’une ressource est
+inconnue puisqu’il ne manipule que des noms et des représentations. Avec
+HTTP, lorsqu’un client veut créer une ressource sur le serveur en
+utilisant la méthode <code class="docutils literal notranslate"><span class="pre">PUT</span></code>, il ne fournira qu’une représentation de ce
+qu’il souhaite pour l’URI utilisée. Le serveur est libre d’utiliser tout
+ou partie de l’information transmise par le client ou même l’enrichir
+pour générer la ressource. Le serveur peut également choisir les formats
+de représentation disponibles lors de l’accès à la ressource avec la
+méthode <code class="docutils literal notranslate"><span class="pre">GET</span></code>. Parmi ces formats, il peut choisir de supporter ou non
+le format utilisé par le client au moment de la création.</p>
+<p>Une même ressource Web peut avoir plusieurs représentations : une image
+JPEG, une page HTML, un document XML, un document JSON… Si le serveur
+dispose de plusieurs représentations d’une ressource, il retourne celle
+qui correspond le mieux aux capacités du client. Pour cela le client
+doit fournir ses préférences. C’est ce que l’on appelle la <strong>négociation
+de contenu proactive</strong>. Nous avons vu que cette négociation se fait en
+HTTP grâce à des en-têtes particuliers.</p>
+<p>Il faut garder à l’esprit que la négociation de contenu ne se limite pas
+uniquement au format de données (HTML, XML, JSON…). La négociation
+peut également porter sur la langue utilisée dans la représentation.</p>
+</div>
+<div class="section" id="les-contraintes-rest">
+<h2>Les contraintes REST<a class="headerlink" href="#les-contraintes-rest" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans le chapitre 5 de sa thèse, Roy Fielding présente les contraintes
+d’une architecture REST. En effet, ce modèle d’architecture n’est en
+fait constitué que de six contraintes (la dernière étant même
+optionnelle).</p>
+<ul class="simple">
+<li><p>client/serveur</p></li>
+<li><p>interface uniforme</p></li>
+<li><p>sans état (stateless)</p></li>
+<li><p>mise en cache (caching)</p></li>
+<li><p>layered system</p></li>
+<li><p>code-on-demand</p></li>
+</ul>
+<div class="section" id="client-serveur">
+<h3>Client/Serveur<a class="headerlink" href="#client-serveur" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Cette contrainte ne semble pas en être une tellement nous sommes
+habitués à interagir avec des réseaux informatiques basés sur ce modèle.
+Pourtant une approche client/serveur n’a rien de « naturelle » et il
+s’agit bien de contraindre les rôles que peuvent jouer les éléments d’un
+réseau. Dans cette approche un élément du réseau peut être client et/ou
+serveur. En tant que serveur, il dispose d’un ensemble d’information
+qu’il peut transmettre à la demande à d’autres éléments du réseau qui
+sont appelés ses clients.</p>
+<p>Il existe des modèles de réseau qui ne sont pas basés sur le modèle
+client/serveur. Par exemple, les architectures de <em>micro-services</em>
+reposent sur un bus de données dans lequel un service peut écrire ou
+lire de l’information sans avoir connaissance des autres services.</p>
+</div>
+<div class="section" id="interface-uniforme">
+<h3>Interface uniforme<a class="headerlink" href="#interface-uniforme" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Si chaque élément d’un réseau dispose de sa propre interface, un client
+devra s’adapter à chaque serveur vers lequel il désire émettre une
+requête. Pour éviter ce problème, il est nécessaire de définir une
+interface claire et minimaliste à laquelle chaque serveur doit se
+conformer. Pour HTTP, cette interface est composée des méthodes
+(<code class="docutils literal notranslate"><span class="pre">GET</span></code>, <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>, <code class="docutils literal notranslate"><span class="pre">PUT</span></code>, <code class="docutils literal notranslate"><span class="pre">POST</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>…), des URI et de la
+possibilité d’échanger des représentations en y associant des
+méta-informations (notamment sur le type de données).</p>
+<p>La contrainte de l’interface uniforme entraîne <em>de facto</em> le rejet du
+style RPC (Remote Procedure Call) pour les échanges dans une
+architecture REST. Contrairement au RPC, une interface uniforme fait
+portée la sémantique du service sur le contenu de la représentation et
+dans l’enchaînement des requêtes.</p>
+</div>
+<div class="section" id="sans-etat-stateless">
+<h3>Sans état (stateless)<a class="headerlink" href="#sans-etat-stateless" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans une architecture client/serveur, un serveur ne peut pas mémoriser
+l’ensemble des échanges qu’il a avec ses clients. Pour qu’un réseau soit
+scalable, le client et le serveur ne doivent pas dépendre d’autres
+informations que celles contenues dans la requête. La requête est
+auto-suffisante pour que le serveur puisse la traiter.</p>
+<p>Une pratique (trop) courante dans le développement d’application Web est
+de définir une session côté serveur qui stocke temporairement des
+informations issues de requêtes précédentes. Ce mécanisme de session est
+le plus souvent géré grâce à des Cookies. Cette pratique va à l’encontre
+de la contrainte d’un échange sans état.</p>
+<p>Cette contrainte est probablement celle qui perturbe le plus les
+habitudes des développeurs. Il est tellement plus simple de concevoir
+des services en utilisant une session utilisateur côté serveur que cette
+contrainte paraît excessive. Ce que les développeurs oublient, ce sont
+les complications créées par un service avec état (<em>stateful</em>) en
+exploitation : gestion de la montée en charge (ajout de serveur et
+répartition de charge), rigidité dans l’utilisation du service (le
+client est supposé suivre une succession d’étapes pour <em>remplir sa
+session</em>), bugs dus à des données manquantes et/ou des pertes de
+session.</p>
+</div>
+<div class="section" id="mise-en-cache-caching">
+<h3>Mise en cache (caching)<a class="headerlink" href="#mise-en-cache-caching" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Un serveur a la responsabilité de fournir au client des informations sur
+la possibilité de conserver une représentation et de la considérer comme
+valide pendant un certain laps de temps. Cette contrainte est
+malheureusement très largement sous-estimée par les développeurs d’API
+Web alors qu’elle permet d’améliorer considérablement les performances
+d’une application. Il ne faut pas oublier que la mise en cache est un
+mécanisme qui est largement exploité par les éléments intermédiaires du
+Web comme les proxies pour améliorer l’efficacité des échanges.</p>
+</div>
+<div class="section" id="layered-system">
+<h3>Layered system<a class="headerlink" href="#layered-system" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Un réseau doit être stratifié en couches. Un élément du réseau ne peut
+dialoguer qu’avec ses voisins immédiats, c’est-à-dire les composants
+appartenant aux couches adjacentes. Ainsi si un client veut envoyer une
+requête à un serveur qui n’est pas localisé dans une couche adjacente,
+il va devoir passer par des intermédiaires. Pour le Web, les
+intermédiaires sont les <strong>proxies</strong> et les <strong>gateways</strong>.</p>
+</div>
+<div class="section" id="code-on-demand">
+<h3>Code on demand<a class="headerlink" href="#code-on-demand" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il s’agit d’une contrainte optionnelle de l’architecture REST. Un
+serveur peut étendre les fonctionnalités d’un client en lui proposant de
+télécharger du code exécutable. Le code-on-demand est très largement
+utilisé dans le Web pour les humains avec notamment le support de
+JavaScript pour étendre les fonctionnalités du navigateur Web.</p>
+</div>
+</div>
+<div class="section" id="hypermedia">
+<h2>Hypermédia<a class="headerlink" href="#hypermedia" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans sa thèse de 2000, Roy Fielding cite une contrainte d’interface :</p>
+<blockquote>
+<div><p>hypermedia as the engine of application state</p>
+</div></blockquote>
+<p>Cette contrainte est devenue célèbre et est parfois abrégée en
+<strong>HATEOAS</strong>. Alors que le lecteur s’attend à une explication, Roy
+Fielding ne revient pas directement et explicitement sur cette
+contrainte. Depuis, la notion d’hypermédia est associée à REST mais est
+trop rarement explicitée.</p>
+<p>Un site Web ou une API Web n’est pas qu’un ensemble d’URI permettant
+d’identifier des ressources et de les manipuler à travers des
+représentations. Les représentations sont également des hypermédias :
+elles contiennent des liens vers d’autres ressources.</p>
+<div class="section" id="les-formats-hypermedias">
+<h3>Les formats hypermédias<a class="headerlink" href="#les-formats-hypermedias" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Lorsque l’on prend l’exemple du Web, le format hypermédia le plus
+courant pour une représentation est le HTML. Avec les balises <code class="docutils literal notranslate"><span class="pre">a</span></code>,
+<code class="docutils literal notranslate"><span class="pre">form</span></code> et <code class="docutils literal notranslate"><span class="pre">link</span></code>, il est possible d’inclure des liens afin de guider
+le client dans les choix d’interaction autorisés par le serveur. Lorsque
+l’on dit couramment que l’on <em>navigue</em> ou que l’on <em>surfe</em> sur le Web,
+on décrit les actions rendues possibles par le fait que HTML est un
+format hypermédia.</p>
+<p>Pour l’implémentation d’API Web, on pourra préférer d’autres langages
+que HTML : généralement XML et JSON. En effet, ces langages sont plus
+<em>neutres</em> que HTML qui ajoute une sémantique de structuration
+documentaire (et JSON est bien évidemment plus proche d’un langage de
+programmation). Cependant, XML et JSON ne sont pas par défaut des
+langages hypermédias. Il n’existe pas de support natif pour les liens
+dans ces formats. Soit le client doit s’adapter pour comprendre la
+manière dont le serveur inclut le support de l’hypermédia, soit il faut
+avoir recours à des extensions. Pour le XML, le support de l’hypermédia
+peut se faire grâce à l’extension
+<a class="reference external" href="http://www.yoyodesign.org/doc/w3c/xlink/index.html">XLink</a> et
+pour le JSON grâce au format
+<a class="reference external" href="http://stateless.co/hal_specification.html">HAL</a> (Hypertext
+Application Language).</p>
+<p>Actuellement, JSON semble être le langage <em>naturel</em> pour la
+représentation des ressources dans une API Web. Quiconque comprend les
+apports de l’hypermédia dans la mise en place de telles API Web sait que
+l’utilisation de JSON est un leurre car il donne une certaine facilité
+aux développeurs mais en sacrifiant le support de l’hypermédia qui est
+justement au cœur de REST.</p>
+</div>
+<div class="section" id="l-en-tete-link">
+<h3>L’en-tête Link<a class="headerlink" href="#l-en-tete-link" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Nous avons déjà abordé l’utilisation de l’en-tête
+<a class="reference internal" href="http_liens.html#http-liens"><span class="std std-ref">Link</span></a>. Il permet d’ajouter une dimension
+hypermédia au protocole HTTP. Il peut être une bonne alternative pour
+fournir des liens à un client tout en utilisant un format de
+représentation qui est dépourvu de support pour les liens (comme un
+format vidéo ou image).</p>
+<p>Un exemple d’utilisation de l’en-tête Link</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Link</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">formation</span><span class="o">.</span><span class="n">fr</span><span class="o">/</span><span class="n">web</span><span class="o">+</span><span class="n">services</span><span class="o">/</span><span class="n">REST</span><span class="o">&gt;</span><span class="p">;</span><span class="n">rel</span><span class="o">=</span><span class="s2">&quot;self&quot;</span><span class="p">;</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;REST&quot;</span>
+</pre></div>
+</div>
+<p>Le type de relation indiqué par l’attribut <code class="docutils literal notranslate"><span class="pre">rel</span></code> est soit un nom
+défini par le <a class="reference external" href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">registre du
+IANA</a>
+soit une URI pour un type de relation propre au serveur.</p>
+<p>Cependant, l’en-tête <code class="docutils literal notranslate"><span class="pre">Link</span></code> est encore rarement utilisé même si on a
+vu apparaître dans différents frameworks Web un support pour cet
+en-tête.</p>
+</div>
+<div class="section" id="les-apports-de-l-hypermedia">
+<h3>Les apports de l’hypermédia<a class="headerlink" href="#les-apports-de-l-hypermedia" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L’hypermédia a pour objectif de déléguer au serveur la responsabilité de
+guider le client dans ce qu’il est possible de réaliser. Au client de
+choisir ce qu’il souhaite faire parmi les possibilités qui lui sont
+proposées. Cette pratique permet au client de ne connaître que le
+minimum requis pour interagir avec le serveur. L’hypermédia n’est pas
+une technologie ni une méthode de développement. Il est le résultat de
+la conception d’un service respectant les contraintes REST.</p>
+<p>Ainsi, grâce à l’hypermédia, un client ne sera pas dépendant des règles
+de construction des URI. Il doit connaître un point d’entrée du service
+mais le serveur doit lui fournir dans les représentations (et/ou grâce à
+l’en-tête <code class="docutils literal notranslate"><span class="pre">Link</span></code>) les URI à utiliser pour accéder aux autres
+ressources. Cette pratique permet un découplage entre l’implémentation
+du client et les choix d’implémentation et de déploiement du service.</p>
+<p>En spécifiant au client les liens possibles dans ses réponses, le
+serveur définit un workflow qui décrit les états successifs du client.
+Avec l’hypermédia, il devient possible de modéliser des interactions
+client/serveur complexes par un enchaînement de requête/réponse. On peut
+donc bien dire, à la suite de Roy Fielding, que l’hypermédia permet de
+décrire une machine à état d’une application formée par l’interaction
+entre un client et un serveur.</p>
+<blockquote>
+<div><p>A REST API should be entered with no prior knowledge beyond the
+initial URI (bookmark) and set of standardized media types that are
+appropriate for the intended audience (i.e., expected to be
+understood by any client that might use the API). From that point
+on, all application state transitions must be driven by client
+selection of server-provided choices that are present in the
+received representations or implied by the user’s manipulation of
+those representations. The transitions may be determined (or limited
+by) the client’s knowledge of media types and resource communication
+mechanisms, both of which may be improved on-the-fly (e.g.,
+code-on-demand).</p>
+<p class="attribution">—Roy Fielding - <a class="reference external" href="http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven">REST APIs must be hypertext-driven</a></p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="rest-ca-veut-dire-quoi">
+<h2>REST : ça veut dire quoi ?<a class="headerlink" href="#rest-ca-veut-dire-quoi" title="Lien permanent vers ce titre">¶</a></h2>
+<p>REST est un acronyme pour <strong>Representational State Transfer</strong>.</p>
+<p>Il s’agit bien d’une architecture dont l’objectif et de transférer des
+états sous la forme de représentation.</p>
+</div>
+<div class="section" id="les-api-web">
+<h2>Les API Web<a class="headerlink" href="#les-api-web" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les API Web (appelées également Web service RESTful) ne sont
+fondamentalement pas différentes des sites Web traditionnels. Elles
+obéissent aux mêmes contraintes d’architecture. La différence est une
+différence d’utilisation.</p>
+<p>Dans le cas d’un site Web, le travail du programme client consiste à
+présenter l’information à un être humain. L’interprétation des données
+est donc de la responsabilité de l’être humain et c’est bien lui qui va
+sélectionner tel ou tel lien hypermédia selon ses objectifs ou ses
+goûts.</p>
+<p>Pour une API Web, on attend le plus souvent du logiciel client qu’il
+sache, non seulement exploiter les URI et invoquer correctement les
+méthodes HTTP, mais également adapter son comportement en fonction du
+contenu de l’information échangée. Cette capacité à analyser le contenu
+des représentations doit être favorisée par le serveur qui à la charge
+de définir la sémantique de protocole et la sémantique applicative (ces
+notions sont empruntées à l’ouvrage <a class="reference external" href="http://shop.oreilly.com/product/0636920028468.do">RESTful Web
+APIs</a> - O’Reilly
+2013).</p>
+<dl class="simple">
+<dt>Sémantique de protocole</dt><dd><p>Il s’agit de la compréhension que l’on peut avoir du service par la
+connaissance du format des URI et par les méthodes HTTP autorisées
+sur ces URI. Généralement cette compréhension est suffisante pour un
+être humain afin de tester un service. Par contre l’implémentation
+d’un client basé uniquement sur la sémantique de protocole est
+possible mais reste limitée, notamment pour prendre en compte les
+évolutions du service. Un navigateur Web est un bon exemple de
+logiciel qui se limite à la sémantique de protocole en utilisant
+principalement le support hypermédia du HTML pour présenter à un
+utilisateur la liste des liens possibles.</p>
+</dd>
+<dt>Sémantique applicative</dt><dd><p>La sémantique applicative porte sur la signification des
+représentations échangées et sur la signification des liens entre
+ces représentations. Si une API Web définit un lien entre deux
+ressources comme étant de type <em>caused by</em>, cela n’a <em>a priori</em>
+aucune signification pour un logiciel client. La sémantique
+applicative est généralement décrite dans une documentation en
+ligne. Des formats de description traitables par une machine
+commencent à voir le jour et à être utilisés (par exemple le
+<a class="reference external" href="http://www.w3.org/TR/json-ld/">JSON-LD</a>).</p>
+</dd>
+</dl>
+<p>Concevoir une API Web digne de ce nom nécessite donc de réduire au
+minimum le niveau de compréhension du client nécessaire pour l’utiliser.
+Minimiser l’effort nécessaire à la maîtrise de la sémantique de
+protocole est la tâche la plus simple si l’on prend la peine d’utiliser
+un format hypermédia de représentation (HTML,
+<a class="reference external" href="http://stateless.co/hal_specification.html">HAL+JSON</a>,
+<a class="reference external" href="http://stateless.co/hal_specification.html">HAL+XML</a>). En ce qui
+concerne la sémantique applicative, le plus efficace consiste à
+réutiliser ce qui a déjà été défini par d’autres. À ce titre, le recours
+à des formats proches des
+<a class="reference external" href="http://microformats.org/wiki/Main_Page">microformats</a> ou des <a class="reference external" href="https://schema.org/">schémas
+Web</a> permettent de créer un standard de fait pour
+la représentation de certaines ressources. Enfin, pour une API Web qui
+souhaiterait utiliser HTML comme format hypermédia de représentation, il
+existe trois techniques très simples pour introduire une sémantique
+applicative en HTML : les
+<a class="reference external" href="http://microformats.org/wiki/Main_Page">microformats</a>, les
+<a class="reference external" href="https://en.wikipedia.org/wiki/Microdata_%28HTML%29">microdata</a> ou
+<a class="reference external" href="http://www.w3.org/TR/rdfa-lite/">RDFa</a>.</p>
+<p>Il est également possible de définir son propre type de contenu en
+définissant un nouveau type MIME. Les formats de type
+<code class="docutils literal notranslate"><span class="pre">application/vnd.xxxx</span></code> désignent des formats spécifiques qui ne sont
+pas forcément déclarés dans <a class="reference external" href="https://www.iana.org/assignments/media-types/media-types.xhtml">le registre du
+IANA</a>.
+L’avantage de créer son propre type de contenu est que l’on peut définir
+simultanément la sémantique de protocole et la sémantique applicative
+(en fournissant le format autorisé des représentations).</p>
+</div>
+<div class="section" id="references">
+<h2>Références<a class="headerlink" href="#references" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="sites-web-articles">
+<h3>Sites Web &amp; articles<a class="headerlink" href="#sites-web-articles" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="simple">
+<dt>REST cookbook</dt><dd><p><a class="reference external" href="http://restcookbook.com/">http://restcookbook.com/</a></p>
+</dd>
+<dt>Une étude de cas très complète (commander un café en REST)</dt><dd><p><a class="reference external" href="https://www.infoq.com/articles/webber-rest-workflow">https://www.infoq.com/articles/webber-rest-workflow</a></p>
+</dd>
+<dt>Le modèle de maturité de Richardson pour une approche REST</dt><dd><p><a class="reference external" href="https://martinfowler.com/articles/richardsonMaturityModel.html">https://martinfowler.com/articles/richardsonMaturityModel.html</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="livres">
+<h3>Livres<a class="headerlink" href="#livres" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="simple">
+<dt><a class="reference external" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/top.htm">Architectural Styles and the Design of Network-based Software Architectures</a></dt><dd><p>Roy Fielding - University of California, Irvine 2000 (La thèse de doctorat incluant la présentation de REST)</p>
+</dd>
+<dt><a class="reference external" href="http://shop.oreilly.com/product/0636920028468.do">RESTful Web APIs</a></dt><dd><p>Leonard Richardson, Mike Amundsen, Sam Ruby - O’Reilly 2013</p>
+</dd>
+<dt><a class="reference external" href="http://restinpractice.com/book/book.html">REST in Practice</a></dt><dd><p>Jim Webber, Savas Parastatidis, Ian Robinson - O’Reilly Media 2010</p>
+</dd>
+<dt><a class="reference external" href="https://www.packtpub.com/application-development/restful-java-web-services-second-edition">RESTful Java Web Services - Second Edition</a></dt><dd><p>Jobinesh Purushothaman - Packt Publishing 2015</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="applications-de-demo">
+<h3>Applications de démo<a class="headerlink" href="#applications-de-demo" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="simple">
+<dt><a class="reference external" href="http://rest-bookmarks.herokuapp.com/">REST bookmarks</a></dt><dd><p>Une application de démo de gestion de marque-pages (le code source
+en Java est disponible sur
+<a class="reference external" href="https://github.com/spoonless/rest-bookmarks">GitHub</a>)</p>
+</dd>
+<dt><a class="reference external" href="http://www.youtypeitwepostit.com">You type it, we post it!</a></dt><dd><p>Une application de démo issue de l’ouvrage <strong>RESTful Web APIs</strong> (le
+code source pour Node.js est disponible sur
+<a class="reference external" href="https://github.com/RESTful-Web-APIs/example-code">GitHub</a>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="exercices">
+<h2>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Exploration d’un donjon</p>
+<p>On désire réaliser un jeu d’exploration de donjon dans lequel le joueur
+visite un ensemble de salles. Chaque salle communique avec une autre par
+une porte. Une salle peut contenir un nombre quelconque de portes.</p>
+<p>Vous devez proposer une API Web de ce service afin de permettre à
+l’utilisateur de parcourir le donjon. Chaque salle est décrite par un
+court texte. Si le client le supporte, il est possible d’obtenir une
+illustration pour certaines salles.</p>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Un service de paiement en ligne</p>
+<p>Étant donné le workflow suivant décrivant la création et le paiement d’une
+transaction bancaire :</p>
+<p><img alt="Diagramme d'activité de paiement" src="../_images/diagramme_activite_paiement_transaction.png" /></p>
+<p>Les activités sont :</p>
+<dl class="simple">
+<dt><strong>créer une transaction</strong></dt><dd><p>Création d’une transaction auprès de l’organisme bancaire identifiant
+les coordonnées bancaires du créditeur et le montant à payer.</p>
+</dd>
+<dt><strong>autoriser paiement</strong></dt><dd><p>Le débiteur indique ses informations de paiement (numéro de carte de
+paiement, date limite de validité de la carte et cryptogramme de
+sécurité). Le client effectue une demande auprès de l’organisme
+bancaire pour savoir si la transaction est autorisée. L’organisme
+bancaire fournit un numéro d’autorisation permettant d’identifier la
+transaction.</p>
+</dd>
+<dt><strong>capturer paiement</strong></dt><dd><p>Si l’autorisation s’est bien passée, le client réalise une
+<em>capture</em>, c’est-à-dire qu’il demande à l’organisme bancaire
+d’enregistrer le paiement et d’effectuer le transfert du compte du
+débiteur vers le compte du créditeur.</p>
+</dd>
+</dl>
+<p>Décrivez la réalisation d’une API Web par des exemples de
+requêtes/réponses HTTP.</p>
+<p>Décrivez également des scénarios alternatifs :</p>
+<ul class="simple">
+<li><p>L’autorisation échoue car les informations bancaires fournies sont
+incorrectes</p></li>
+<li><p>L’autorisation échoue car le client ne dispose pas du crédit
+suffisant sur son compte.</p></li>
+</ul>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Un service de réservation de billet</p>
+<p>On désire mettre en ligne un service de réservation de billets de
+concert. Ce service, accessible grâce à une API Web, sera utilisé par
+des applications de smartphone. Le service ne gère pas de base de
+données des utilisateurs : un utilisateur est simplement identifié par
+un pseudo au moment de la réservation.</p>
+<p>Les cas d’utilisation définis sont :</p>
+<ul class="simple">
+<li><p>L’utilisateur consulte la liste des concerts disponibles</p></li>
+<li><p>L’utilisateur réserve une place pour un concert avec un pseudo</p></li>
+<li><p>L’utilisateur annule sa réservation</p></li>
+<li><p>L’utilisateur confirme sa réservation</p></li>
+<li><p>Le gestionnaire du site consulte la liste des réservations confirmées
+pour un concert.</p></li>
+</ul>
+<p><strong>Attention, un utilisateur qui a confirmé sa réservation ne peut plus
+l’annuler !</strong></p>
+<p>Décrivez une API Web par des exemples de requêtes/réponses HTTP
+permettant de réaliser les cas d’utilisation ci-dessus.</p>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Le service d’achat en ligne</p>
+<p>On désire mettre en ligne un catalogue de produits parmi lesquels un
+client peut constituer un panier d’achat.</p>
+<p>Les cas d’utilisation définis sont :</p>
+<ul class="simple">
+<li><p>L’utilisateur consulte la liste des articles du catalogue</p></li>
+<li><p>L’utilisateur consulte le détail d’un produit</p></li>
+<li><p>L’utilisateur ajoute un produit à son panier d’achat</p></li>
+<li><p>L’utilisateur supprimer un produit de son panier d’achat</p></li>
+<li><p>L’utilisateur valide son panier pour le paiement en ligne</p></li>
+</ul>
+<p>Décrivez la réalisation d’une API Web par des exemples de
+requêtes/réponses HTTP.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spring_mvc_apiweb.html" class="btn btn-neutral float-right" title="Les API Web avec Spring MVC" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_liens.html" class="btn btn-neutral float-left" title="HTTP : les liens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

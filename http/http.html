@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Le protocole HTTP et les API Web" name="description" />
+<meta content="HTTP, API Web, Rest, Restful Web Service" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Le protocole HTTP &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="HTTP : les cas d’utilisation" href="http_cas_utilisation.html" />
+    <link rel="prev" title="HTTP, REST et les API Web" href="api_web.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+          <li><a href="api_web.html">HTTP, REST et les API Web</a> &raquo;</li>
+        
+      <li>Le protocole HTTP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="http_cas_utilisation.html" class="btn btn-neutral float-right" title="HTTP : les cas d’utilisation" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_web.html" class="btn btn-neutral" title="HTTP, REST et les API Web" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="le-protocole-http">
+<h1>Le protocole HTTP<a class="headerlink" href="#le-protocole-http" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>Dans ce chapitre (et les suivants), nous allons nous intéresser à la
+structure des requêtes et des réponses HTTP. Nous allons avoir besoin
+d’un outil nous donnant directement accès aux échanges HTTP. Un navigateur
+Web n’est pas forcément le meilleur outil pour cela.
+Pour réaliser des échanges HTTP, vous allez avoir besoin d’un logiciel
+capable d’envoyer et de recevoir des requêtes HTTP.</p>
+<p>Vous pouvez télécharger <a class="reference external" href="https://insomnia.rest">insomnia.rest</a>. Cet outil permet de créer
+et d’envoyer des requêtes HTTP sans passer par un document HTML.</p>
+</div>
+<p><strong>L’Hypertext Transfer Protocol</strong> (HTTP) est un protocole de la
+<a class="reference external" href="https://en.wikipedia.org/wiki/Application_layer">couche application</a>.
+Il est le fondement de l’échange de données pour le World Wide Web.
+Comme tous les protocoles applicatifs d’Internet, HTTP est orienté
+texte.</p>
+<p>HTTP version 1.1 est défini par un ensemble de RFC (Requests For
+Comments) maintenu par un groupe de travail de l’IETF (Internet
+Engineering Task Force) :</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7230">RFC 7230</a> - HTTP/1.1: Message
+Syntax and Routing - Description de la structure des messages
+échangés et des procédures de connexion</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231">RFC 7231</a> - HTTP/1.1:
+Semantics and Content - Description des méthodes, des codes d’état et
+des en-têtes</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7232">RFC 7232</a> - HTTP/1.1:
+Conditional Requests - Le support des requêtes conditionnelles</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7233">RFC 7233</a> - HTTP/1.1: Range
+Requests - Le support de requête pour obtenir un contenu partiel</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7234">RFC 7234</a> - HTTP/1.1: Caching
+- La gestion du cache client et des caches des éléments
+intermédiaires</p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7235">RFC 7235</a> - HTTP/1.1:
+Authentication - La gestion de l’authentification HTTP</p></li>
+</ul>
+<p>Depuis 1999, le protocole HTTP était défini par la « célèbre » <a class="reference external" href="https://tools.ietf.org/html/rfc2616">RFC
+2616</a>. En juin 2014, une
+reécriture a été publiée afin de clarifier certains points et
+d’améliorer la structure globale de la spécification en la scindant en
+six RFC distinctes.</p>
+<div class="section" id="structure-des-messages">
+<h2>Structure des messages<a class="headerlink" href="#structure-des-messages" title="Lien permanent vers ce titre">¶</a></h2>
+<p>HTTP est un protocole <strong>sans état conversationnel</strong> dans un
+environnement <strong>client/serveur</strong>. Le client émet une requête qui
+contient les informations suffisantes pour permettre au serveur de
+fournir une réponse.</p>
+<p>Une requête HTTP GET</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/html/rfc7230</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">tools.ietf.org</span>
+</pre></div>
+</div>
+<p>La réponse du serveur</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html; charset=utf-8</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">420</span>
+
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+...
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Une requête HTTP débute par une ligne de requête (request line) terminée
+par un saut de ligne
+(<a class="reference external" href="https://fr.wikipedia.org/wiki/Carriage_Return_Line_Feed">CRLF</a>).
+Cette ligne contient la méthode HTTP que le client souhaite exécuter, le
+chemin de la ressource cible sur laquelle la méthode doit s’appliquer et
+enfin la version du protocole HTTP utilisée (HTTP/1.1).</p>
+<p>On trouve ensuite une liste d’en-têtes et une ligne vide qui marque la
+fin des en-têtes. Si la requête a un contenu (un <em>corps de message</em>), il
+est ensuite transmis.</p>
+<p>Structure d’une requête HTTP</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[méthode] [ressource cible] HTTP/1.1
+[Nom de l&#39;en-tête]: [Valeur de l&#39;en-tête]
+...
+[ligne vide]
+[corps de message]
+</pre></div>
+</div>
+<p>Lorsque le serveur reçoit la requête, il reconstitue l’URI de la requête
+afin de déterminer quelle réponse il doit retourner au client. L’URI de
+la requête est déterminée à partir de la ressource cible et de la valeur
+de l’en-tête <code class="docutils literal notranslate"><span class="pre">Host</span></code>. Ainsi pour la requête suivante :</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/html/rfc7230</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">tools.ietf.org</span>
+</pre></div>
+</div>
+<p>Le serveur infère que le client veut exécuter la méthode <code class="docutils literal notranslate"><span class="pre">GET</span></code> sur
+l’URI :</p>
+<blockquote>
+<div><p><a class="reference external" href="https://tools.ietf.org/html/rfc7230">https://tools.ietf.org/html/rfc7230</a></p>
+</div></blockquote>
+<p>On pourra retenir comme règle simple que le contenu de l’en-tête
+<code class="docutils literal notranslate"><span class="pre">Host</span></code> correspond au nom de l’hôte dans l’URI et que la ressource
+cible correspond au chemin suivant l’hôte dans l’URI.</p>
+<p>Il existe au moins trois cas particuliers pour lesquels cette rêgle ne
+s’applique pas :</p>
+<ul class="simple">
+<li><p>Si l’URI ne contient aucun chemin (par exemple <a class="reference external" href="https://tools.ietf.org">https://tools.ietf.org</a>),
+alors on présume que la ressource cible est <strong>/</strong>.</p></li>
+<li><p>La méthode <code class="docutils literal notranslate"><span class="pre">OPTIONS</span></code> autorise * comme ressource cible pour
+désigner le serveur dans sa globalité plutôt qu’une ressource
+particulière.</p></li>
+<li><p>Pour la création d’un tunnel HTTP grâce à la méthode <code class="docutils literal notranslate"><span class="pre">CONNECT</span></code>,
+l’URI complète doit figurer dans la ligne de requête.</p></li>
+</ul>
+<p>Lorsqu’on saisit une URI dans la barre d’adresse du navigateur, ce
+dernier effectue le traitement inverse d’un serveur. Il transforme l’URI
+en une requête HTTP valide en utilisant la méthode <code class="docutils literal notranslate"><span class="pre">GET</span></code>.</p>
+<p>Une réponse HTTP débute par une ligne de réponse (response line)
+terminée par un saut de ligne
+(<a class="reference external" href="https://fr.wikipedia.org/wiki/Carriage_Return_Line_Feed">CRLF</a>).
+Celle-ci donne la version du protocole de réponse, le code de statut du
+traitement de la requête et enfin un message décrivant le code statut.
+On trouve ensuite une liste d’en-têtes et une ligne vide qui marque la
+fin des en-têtes. Si la réponse a un contenu (un <em>corps de message</em>), il
+est ensuite transmis.</p>
+<p>Structure d’une réponse HTTP</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 [code statut] [message]
+[Nom de l&#39;en-tête]: [Valeur de l&#39;en-tête]
+...
+[ligne vide]
+[corps de message]
+</pre></div>
+</div>
+<p>En HTTP 1.1, seul l’en-tête <em>Host</em> est obligatoire.</p>
+</div>
+<div class="section" id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Écrivons en HTTP</p>
+<p>Afficher le contenu de la page Web
+<a class="reference external" href="http://blank.org/">http://blank.org/</a> … <strong>avec telnet</strong> !
+Pour rappel, le protocole HTTP est associé au port 80.</p>
+<p>Essayez ensuite avec l’URI <a class="reference external" href="http://www.google.com">http://www.google.com</a>. Quelle est la
+différence dans la réponse du serveur ?</p>
+</div>
+<div class="admonition-exemple-d-api-web admonition">
+<p class="admonition-title">Exemple d’API Web</p>
+<p>Tester l’API Web de
+<a class="reference external" href="http://ip-api.com/">ip-api</a>. Cette API permet de récupérer la
+géolocalisation ainsi que d’autres informations à partir d’une adresse IP
+ou d’un nom de domaine. Vous pouvez essayer :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://ip-api.com/json/8.8.8.8">http://ip-api.com/json/8.8.8.8</a></p>
+<p><a class="reference external" href="http://ip-api.com/xml/8.8.8.8">http://ip-api.com/xml/8.8.8.8</a></p>
+<p><a class="reference external" href="http://ip-api.com/csv/8.8.8.8">http://ip-api.com/csv/8.8.8.8</a></p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="les-codes-de-statut">
+<h2>Les codes de statut<a class="headerlink" href="#les-codes-de-statut" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans la ligne de réponse, le serveur transmet le <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6">code de
+statut</a> du traitement
+de la requête. Il s’agit d’un nombre sur 3 chiffres. Les codes de statut
+HTTP sont regroupés par familles identifiées par le chiffre des
+centaines.</p>
+<ul class="simple">
+<li><p><strong>1xx  réponse informationnelle.</strong> La requête a été reçue et son
+traitement est en cours. Ce type de réponse n’est pas définitif :
+cela signifie que le client doit attendre une nouvelle réponse du
+serveur</p></li>
+<li><p><strong>2xx  succès.</strong> La requête a été reçue avec succès, comprise et
+acceptée par le serveur.</p></li>
+<li><p><strong>3xx  redirection.</strong> Une action supplémentaire a besoin d’être faite
+par le client pour terminer la requête.</p></li>
+<li><p><strong>4xx  erreur du client.</strong> La requête est syntaxiquement incorrecte
+ou ne peut pas être prise en compte. La requête ne doit pas être
+émise à nouveau telle quelle.</p></li>
+<li><p><strong>5xx  erreur du serveur.</strong> La serveur a échoué dans la prise en
+compte de la requête bien que cette dernière soit valide.</p></li>
+</ul>
+<p>Parmi les codes existants, certains sont plus remarquables et doivent
+être connus :</p>
+<table class="colwidths-given docutils align-center" id="id1">
+<caption><span class="caption-text">Famille 2XX</span><a class="headerlink" href="#id1" title="Lien permanent vers ce tableau">¶</a></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 22%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Libellé</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.3.1">200</a></p></td>
+<td><p>OK</p></td>
+<td><p>Le traitement de la requête est un succès et la réponse contient un
+message correspondant au résultat du traitement.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.3.2">201</a></p></td>
+<td><p>Created</p></td>
+<td><p>La requête est un succès et sa prise en compte a entraîné la création
+d’une ou plusieurs ressources.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.3.5">204</a></p></td>
+<td><p>No Content</p></td>
+<td><p>La requête est un succès et la réponse ne contient pas de message.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-center" id="id2">
+<caption><span class="caption-text">Famille 3XX</span><a class="headerlink" href="#id2" title="Lien permanent vers ce tableau">¶</a></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 22%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Libellé</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.4.2">301</a></p></td>
+<td><p>Moved Permanently</p></td>
+<td><p>Indique que le serveur connaît la ressource à laquelle le client désire
+accéder mais qu’elle n’est plus disponible à l’URI spécifiée. L’en-tête
+de réponse <code class="docutils literal notranslate"><span class="pre">Location</span></code> permet au serveur d’indiquer la nouvelle URI à
+laquelle le client pourra accéder à la ressource.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.4.4">303</a></p></td>
+<td><p>See Other</p></td>
+<td><p>La requête a été exécutée mais la réponse doit être consultée à une
+autre URI. L’en-tête de réponse <code class="docutils literal notranslate"><span class="pre">Location</span></code> permet au serveur
+d’indiquer l’URI vers laquelle le client peut exécuter un <strong>GET</strong> pour
+accéder au résultat.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.4.7">307</a></p></td>
+<td><p>Temporary redirect</p></td>
+<td><p>La requête n’a pas été traitée par le serveur et le client doit refaire
+la même requête vers une URI différente. L’en-tête de réponse
+<code class="docutils literal notranslate"><span class="pre">Location</span></code> permet au serveur d’indiquer la nouvelle URI à laquelle le
+client pourra renvoyer sa requête.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7232#section-4.1">304</a></p></td>
+<td><p>Not Modified</p></td>
+<td><p>Code d’état utilisé lors d’une requête conditionnelle pour spécifier au
+client que la ressource n’a pas été modifiée depuis son dernier accès.
+Il s’agit d’une redirection car ce code est utilisé la plupart du temps
+pour la gestion de la mise en cache. Le serveur notifie ainsi le client
+qu’il peut utiliser la représentation qu’il a déjà obtenue (et mise en
+cache) lors de son dernier accès.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-center" id="id3">
+<caption><span class="caption-text">Famille 4XX</span><a class="headerlink" href="#id3" title="Lien permanent vers ce tableau">¶</a></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 22%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Libellé</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.5.1">400</a></p></td>
+<td><p>Bad Request</p></td>
+<td><p>La requête n’a pas pu être traitée car elle est syntaxiquement
+incorrecte.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.5.4">404</a></p></td>
+<td><p>Not Found</p></td>
+<td><p>Le serveur ne dispose pas de représentation pour la ressource cible.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.5.5">405</a></p></td>
+<td><p>Method Not Allowed</p></td>
+<td><p>La ressource cible est connue du serveur mais le client ne peut pas
+utiliser la méthode spécifiée dans la requête.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.5.13">406</a></p></td>
+<td><p>Not Acceptable</p></td>
+<td><p>Indique qu’il n’existe pas de représentation au format demandé par le
+client pour la ressource cible (échec de la négociation de contenu).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.5.8">409</a></p></td>
+<td><p>Conflict</p></td>
+<td><p>La requête ne peut pas être traitée sans entrer en conflit avec l’état
+courant d’une ressource sur le serveur.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7232#section-4.2">412</a></p></td>
+<td><p>Precondition failed</p></td>
+<td><p>Lors d’une requête conditionnelle, indique que la requête n’a pas pu
+être traitée car une de ses préconditions n’est pas satisfaite.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.5.13">415</a></p></td>
+<td><p>Unsupported Media Type</p></td>
+<td><p>Indique que le message envoyé par le client utilise un format qui n’est
+pas supporté par le serveur. Par exemple, le client envoie au serveur un
+message au format XML alors que ce dernier s’attend à un document PDF.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-center" id="id4">
+<caption><span class="caption-text">Famille 5XX</span><a class="headerlink" href="#id4" title="Lien permanent vers ce tableau">¶</a></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 22%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Libellé</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-6.6.1">500</a></p></td>
+<td><p>Internal Server Error</p></td>
+<td><p>Une erreur inattendue a empêché le serveur de traiter la requête.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="les-methodes-http">
+<h2>Les méthodes HTTP<a class="headerlink" href="#les-methodes-http" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les <a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4">méthodes HTTP</a>
+désignent le type d’opération que le client désire réaliser. Attention,
+leur nom s’écrit en majuscules dans une requête HTTP.</p>
+<dl>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.1">GET</a></dt><dd><p>Demande au serveur une représentation de la ressource cible.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.2">HEAD</a></dt><dd><p>Comme un GET sauf que la réponse ne contient jamais de corps. Cette
+méthode est utile pour obtenir les informations des en-têtes et
+valider une requête sans envoyer ni recevoir de corps de message.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.4">PUT</a></dt><dd><p>Crée ou met à jour l’état d’une ressource identifiée par l’URI.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc5789#section-2">PATCH</a></dt><dd><p>Change partiellement l’état d’une ressource cible. PATCH ne fait pas
+partie de la liste initiale des méthodes HTTP. Elle a été ajoutée en
+2010 par la <a class="reference external" href="https://tools.ietf.org/html/rfc5789">RFC 5789</a>.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.5">DELETE</a></dt><dd><p>Détruit l’association de l’URI avec l’état de la ressource.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.3">POST</a></dt><dd><p>La sémantique de la méthode POST est probablement la plus compliquée
+à saisir car cette méthode est utilisable dans différentes
+situations pour :</p>
+<ul class="simple">
+<li><p>Fournir un bloc de données (formulaire) à un processus de
+traitement</p></li>
+<li><p>Poster un message dans un système de centralisation d’articles</p></li>
+<li><p>Créer une nouvelle ressource qui sera identifiée par le serveur</p></li>
+<li><p>Ajouter des informations à la représentation d’une ressource</p></li>
+</ul>
+<p>Lorsqu’un client reçoit une réponse à une méthode <code class="docutils literal notranslate"><span class="pre">POST</span></code>, il peut
+être important de savoir si la réponse correspond à une
+représentation d’une ressource ou s’il s’agit du résultat d’un
+traitement. Pour un code statut 200, l’en-tête de réponse
+<code class="docutils literal notranslate"><span class="pre">Content-Location</span></code> sert à faire cette différence. S’il est
+présent, l’en-tête <code class="docutils literal notranslate"><span class="pre">Content-Location</span></code> signale que le corps de la
+réponse correspond bien à la représentation d’une ressource dont
+l’URI est donnée par cet en-tête.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.7">OPTIONS</a></dt><dd><p>Permet d’obtenir les options de communication (par exemple : les
+méthodes autorisées pour l’URI). Le serveur doit retourner ces
+informations dans les en-têtes de réponse. Ainsi l’en-tête de
+réponse
+<a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-7.4.1">Allow</a>
+liste les méthodes HTTP autorisées pour cette URI.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.8">TRACE</a></dt><dd><p>Permet de simuler un écho de la requête. Cette méthode n’est pas
+utilisée pour la réalisation d’API Web car elle est surtout utile
+pour tester la configuration du réseau et obtenir des informations
+des proxies.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-4.3.6">CONNECT</a></dt><dd><p>Établit un tunnel à travers un proxy. Cette méthode n’est pas
+utilisée pour la réalisation d’API Web.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="proprietes-des-methodes-http">
+<h2>Propriétés des méthodes HTTP<a class="headerlink" href="#proprietes-des-methodes-http" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les méthodes HTTP sont classées selon trois propriétés : la <strong>sûreté</strong>,
+<strong>l’idempotence</strong> et <strong>le support du cache</strong> (cacheable).</p>
+<dl>
+<dt>Sûreté (safety)</dt><dd><p>Une méthode est sûre si le client ne s’attend à aucune modification
+d’état sur le serveur. Une méthode sûre est assimilable à une simple
+lecture de données. En tant que telle, elle doit pouvoir être
+exécutée entre 0 et N fois sans que cela n’affecte la ressource
+associée. <strong>Les méthodes GET, HEAD et OPTIONS doivent être sûres</strong>.</p>
+<p>L’implémentation d’un serveur peut amener des modifications lors de
+l’exécution d’une méthode sûre. Par exemple, une requête <code class="docutils literal notranslate"><span class="pre">GET</span></code>
+peut générer des fichiers de log sur le serveur. Ce qu’il est
+important de retenir, c’est que ce type de modification n’est pas de
+la responsabilité du client.</p>
+</dd>
+<dt>Idempotence (idempotent)</dt><dd><p>Une méthode est idempotente si l’effet obtenu est le même qu’elle
+soit exécutée 1 ou N fois. Autrement dit, toutes choses étant égales
+par ailleurs, la répétition d’une requête utilisant une méthode
+idempotente conduit au même résultat. <strong>Les méthodes GET, HEAD,
+OPTIONS, PUT et DELETE doivent être idempotentes.</strong></p>
+<p>En HTTP, la notion d’idempotence est fortement associée à la reprise
+sur erreur. En effet, les requêtes utilisant des méthodes
+idempotentes peuvent être répétées en cas d’erreur de communication.
+Par exemple, si un client émet une requête <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> et qu’il
+n’obtient pas de réponse du serveur, il peut émettre à nouveau sa
+requête jusqu’à obtenir une réponse. Cela fait de HTTP un protocole
+adapté pour des réseaux connectés mais peu fiables (Wifi, réseau
+data de téléphonie mobile…)</p>
+</dd>
+</dl>
+<dl class="simple" id="cacheable">
+<dt>Support du cache (cacheable)</dt><dd><p>Une méthode <em>cacheable</em> indique que sa réponse peut être stockée par
+le client ou un proxy pour une utilisation ultérieure. Attention, il
+ne s’agit en rien d’une règle obligatoire et la gestion du cache en
+HTTP est régie par la <a class="reference external" href="https://tools.ietf.org/html/rfc7234">RFC
+7234</a>. <strong>HTTP définit les
+méthodes GET, HEAD et POST comme étant *cacheables*</strong>. Les méthodes
+non <em>cacheables</em> forcent la suppression des données mises en cache
+pour l’URI lorsqu’elles sont soumises au serveur.</p>
+</dd>
+</dl>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 27%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Sûre</p></th>
+<th class="head"><p>Idempotente</p></th>
+<th class="head"><p>Cacheable</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GET</p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p><strong>oui</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>HEAD</p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p><strong>oui</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>PUT</p></td>
+<td><p>non</p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p>non</p></td>
+</tr>
+<tr class="row-odd"><td><p>PATCH</p></td>
+<td><p>non</p></td>
+<td><p>non</p></td>
+<td><p>non</p></td>
+</tr>
+<tr class="row-even"><td><p>DELETE</p></td>
+<td><p>non</p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p>non</p></td>
+</tr>
+<tr class="row-odd"><td><p>POST</p></td>
+<td><p>non</p></td>
+<td><p>non</p></td>
+<td><p><strong>oui</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>OPTIONS</p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p><strong>oui</strong></p></td>
+<td><p>non</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="les-en-tetes-http">
+<h2>Les en-têtes HTTP<a class="headerlink" href="#les-en-tetes-http" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les en-têtes de requête et de réponse permettent d’enrichir le contexte
+de la requête ou la réponse. Ils servent à fournir des données pour le
+support d’un ensemble de fonctionnalités de HTTP :</p>
+<ul class="simple">
+<li><p>Gestion du cycle de vie de la connexion client/serveur</p></li>
+<li><p>Compression du corps du message</p></li>
+<li><p>Gestion de la taille et du contenu des entités de requête et de
+réponse</p></li>
+<li><p>Négociation de contenu</p></li>
+<li><p>Requêtes conditionnelles</p></li>
+<li><p>Gestion des stratégies de cache</p></li>
+<li><p>…</p></li>
+</ul>
+<p>Le nom des en-têtes est insensible à la casse.
+Les en-têtes peuvent être envoyés dans n’importe quel ordre.
+A titre d’exemple, on citera :</p>
+<dl>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7230#section-5.4">Host</a> (requête)</dt><dd><p>L’en-tête <code class="docutils literal notranslate"><span class="pre">Host</span></code> est le seul obligatoire en HTTP 1.1 pour un
+requête. Il contient le nom et le port du serveur. Sa présence
+permet notamment la gestion de serveurs HTTP virtuels sur un même
+port.</p>
+<p>Une requête HTTP avec l’en-tête <code class="docutils literal notranslate"><span class="pre">Host</span></code></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.monserveur.fr:9090</span>
+</pre></div>
+</div>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> (requête et réponse)</dt><dd><p>Si une requête ou une réponse contient un message, il est nécessaire
+pour le destinataire d’identifier le format du contenu. L’en-tête
+HTTP <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> fournit cette information sous la forme d’un
+<a class="reference external" href="https://fr.wikipedia.org/wiki/Type_MIME">type MIME</a>.</p>
+<p>Une liste (non exhaustive) des types MIME les plus courants est :</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>text/plain</p></td>
+<td><p>Un fichier texte</p></td>
+</tr>
+<tr class="row-even"><td><p>text/plain;charset=utf-8</p></td>
+<td><p>Un fichier texte encodé en UTF-8</p></td>
+</tr>
+<tr class="row-odd"><td><p>text/html</p></td>
+<td><p>Un fichier HTML</p></td>
+</tr>
+<tr class="row-even"><td><p>text/xml ou application/xml</p></td>
+<td><p>Un fichier XML</p></td>
+</tr>
+<tr class="row-odd"><td><p>text/json ou application/json</p></td>
+<td><p>Un fichier JSON</p></td>
+</tr>
+<tr class="row-even"><td><p>image/jpeg</p></td>
+<td><p>Une image au format jpeg</p></td>
+</tr>
+<tr class="row-odd"><td><p>application/x-www-form-urlencoded</p></td>
+<td><p>Le format de données pour la soumission d’un formulaire HTML</p></td>
+</tr>
+<tr class="row-even"><td><p>application/octet-stream</p></td>
+<td><p>Un flux d’octets sans type particulier. Il s’agit du format par défaut si l’en-tête <code class="docutils literal notranslate"><span class="pre">Content-type</span></code> est absent.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Une requête HTTP avec l’en-tête <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/utilisateur</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.monserveur.fr:9090</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">36</span>
+
+nom=David&amp;prenom=Gayerie&amp;taille=174
+</pre></div>
+</div>
+<p>Le IANA (Internet Assigned Numbers Authority) maintient un <a class="reference external" href="http://www.iana.org/assignments/media-types/media-types.xhtml">registre
+des types
+MIME</a>
+qui lui ont été officiellement soumis.</p>
+</dd>
+<dt><a class="reference external" href="https://tools.ietf.org/html/rfc7230#section-3.3.2">Content-Length</a> (requête et réponse)</dt><dd><p>Si une requête ou une réponse contient un message, il est nécessaire
+pour le destinataire d’en connaître la taille afin d’identifier la
+fin du message HTTP. En effet le mécanisme HTTP du <em>pipelining</em>
+permet de soumettre plusieurs requêtes (et donc de recevoir
+plusieurs réponse) sur une même connexion TCP. La capacité de
+délimiter les requêtes d’une part et les réponses d’autre part est
+donc cruciale. L’en-tête <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> sert à communiquer la
+taille en octets du message.</p>
+<p>Une requête HTTP avec l’en-tête <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/utilisateur</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">www.monserveur.fr:9090</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">36</span>
+
+nom=David&amp;prenom=Gayerie&amp;taille=174
+</pre></div>
+</div>
+<p>Une réponse HTTP avec l’en-tête <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">17</span>
+
+Hello the world!
+</pre></div>
+</div>
+<p>Il est possible de ne pas fournir l’en-tête <code class="docutils literal notranslate"><span class="pre">Content-Length</span></code> en
+utilisant la technique de <a class="reference external" href="https://fr.wikipedia.org/wiki/Chunked_transfer_encoding">l’encodage de transfert en
+bloc</a>
+(chunked transfer encoding). Cette technique est très largement
+utilisée par les serveurs qui génèrent du contenu dynamique pour
+lequel il serait coûteux de mettre en cache la réponse avant de la
+transmettre pour connaître sa taille définitive.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http_cas_utilisation.html" class="btn btn-neutral float-right" title="HTTP : les cas d’utilisation" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_web.html" class="btn btn-neutral float-left" title="HTTP, REST et les API Web" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

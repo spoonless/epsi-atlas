@@ -1,0 +1,929 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Les API Web avec Spring MVC &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Les services Web SOAP / WSDL" href="web_services.html" />
+    <link rel="prev" title="REST" href="rest.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+      <li>Les API Web avec Spring MVC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="web_services.html" class="btn btn-neutral float-right" title="Les services Web SOAP / WSDL" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rest.html" class="btn btn-neutral" title="REST" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="les-api-web-avec-spring-mvc">
+<h1>Les API Web avec Spring MVC<a class="headerlink" href="#les-api-web-avec-spring-mvc" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Une API Web suit les mêmes règles qu’un site Web traditionnel. La différence est
+avant tout une différence d’usage. Une API Web fonctionne selon un échange
+de requêtes/réponses HTTP mais elle n’est pas utilisée pour fournir un contenu
+directement affichable à un individu. La différence porte donc le plus souvent
+sur le format des représentations échangées entre le client et le serveur : pour
+un site Web, le serveur fournira principalement des pages HTML alors que pour une API Web,
+il s’agira d’utiliser des formats de représentation permettant de traiter directement les données
+par le dispositif client. Pour ce dernier cas, on privilégie généralement les
+formats JSON et XML, plus simples à analyser par des programmes.</p>
+<p>Une API Web peut ainsi être utilisée dans des contextes très divers :</p>
+<ul class="simple">
+<li><p>pour un échange M2M (<em>Machine to Machine</em>) dans lequel deux systèmes d’information
+s’échangent des données.</p></li>
+<li><p>plus récemment pour l’Internet des Objets (IoT) afin de permettre à différents
+dispositifs de communiquer entre eux.</p></li>
+<li><p>pour un site Web riche. Le client Web est capable de générer des requêtes HTTP
+asynchrones (<em>ajax</em>) pour récupérer des données sur le serveur et mettre à jour
+une partie du contenu de la page.</p></li>
+<li><p>pour des applications mobiles (Android / iOS) afin de récupérer des données applicatives
+sur Internet.</p></li>
+</ul>
+<div class="section" id="l-annotation-restcontroller">
+<h2>L’annotation &#64;RestController<a class="headerlink" href="#l-annotation-restcontroller" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une classe annotée avec <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html">&#64;RestController</a> indique qu’il s’agit d’un contrôleur
+spécialisé pour le développement d’API Web. <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html">&#64;RestController</a> est simplement
+une annotation qui regroupe <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html">&#64;Controller</a> et <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseBody.html">&#64;ResponseBody</a>. Il s’agit donc
+d’un contrôleur dont les méthodes retournent par défaut les données à renvoyer
+au client plutôt qu’un identifiant de vue.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Le qualificatif de REST pour ce contrôleur est malheureusement le résultat
+d’une confusion (courante) des développeurs qui mélangent REST avec API Web
+(et API Web avec JSON).</p>
+<p>REST est l’ensemble des contraintes sur lesquelles sont basés le Web et
+le protocole HTTP. Donc <strong>tous</strong> les contrôleurs développés avec Spring MVC
+doivent se conformer au modèle REST.</p>
+<p>Il aurait été plus juste d’avoir une annotation nommée <em>&#64;WebApiController</em>
+pour ce cas particulier de type de contrôleurs.</p>
+</div>
+</div>
+<div class="section" id="support-du-format-json">
+<h2>Support du format JSON<a class="headerlink" href="#support-du-format-json" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Afin de produire directement une représentation JSON d’un objet Java, il est possible
+d’utiliser la bibliothèque Jackson. Pour cela, il suffit d’ajouter la dépendance
+suivante dans le fichier <code class="file docutils literal notranslate"><span class="pre">pom.xml</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Dépendance à la bibliothèque Jackson</span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.9.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="un-controleur-pour-une-api-web">
+<h2>Un contrôleur pour une API Web<a class="headerlink" href="#un-controleur-pour-une-api-web" title="Lien permanent vers ce titre">¶</a></h2>
+<p>À titre d’exemple, imaginons que nous disposions d’une classe <em>Item</em> pour
+représenter des données de notre modèle :</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">La classe Item</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">code</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">quantity</span><span class="o">;</span>
+
+    <span class="c1">// Getters/setters omis</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Nous pouvons très facilement déclarer un contrôleur pour obtenir une représentation
+JSON d’une instance de la classe <em>Item</em> :</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Un contrôleur pour une API Web</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;/api&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/item&quot;</span><span class="o">,</span> <span class="n">produces</span><span class="o">=</span> <span class="s">&quot;application/json&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Item</span> <span class="nf">getItem</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">setCode</span><span class="o">(</span><span class="s">&quot;XV-32&quot;</span><span class="o">);</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;Weird stuff&quot;</span><span class="o">);</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">setQuantity</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">item</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Une classes annotée avec <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html">&#64;RestController</a> fonctionne de la même façon qu’une
+classe annotée avec <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html">&#64;Controller</a>. Notez cependant que l’attribut <code class="docutils literal notranslate"><span class="pre">produces</span></code>
+de l’annotation <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html">&#64;GetMapping</a> a été positionné à <code class="docutils literal notranslate"><span class="pre">&quot;application/json&quot;</span></code>.
+Cela signifie que Spring MVC va convertir l’instance de la classe <em>Item</em> retournée
+par la méthode en une représentation JSON avant de l’envoyer au client.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La sérialisation JSON sera réalisée par la bibliothèque Jackson.</p>
+</div>
+<p>Si nous déployons sur notre serveur local notre application dans le contexte <code class="docutils literal notranslate"><span class="pre">myapp</span></code>, nous
+pouvons interroger notre API à l’adresse :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://localhost:8080/myapp/api/item">http://localhost:8080/myapp/api/item</a></p>
+</div></blockquote>
+<p>Et obtenir une réponse de la forme :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;Weird stuff&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;XV-32&quot;</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="l-envoi-de-donnees">
+<h2>L’envoi de données<a class="headerlink" href="#l-envoi-de-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les API Web sont souvent utilisées pour effectuer des opérations modifiant
+l’état du serveur (création, modification, suppression). Pour ces cas, il est toujours
+possible d’envoyer au serveur des paramètres d’URI et/ou des données comme
+un formulaire HTML. Cependant, comme les formats JSON et XML sont
+souvent utilisés comme représentation dans les réponses du serveur, il paraît
+cohérent de permettre à un client d’envoyer des données au serveur dans un de ces
+formats.</p>
+<p>Pour autoriser cela, il suffit d’utiliser l’attribut <code class="docutils literal notranslate"><span class="pre">consumes</span></code> pour les annotations
+de type <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html">&#64;RequestMapping</a> conjointement avec l’annotation <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestBody.html">&#64;RequestBody</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Un contrôleur acceptant des requêtes au format JSON</span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestBody</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ResponseStatus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;/api&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemController</span> <span class="o">{</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/items&quot;</span><span class="o">,</span> <span class="n">consumes</span><span class="o">=</span><span class="s">&quot;application/json&quot;</span><span class="o">)</span>
+    <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">code</span><span class="o">=</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createItem</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Item</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Dans l’exemple ci-dessus, le contrôleur accepte une requête <code class="docutils literal notranslate"><span class="pre">POST</span></code> pour le chemin
+<code class="file docutils literal notranslate"><span class="pre">/api/items</span></code> contenant des données au format JSON. Le paramètre <code class="docutils literal notranslate"><span class="pre">item</span></code>
+dispose de l’annotation <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestBody.html">&#64;RequestBody</a>. Donc Spring MVC va considérer que
+ce paramètre représente le corps de la requête. Il va donc tenter de convertir
+le document JSON en une instance de la classe <em>Item</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La désérialisation du document JSON vers l’objet Java sera réalisée par la bibliothèque Jackson.</p>
+</div>
+<p>Comme pour le contenu d’une réponse, nous pouvons autoriser plusieurs formats de
+représentation dans un contrôleur en fournissant une liste à l’attribut <code class="docutils literal notranslate"><span class="pre">consumes</span></code> :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/items&quot;</span><span class="o">,</span> <span class="n">consumes</span><span class="o">={</span><span class="s">&quot;application/json&quot;</span><span class="o">,</span> <span class="s">&quot;application/xml&quot;</span><span class="o">})</span>
+<span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">code</span><span class="o">=</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">createItem</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Item</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="la-reponse">
+<h2>La réponse<a class="headerlink" href="#la-reponse" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Par défaut, un contrôleur pour une API Web retourne un code statut HTTP 200 si
+la méthode retourne un objet ou 204 (No Content) si la méthode retourne <code class="docutils literal notranslate"><span class="pre">void</span></code>.
+Si on désire positionner un code statut particulier, il est possible d’utiliser
+l’annotation <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseStatus.html">&#64;ResponseStatus</a> avec un code particulier parmi l’énumération <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpStatus.html">HttpStatus</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Changement du code statut de la réponse avec une annotation</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/items&quot;</span><span class="o">,</span> <span class="n">consumes</span><span class="o">={</span><span class="s">&quot;application/json&quot;</span><span class="o">,</span> <span class="s">&quot;application/xml&quot;</span><span class="o">})</span>
+<span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">code</span><span class="o">=</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">createItem</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Item</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Si on désire contrôler plus finement le contenu de la réponse, il est possible
+de retourner un objet de type <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html">ResponseEntity&lt;T&gt;</a>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestBody</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.util.UriComponentsBuilder</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;/api&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemController</span> <span class="o">{</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/items&quot;</span><span class="o">,</span> <span class="n">consumes</span><span class="o">=</span><span class="s">&quot;application/json&quot;</span><span class="o">,</span> <span class="n">produces</span><span class="o">=</span><span class="s">&quot;application/json&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="nf">createItem</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Item</span> <span class="n">item</span><span class="o">,</span>
+                                           <span class="n">UriComponentsBuilder</span> <span class="n">uriBuilder</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// ...</span>
+
+        <span class="n">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">uriBuilder</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">&quot;/api/items/{code}&quot;</span><span class="o">).</span><span class="na">buildAndExpand</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">getCode</span><span class="o">()).</span><span class="na">toUri</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">ResponseEntity</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Un objet <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html">ResponseEntity&lt;T&gt;</a> peut être créé à partir de méthodes statiques
+correspondant aux cas d’utilisation les plus courants en HTTP. Dans l’exemple
+ci-dessus, la méthode <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html#created-java.net.URI-">ResponseEntity&lt;T&gt;.created</a> permet de créer une réponse
+avec un code statut 201 (<em>Created</em>) et un en-tête <code class="docutils literal notranslate"><span class="pre">Location</span></code> contenant le lien vers
+la ressource créée sur le serveur. Ainsi la méthode <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html#created-java.net.URI-">ResponseEntity&lt;T&gt;.created</a>
+attend en paramètre l’URI de la ressource. Dans l’exemple ci-dessus, on accède
+à une instance de <a class="reference external" href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/UriComponentsBuilder.html">UriComponentsBuilder</a> qui est fournie par Spring MVC afin
+de nous aider à construire une URI pour une ressource du serveur.</p>
+<p>Si nous déployons sur notre serveur local notre application dans le contexte <code class="docutils literal notranslate"><span class="pre">myapp</span></code>, nous
+envoyons une requête à l’adresse :</p>
+<blockquote>
+<div><p><a class="reference external" href="http://localhost:8080/myapp/api/items">http://localhost:8080/myapp/api/items</a></p>
+</div></blockquote>
+<p>avec les données :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;mon item&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;1337&quot;</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Nous devrions obtenir une réponse HTTP de la forme :</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://localhost:8080/myapp/api/items/1337</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=UTF-8</span>
+<span class="na">Transfer-Encoding</span><span class="o">:</span> <span class="l">chunked</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Tue, 06 Mar 2018 10:00:00 GMT</span>
+
+<span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;mon item&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;1337&quot;</span><span class="p">,</span><span class="nt">&quot;quantity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="la-negociation-de-contenu">
+<h2>La négociation de contenu<a class="headerlink" href="#la-negociation-de-contenu" title="Lien permanent vers ce titre">¶</a></h2>
+<p>HTTP permet la négociation de contenu proactive. Cela signifie qu’un client peut
+envoyer ses préférences au serveur. Ce dernier doit répondre au mieux en fonction
+des préférences reçues et de ses capacités. Une négociation possible porte sur
+le format de représentation. Cela peut s’avérer utile pour une API Web destinée
+à des clients très divers. Par exemple, certains clients peuvent privilégier le
+XML et d’autres le JSON.</p>
+<p>La négociation proactive pour le type de représentation est réalisée par le client
+qui envoie dans sa requête un en-tête <code class="docutils literal notranslate"><span class="pre">Accept</span></code> donnant la liste des types MIME
+qu’il préfère. Avec Spring MVC, cette négociation est automatiquement gérée
+par le contrôleur.</p>
+<p>Si on désire créer une API Web capable de produire des réponses au format JSON et XML,
+il est possible d’ajouter la dépendance suivante dans le fichier <code class="file docutils literal notranslate"><span class="pre">pom.xml</span></code> :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.dataformat<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>jackson-dataformat-xml<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.9.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p>Il s’agit d’une extension de Jackson pour supporter la génération de document
+XML à partir d’un objet Java.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il existe également une bibliothèque incluse dans Java pour lier une représentation
+XML et un objet Java : JAXB (Java API for XML Binding).</p>
+</div>
+<p>Nous pouvons maintenant faire évoluer notre premier contrôleur pour indiquer qu’il
+peut produire du JSON ou du XML en déclarant un tableau de types MIME dans l’attribut
+<code class="docutils literal notranslate"><span class="pre">produces</span></code> :</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Un contrôleur pour une API Web</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;/api&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/item&quot;</span><span class="o">,</span> <span class="n">produces</span><span class="o">=</span> <span class="o">{</span><span class="s">&quot;application/json&quot;</span><span class="o">,</span> <span class="s">&quot;application/xml&quot;</span><span class="o">})</span>
+    <span class="kd">public</span> <span class="n">Item</span> <span class="nf">getItem</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">setCode</span><span class="o">(</span><span class="s">&quot;XV-32&quot;</span><span class="o">);</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;Weird stuff&quot;</span><span class="o">);</span>
+        <span class="n">item</span><span class="o">.</span><span class="na">setQuantity</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">item</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Par défaut, ce contrôleur produit toujours du JSON (car le type MIME JSON est placé
+en premier dans la liste) mais un client peut indiquer
+qu’il préfère une représentation XML grâce à l’en-tête <code class="docutils literal notranslate"><span class="pre">Accept</span></code> en fournissant
+la valeur <code class="docutils literal notranslate"><span class="pre">application/xml</span></code>.</p>
+</div>
+<div class="section" id="les-annotations-jackson">
+<h2>Les annotations Jackson<a class="headerlink" href="#les-annotations-jackson" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si vous utilisez la bibliothèque Jackson pour convertir les objets Java en XML ou JSON,
+vous pouvez utiliser des annotations dans la déclaration des objets afin de modifier
+le comportement par défaut de la sérialisation/désérialisation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>Pour tester la conversion d’un objet Java en JSON <em>via</em> Jackson vous pouvez
+écrire un programme (ou un test) en utilisant une instance de la classe <a class="reference external" href="https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html">ObjectMapper</a>
+fournie par Jackson :</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Un programme qui produit un document JSON sur la sortie standard</span><a class="headerlink" href="#id7" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JacksonSerialisation</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+
+        <span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">obj</span><span class="o">));</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Pour tester la conversion d’un objet Java en XML <em>via</em> Jackson, il faut
+utiliser la classe <a class="reference external" href="https://fasterxml.github.io/jackson-dataformat-xml/javadoc/2.9/com/fasterxml/jackson/dataformat/xml/XmlMapper.html">XmlMapper</a> fournie par Jackson :</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Un programme qui produit un document XML sur la sortie standard</span><a class="headerlink" href="#id8" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.dataformat.xml.XmlMapper</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JacksonSerialisation</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+
+        <span class="n">XmlMapper</span> <span class="n">xmlMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XmlMapper</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">xmlMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">obj</span><span class="o">));</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Parmi les annotations utiles, on peut citer :</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonProperty.html">&#64;JsonProperty</a></dt><dd><p>Cette annotation ajoutée à un attribut permet de spécifier le nom de la propriété dans le document JSON
+ou le nom de l’élément dans un document XML.</p>
+</dd>
+<dt><a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonIgnore.html">&#64;JsonIgnore</a></dt><dd><p>Cette annotation ajoutée à un attribut permet d’exclure cet attribut de la sérialisation/désérialisation.</p>
+</dd>
+<dt><a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonRootName.html">&#64;JsonRootName</a></dt><dd><p>Cette annotation ajoutée sur une classe permet de spécifier le nom de l’élément s’il doit
+apparaître à la racine du document. Cette annotation est surtout utile pour la génération de document
+XML afin de changer le nom de l’élément racine.</p>
+</dd>
+<dt><a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonPropertyOrder.html">&#64;JsonPropertyOrder</a></dt><dd><p>Cette annotation ajoutée à une classe permet de fixer l’ordre des éléments dans le document.</p>
+</dd>
+<dt><a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonView.html">&#64;JsonView</a></dt><dd><p>Cette annotation ajoutée à un attribut permet de définir une ou des vues JSON pour lesquelles
+cet attribut doit apparaître (Cf exemple ci-dessous).</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour la liste complète des annotations disponibles avec Jackson, vous pouvez
+vous reporter à la <a class="reference external" href="https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations">documentation officielle</a>.</p>
+</div>
+<p>Reprenons notre classe <em>Item</em> en ajoutant des annotations Jackson :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonPropertyOrder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonRootName</span><span class="o">;</span>
+
+<span class="nd">@JsonRootName</span><span class="o">(</span><span class="s">&quot;item&quot;</span><span class="o">)</span>
+<span class="nd">@JsonPropertyOrder</span><span class="o">({</span><span class="s">&quot;nom&quot;</span><span class="o">,</span> <span class="s">&quot;code&quot;</span><span class="o">,</span> <span class="s">&quot;quantite&quot;</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+
+    <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;nom&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">code</span><span class="o">;</span>
+
+    <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;quantite&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">quantity</span><span class="o">;</span>
+
+    <span class="c1">// Getters/setters omis</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>La sérialisation avec Jackson d’un objet de la classe <em>Item</em> donnera les documents
+suivants :</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">sérialisation en JSON</span><a class="headerlink" href="#id9" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;nom&quot;</span><span class="p">:</span><span class="s2">&quot;Weird stuff&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;XV-35&quot;</span><span class="p">,</span><span class="nt">&quot;quantite&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">sérialisation en XML</span><a class="headerlink" href="#id10" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;item&gt;&lt;nom&gt;</span>Weird stuff<span class="nt">&lt;/nom&gt;&lt;code&gt;</span>XV-35<span class="nt">&lt;/code&gt;&lt;quantite&gt;</span>1<span class="nt">&lt;/quantite&gt;&lt;/item&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="les-vues-json">
+<h3>Les vues JSON<a class="headerlink" href="#les-vues-json" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L’utilisation de vues JSON permet de ne convertir qu’une partie de l’objet. Pour
+cela, nous créons des interfaces qui servent à désigner des vues. Pour notre exemple,
+nous allons créer les interfaces <em>ItemViewWithoutQuantity</em> et <em>ItemViewWithQuantity</em> :</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">les interfaces représentant les vues JSON</span><a class="headerlink" href="#id11" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ItemViewWithoutQuantity</span> <span class="o">{</span>
+
+<span class="o">}</span>
+
+<span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ItemViewWithQuantity</span> <span class="kd">extends</span> <span class="n">ItemViewWithoutQuantity</span> <span class="o">{</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Notez que <em>ItemViewWithQuantity</em> hérite de <em>ItemViewWithoutQuantity</em> car dans notre
+exemple nous voulons simplement exclure dans certains cas l’attribut <code class="docutils literal notranslate"><span class="pre">quantity</span></code>
+de la sérialisation. Nous pouvons revoir la définition de la classe <em>Item</em> en
+ajoutant des annotations <a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonView.html">&#64;JsonView</a> pour attribuer une vue à chaque attribut :</p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">déclaration des vues JSON</span><a class="headerlink" href="#id12" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonPropertyOrder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonRootName</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonView</span><span class="o">;</span>
+
+<span class="nd">@JsonRootName</span><span class="o">(</span><span class="s">&quot;item&quot;</span><span class="o">)</span>
+<span class="nd">@JsonPropertyOrder</span><span class="o">({</span><span class="s">&quot;nom&quot;</span><span class="o">,</span> <span class="s">&quot;code&quot;</span><span class="o">,</span> <span class="s">&quot;quantite&quot;</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+
+    <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;nom&quot;</span><span class="o">)</span>
+    <span class="nd">@JsonView</span><span class="o">(</span><span class="n">ItemViewWithoutQuantity</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@JsonView</span><span class="o">(</span><span class="n">ItemViewWithoutQuantity</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">code</span><span class="o">;</span>
+
+    <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&quot;quantite&quot;</span><span class="o">)</span>
+    <span class="nd">@JsonView</span><span class="o">(</span><span class="n">ItemViewWithQuantity</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">quantity</span><span class="o">;</span>
+
+    <span class="c1">// Getters/setters omis</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Les vues JSON son facilement utilisables dans un contrôleur Spring car on peut
+préciser la vue grâce à l’annotation <a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonView.html">&#64;JsonView</a> sur la valeur de retour
+d’une méthode :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestBody</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.util.UriComponentsBuilder</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonView</span><span class="o">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">&quot;/api&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemController</span> <span class="kd">extends</span> <span class="n">ResponseEntityExceptionHandler</span><span class="o">{</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">path</span><span class="o">=</span><span class="s">&quot;/items&quot;</span><span class="o">,</span> <span class="n">consumes</span><span class="o">=</span><span class="s">&quot;application/json&quot;</span><span class="o">,</span> <span class="n">produces</span><span class="o">=</span><span class="s">&quot;application/json&quot;</span><span class="o">)</span>
+    <span class="nd">@JsonView</span><span class="o">(</span><span class="n">ItemViewWithoutQuantity</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="nf">createItem</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">Item</span> <span class="n">item</span><span class="o">,</span> <span class="n">UriComponentsBuilder</span> <span class="n">uriBuilder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">getCode</span><span class="o">());</span>
+        <span class="n">URI</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">uriBuilder</span><span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">&quot;/api/item/{code}&quot;</span><span class="o">).</span><span class="na">buildAndExpand</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">getCode</span><span class="o">()).</span><span class="na">toUri</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">ResponseEntity</span><span class="o">.</span><span class="na">created</span><span class="o">(</span><span class="n">uri</span><span class="o">).</span><span class="na">body</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>L’appel à cette API produira le document :</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">sérialisation en JSON</span><a class="headerlink" href="#id13" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;nom&quot;</span><span class="p">:</span><span class="s2">&quot;Nom de l&#39;item&quot;</span><span class="p">,</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="s2">&quot;Code de l&#39;item&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>L’attribut <code class="docutils literal notranslate"><span class="pre">quantite</span></code> n’est pas présent dans le document JSON car l’annotation
+<a class="reference external" href="https://fasterxml.github.io/jackson-annotations/javadoc/2.9/com/fasterxml/jackson/annotation/JsonView.html">&#64;JsonView</a> limite la sérialisation à la vue <em>ItemViewWithoutQuantity</em>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>Pour tester les vues JSON directement <em>via</em> Jackson, vous pouvez modifier
+les appels à l’instance de <a class="reference external" href="https://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html">ObjectMapper</a> pour lui indiquer la vue à utiliser :</p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">programme de sérialisation JSON en précisant une vue</span><a class="headerlink" href="#id14" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JacksonSerialisation</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">Item</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setCode</span><span class="o">(</span><span class="s">&quot;XV-35&quot;</span><span class="o">);</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;Weird stuff&quot;</span><span class="o">);</span>
+        <span class="n">obj</span><span class="o">.</span><span class="na">setQuantity</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+        <span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">objectMapper</span><span class="o">.</span><span class="na">writerWithView</span><span class="o">(</span><span class="n">ItemViewWithoutQuantity</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+                                       <span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">obj</span><span class="o">));</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">TP - API Web de taux de change</p>
+<p>On veut mettre en place un service de taux de change pour la conversion
+entre des devises étrangères et l’Euro.</p>
+<p>Il existe deux types de client pour cette API Web. Un type de client
+fournit plusieurs fois par jour le taux de change d’une monnaie vers
+l’Euro. Un autre type de client transmet un montant
+dans une monnaie afin d’obtenir la conversion en euros.</p>
+<p>Les fonctionnalités attendues sont :</p>
+<ul class="simple">
+<li><p>créer ou mettre à jour une monnaie avec son taux de change</p></li>
+<li><p>consulter la monnaie avec son taux de change</p></li>
+<li><p>supprimer une monnaie</p></li>
+<li><p>convertir un montant d’une monnaie en euros</p></li>
+</ul>
+<p>Vous devez implémenter l’API Web en respectant les contraintes suivantes :</p>
+<ul class="simple">
+<li><p>une monnaie doit être une ressource</p></li>
+<li><p>vous devez utiliser le principe de l’hypermédia lorsque cela est utile</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>La norme ISO-4217 définit un code pour chaque monnaie :</p>
+<blockquote>
+<div><p><a class="reference external" href="https://fr.wikipedia.org/wiki/ISO_4217">https://fr.wikipedia.org/wiki/ISO_4217</a></p>
+</div></blockquote>
+</div>
+<p><strong>Modèle de projet</strong></p>
+<blockquote>
+<div><blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/f70e65a30770bbef742fb924806f180d/rest-monnaie.zip"><code class="xref download docutils literal notranslate"><span class="pre">rest-monnaie.zip</span></code></a></p>
+</div></blockquote>
+<p>Vous devez partir du modèle de projet ci-dessus pour réaliser l’API Web.</p>
+<p>La base de données peut être créée à partir du script</p>
+<blockquote>
+<div><p><code class="file docutils literal notranslate"><span class="pre">src/main/sql/monnaiedb.sql</span></code></p>
+</div></blockquote>
+<p>La configuration de l’accès à la base de données se trouve dans le fichier</p>
+<blockquote>
+<div><p><code class="file docutils literal notranslate"><span class="pre">src/main/resources/jdbc.properties</span></code></p>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="web_services.html" class="btn btn-neutral float-right" title="Les services Web SOAP / WSDL" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rest.html" class="btn btn-neutral float-left" title="REST" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
