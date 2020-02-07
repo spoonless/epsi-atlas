@@ -883,6 +883,33 @@ dans une monnaie afin d’obtenir la conversion en euros.</p>
 <div><p><code class="file docutils literal notranslate"><span class="pre">src/main/resources/application.properties</span></code></p>
 </div></blockquote>
 </div></blockquote>
+<p><strong>Exemple de création avec POST</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>POST http//localhost:8080/monnaie/
+
+{
+    &quot;code&quot;: &quot;KSW&quot;,
+    &quot;tauxDeChange&quot;: 3.12
+}
+
+201 Created
+Location: http//localhost:8080/monnaie/KSW
+</pre></div>
+</div>
+<p><strong>Exemple de conversion avec POST</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Exemple de conversion
+POST http://localhost:8080/monnaie/KSW/EUR
+
+{
+    &quot;montant&quot;: 12
+}
+
+200 OK
+
+{
+    &quot;montant&quot;: 37.44
+}
+</pre></div>
+</div>
 </div>
 </div>
 </div>
