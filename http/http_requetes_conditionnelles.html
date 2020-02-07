@@ -39,7 +39,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Recherche" href="../search.html" /> 
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="HTTP : la gestion du cache" href="http_gestion_cache.html" />
+    <link rel="prev" title="HTTP : la négociation de contenu" href="http_negociation_contenu.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,9 +83,9 @@
             
             
               <p class="caption"><span class="caption-text">API Web et service Web</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction : Service Web et API Web</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="api_web.html">HTTP, REST et les API Web</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="http.html">Le protocole HTTP</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="http.html#structure-des-messages">Structure des messages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="http.html#exercice">Exercice</a></li>
@@ -117,6 +119,23 @@
 <li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
 <li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTTP : les requêtes conditionnelles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#demander-une-representation-a-jour">Demander une représentation à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creer-une-ressource-si-elle-n-existe-pas-deja">Créer une ressource si elle n’existe pas déjà</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alterer-une-ressource-sous-condition">Altérer une ressource sous condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alterer-une-ressource-si-elle-existe">Altérer une ressource si elle existe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http_gestion_cache.html">HTTP : la gestion du cache</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#serveur-d-origine-et-intermediaires">Serveur d’origine et intermédiaires</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#principe-generale-de-la-gestion-du-cache">Principe générale de la gestion du cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#la-fraicheur-d-une-reponse">La fraîcheur d’une réponse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#la-revalidation">La revalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#les-directives-de-strategie-de-cache">Les directives de stratégie de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#l-invalidation-de-cache">L’invalidation de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="http_gestion_cache.html#enrichissement-des-en-tetes-par-les-intermediaires">Enrichissement des en-têtes par les intermédiaires</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="http_liens.html">HTTP : les liens</a><ul>
@@ -249,6 +268,8 @@
     
       <li><a href="../index.html">Accueil</a> &raquo;</li>
         
+          <li><a href="api_web.html">HTTP, REST et les API Web</a> &raquo;</li>
+        
       <li>HTTP : les requêtes conditionnelles</li>
     
     
@@ -260,6 +281,15 @@
     
   </ul>
 
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="http_gestion_cache.html" class="btn btn-neutral float-right" title="HTTP : la gestion du cache" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_negociation_contenu.html" class="btn btn-neutral" title="HTTP : la négociation de contenu" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
   
   <hr/>
 </div>
@@ -520,6 +550,15 @@ representation de la ressource est disponible).</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http_gestion_cache.html" class="btn btn-neutral float-right" title="HTTP : la gestion du cache" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http_negociation_contenu.html" class="btn btn-neutral float-left" title="HTTP : la négociation de contenu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
   
 
   <hr/>
