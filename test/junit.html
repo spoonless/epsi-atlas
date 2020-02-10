@@ -840,7 +840,9 @@ Si cette approche est élégante, elle mélange tout de même les codes de la ph
 </pre></div>
 </div>
 <p>Et l’exception <code class="docutils literal notranslate"><span class="pre">LongueurLargeurInvalideException</span></code> :</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LongueurLargeurInvalideException</span> <span class="kd">extends</span> <span class="n">GeometrieException</span><span class="o">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LongueurLargeurInvalideException</span> <span class="kd">extends</span> <span class="n">Exception</span><span class="o">{</span>
 
         <span class="kd">public</span> <span class="nf">LongueurLargeurInvalideException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
                 <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
