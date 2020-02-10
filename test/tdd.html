@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>TDD : Test Driven Development &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="prev" title="Les tests unitaires automatisés avec JUnit" href="junit.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../http/introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../http/api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_requetes_conditionnelles.html">HTTP : les requêtes conditionnelles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#demander-une-representation-a-jour">Demander une représentation à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#creer-une-ressource-si-elle-n-existe-pas-deja">Créer une ressource si elle n’existe pas déjà</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#alterer-une-ressource-sous-condition">Altérer une ressource sous condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#alterer-une-ressource-si-elle-existe">Altérer une ressource si elle existe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_gestion_cache.html">HTTP : la gestion du cache</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#serveur-d-origine-et-intermediaires">Serveur d’origine et intermédiaires</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#principe-generale-de-la-gestion-du-cache">Principe générale de la gestion du cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#la-fraicheur-d-une-reponse">La fraîcheur d’une réponse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#la-revalidation">La revalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#les-directives-de-strategie-de-cache">Les directives de stratégie de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#l-invalidation-de-cache">L’invalidation de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#enrichissement-des-en-tetes-par-les-intermediaires">Enrichissement des en-têtes par les intermédiaires</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../http/spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../http/web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Les tests unitaires</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="junit.html">Les tests unitaires automatisés avec JUnit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="junit.html#tests-unitaires-first">Tests unitaires FIRST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="junit.html#junit">JUnit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="junit.html#integration-de-junit-dans-un-projet-maven">Intégration de JUnit dans un projet Maven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="junit.html#structure-d-une-classe-de-test-junit">Structure d’une classe de test JUnit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="junit.html#execution-des-tests-junit">Exécution des tests JUnit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="junit.html#les-methodes-de-test">Les méthodes de test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="junit.html#les-assertions">Les assertions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="junit.html#les-fixtures">Les fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="junit.html#tester-les-exceptions">Tester les exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="junit.html#utilisation-de-doublure">Utilisation de doublure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="junit.html#implementation-d-objet-mock-avec-mockito">Implémentation d’objet mock avec Mockito</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TDD : Test Driven Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#qu-est-ce-qu-un-test">Qu’est-ce qu’un test ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-driven-development">Test Driven Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#le-mantra-du-tdd">Le Mantra du TDD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#qu-est-ce-que-concevoir">Qu’est-ce que concevoir ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+      <li>TDD : Test Driven Development</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+      
+        <a href="junit.html" class="btn btn-neutral" title="Les tests unitaires automatisés avec JUnit" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tdd-test-driven-development">
+<h1>TDD : Test Driven Development<a class="headerlink" href="#tdd-test-driven-development" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="qu-est-ce-qu-un-test">
+<h2>Qu’est-ce qu’un test ?<a class="headerlink" href="#qu-est-ce-qu-un-test" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un test est simplement un moyen de nous rassurer : est-ce que cela marche ?</p>
+<p>Structure d’un test : AAA</p>
+<ul class="simple">
+<li><p>Arrange</p></li>
+<li><p>Act</p></li>
+<li><p>Assert</p></li>
+</ul>
+<p>Un test sert à maîtriser la complexité : ainsi un test ne doit pas être trop
+long (à écrire, à lire, à exécuter), il ne doit pas être imprécis (pas de if,
+de boucle, de « ou »…). Un test ne doit pas être fragile (pas de faux positifs).</p>
+</div>
+<div class="section" id="test-driven-development">
+<h2>Test Driven Development<a class="headerlink" href="#test-driven-development" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le TDD est une méthode de conception basée sur les tests proposée par Kent Beck.</p>
+<p>Parfois, le TDD est une pratique auréolée d’un certain respect, mystère ou, au
+contraire, qui est complètement dénigrée. En fait, le TDD est une façon
+particulière d’articuler les pratiques de conception logicielle et
+d’automatisation des tests.</p>
+<div class="section" id="le-mantra-du-tdd">
+<h3>Le Mantra du TDD<a class="headerlink" href="#le-mantra-du-tdd" title="Lien permanent vers ce titre">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Écrire un test rouge</p></li>
+<li><p>Écrire le code le plus simple pour que le test soit vert</p></li>
+<li><p>Supprimer la duplication (code/test) et améliorer la lisibilité. C’est la phase du <em>refactoring</em>.</p></li>
+</ol>
+<img alt="../_images/tdd-circle-of-life.png" src="../_images/tdd-circle-of-life.png" />
+<p>Pour la phase 2, tous les coups sont permis. Le plus important est de faire
+passer le test au vert.</p>
+<p>Plus généralement, le TDD est une approche avec laquelle on cherche à cadrer la
+production de code par petits incréments qui marchent (c’est-à-dire qui sont testés).</p>
+</div>
+</div>
+<div class="section" id="qu-est-ce-que-concevoir">
+<h2>Qu’est-ce que concevoir ?<a class="headerlink" href="#qu-est-ce-que-concevoir" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La conception logicielle est un domaine souvent envisagé comme autonome. Pour
+certains, elle relève d’une expertise particulière (architecture logicielle).
+Pour d’autres, elle relève de l’esthétique : beau code, application de patterns…</p>
+<p>Les règles de la conception simple de Kent Beck :</p>
+<ol class="arabic simple">
+<li><p>Ça marche (les tests sont verts)</p></li>
+<li><p>Il n’y a pas de duplication de code</p></li>
+<li><p>Le code est expressif</p></li>
+<li><p>Le code contient un nombre minimum de classes et de méthodes</p></li>
+</ol>
+<p>Dans cette vision de la conception, le TDD est bien une pratique de conception
+pilotée par les tests. Cependant, la conception émerge vraiment à la dernière
+phase d’un cycle de test au moment du <em>refactoring</em>.</p>
+</div>
+<div class="section" id="exercices">
+<h2>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice à rendre - Le Kata calculette</p>
+<p>Réalisez le Kata <a class="reference external" href="http://osherove.com/tdd-kata-1/">String calculator</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>N’essayez pas d’anticiper le développement. Implémentez les différents
+points les un après les autres.
+Le but est de réaliser une conception incrémentale en vous basant sur
+les tests.</p>
+</div>
+<p>Voici la feuille de route (non restrictive) pour ce Kata :</p>
+<p>Créez une simple calculatrice avec une méthode :</p>
+<p>int add(String numbers)</p>
+<ol class="arabic simple">
+<li><p>Cette méthode prend en paramètre une chaîne de caractères qui représente
+0, 1 ou 2 nombres. Elle retournera leur somme (pour une chaîne de
+caractères vide, elle retournera 0). Par exemple : <code class="code docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;1&quot;</span></code> ou <code class="code docutils literal notranslate"><span class="pre">&quot;1,2&quot;</span></code></p></li>
+<li><p>Autoriser la méthode <code class="docutils literal notranslate"><span class="pre">add</span></code> à prendre en compte un nombre quelconque de nombres</p></li>
+<li><p>Autoriser la méthode <code class="docutils literal notranslate"><span class="pre">add</span></code> à prendre en compte les retours à la ligne en
+plus des virgules comme séparateur. Par exemple : <code class="code docutils literal notranslate"><span class="pre">&quot;1\n2,3&quot;</span></code> donne 6</p></li>
+<li><p>Par contre <code class="code docutils literal notranslate"><span class="pre">&quot;1,\n2&quot;</span></code> n’est pas ok (pas deux séparateurs à la suite)</p></li>
+<li><p>Autoriser la méthode <code class="docutils literal notranslate"><span class="pre">add</span></code> à prendre en compte des séparateurs de un caractère.
+Pour changer de séparateur, la chaînes de caractères peut commencer par
+la ligne : <code class="code docutils literal notranslate"><span class="pre">&quot;//[séparateur]\n&quot;</span></code>. La première ligne est optionnelle et tous
+les scénarios précédents restent valides. Par exemple : <code class="code docutils literal notranslate"><span class="pre">&quot;//;\n1;2&quot;</span></code> vaut 3</p></li>
+<li><p>Les nombres supérieurs à 1000 sont ignorés. Par exemple <code class="code docutils literal notranslate"><span class="pre">&quot;2,1001&quot;</span></code> vaut 2</p></li>
+<li><p>Appeler <code class="docutils literal notranslate"><span class="pre">add</span></code> avec un nombre négatif dans la chaîne entraîne une
+exception avec le message <code class="code docutils literal notranslate"><span class="pre">&quot;negatives</span> <span class="pre">not</span> <span class="pre">allowed&quot;</span></code> suivi du nombre négatif
+passé dans la chaîne de caractères. S’il y a plusieurs nombre négatifs,
+il faut tous les ajouter dans le message de l’exception</p></li>
+<li><p>Le délimiteur peut avoir n’importe quelle longueur. Par exemple : <code class="code docutils literal notranslate"><span class="pre">&quot;//:::\n1:::2:::3&quot;</span></code> vaut 6</p></li>
+<li><p>Autoriser plusieurs délimiteurs : <code class="code docutils literal notranslate"><span class="pre">&quot;//*%\n1*2%3&quot;</span></code> vaut 6</p></li>
+</ol>
+<p><strong>Modèle de projet Maven</strong></p>
+<p>Vous devez télécharger le modèle de projet Maven :</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/c357900fac1867f5c6d6123555f2ffde/tdd.zip"><code class="xref download docutils literal notranslate"><span class="pre">tdd.zip</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice de refactoring - Battlecode</p>
+<p>Battlecode est un exemple de code Java pour un entraînement au refactoring.</p>
+<p>Il va vous falloir faire évoluer le code d’une application. Malheureusement,
+le code n’est pas toujours aussi clair et <em>propre</em> que l’on aimerait.</p>
+<p>Heureusement, la couverture de code par les tests est de 100% !</p>
+<p>Le code principal tourne autour de la classe <code class="docutils literal notranslate"><span class="pre">action.Fight</span></code> et de sa méthode <code class="docutils literal notranslate"><span class="pre">execute</span></code></p>
+<p><strong>Modèle de projet Maven</strong></p>
+<p>Vous pouvez récupérer le projet battlecode comme projet Maven :</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/cf3b7d50f021ea3e7965e4c05361e660/battlecode.zip"><code class="xref download docutils literal notranslate"><span class="pre">battlecode.zip</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice à rendre - Jeu <em>Attrape-moi si tu peux</em></p>
+<p><em>Attrape-moi si tu peux</em> est un jeu à deux joueurs. Les joueurs se
+déplacent sur une grille de taille 10 sur 10.</p>
+<p>Les deux joueurs font une action chacun à leur tour.
+À son tour, un joueur peut faire une des actions suivantes :</p>
+<ul class="simple">
+<li><p>pivoter à gauche de 90° (tourner à gauche)</p></li>
+<li><p>pivoter à droite de 90° (tourner à droite)</p></li>
+<li><p>avancer d’une ou deux cases dans la direction de son orientation</p></li>
+</ul>
+<p>Si un joueur avance en dehors du plateau, son déplacement est annulé.</p>
+<p>Une fois que les deux joueurs ont fait leur action, le jeu indique si un joueur
+voit un autre joueur et à quelle distance il se situe (le nombre de cases).
+Un joueur ne voit que ce qui se trouve sur la ligne ou la colonne sur laquelle il est orienté.
+Ensuite, une nouvelle phase de jeu commence et les joueurs peuvent à nouveau
+choisir une des trois actions.</p>
+<p>Pour gagner, un joueur doit se déplacer sur la même case que l’autre joueur.</p>
+<p>Essayez de réaliser ce jeu en TDD. Il ne faut pas intégrer des interfaces graphiques
+ou des sorties sur la console. Contentez-vous de coder le cœur du jeu : les
+classes qui permettent de gérer une partie et le déplacement des joueurs.</p>
+<p><strong>Modèle de projet Maven</strong></p>
+<p>Vous devez télécharger le modèle de projet Maven :</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/c357900fac1867f5c6d6123555f2ffde/tdd.zip"><code class="xref download docutils literal notranslate"><span class="pre">tdd.zip</span></code></a></p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="junit.html" class="btn btn-neutral float-left" title="Les tests unitaires automatisés avec JUnit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

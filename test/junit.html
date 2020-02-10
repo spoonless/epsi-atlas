@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Les tests unitaires avec JUnit" name="description" />
+<meta content="Java, JUnit, Mockito, mock, test unitaire" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Les tests unitaires automatisés avec JUnit &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="TDD : Test Driven Development" href="tdd.html" />
+    <link rel="prev" title="Annexe : XML" href="../http/annexe_xml.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../http/introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../http/api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_requetes_conditionnelles.html">HTTP : les requêtes conditionnelles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#demander-une-representation-a-jour">Demander une représentation à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#creer-une-ressource-si-elle-n-existe-pas-deja">Créer une ressource si elle n’existe pas déjà</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#alterer-une-ressource-sous-condition">Altérer une ressource sous condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#alterer-une-ressource-si-elle-existe">Altérer une ressource si elle existe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_gestion_cache.html">HTTP : la gestion du cache</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#serveur-d-origine-et-intermediaires">Serveur d’origine et intermédiaires</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#principe-generale-de-la-gestion-du-cache">Principe générale de la gestion du cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#la-fraicheur-d-une-reponse">La fraîcheur d’une réponse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#la-revalidation">La revalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#les-directives-de-strategie-de-cache">Les directives de stratégie de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#l-invalidation-de-cache">L’invalidation de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#enrichissement-des-en-tetes-par-les-intermediaires">Enrichissement des en-têtes par les intermédiaires</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../http/spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../http/web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Les tests unitaires</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Les tests unitaires automatisés avec JUnit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tests-unitaires-first">Tests unitaires FIRST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#junit">JUnit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#integration-de-junit-dans-un-projet-maven">Intégration de JUnit dans un projet Maven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure-d-une-classe-de-test-junit">Structure d’une classe de test JUnit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#execution-des-tests-junit">Exécution des tests JUnit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#les-methodes-de-test">Les méthodes de test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#les-assertions">Les assertions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#les-fixtures">Les fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tester-les-exceptions">Tester les exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-de-doublure">Utilisation de doublure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implementation-d-objet-mock-avec-mockito">Implémentation d’objet mock avec Mockito</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tdd.html">TDD : Test Driven Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tdd.html#qu-est-ce-qu-un-test">Qu’est-ce qu’un test ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdd.html#test-driven-development">Test Driven Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tdd.html#le-mantra-du-tdd">Le Mantra du TDD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tdd.html#qu-est-ce-que-concevoir">Qu’est-ce que concevoir ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tdd.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+      <li>Les tests unitaires automatisés avec JUnit</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="tdd.html" class="btn btn-neutral float-right" title="TDD : Test Driven Development" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../http/annexe_xml.html" class="btn btn-neutral" title="Annexe : XML" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="les-tests-unitaires-automatises-avec-junit">
+<h1>Les tests unitaires automatisés avec JUnit<a class="headerlink" href="#les-tests-unitaires-automatises-avec-junit" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Un test automatisé est un programme qui se découpe en trois phases dites
+AAA pour <em>Arrange</em>, <em>Act</em>, <em>Assert</em>.</p>
+<dl class="simple">
+<dt>Arrange</dt><dd><p>La mise en place de l’environnement : création et initialisation des
+objets nécessaires à l’exécution du test.</p>
+</dd>
+<dt>Act</dt><dd><p>Le test proprement dit.</p>
+</dd>
+<dt>Assert</dt><dd><p>La vérification des résultats obtenus par le test.</p>
+</dd>
+</dl>
+<p>Le sous-système (l’ensemble des objets) éprouvé par le test est parfois
+appelé <strong>SUT</strong> (<em>System Under Test</em>).</p>
+<p>On distingue différentes catégories de tests :</p>
+<ul class="simple">
+<li><p>Tests unitaires : testent une partie (une unité) d’un système afin de
+s’assurer qu’il fonctionne correctement (<em>build the system right</em>)</p></li>
+<li><p>Tests d’acceptation : testent le système afin de s’assurer qu’il est
+conforme aux besoins (<em>build the right system</em>)</p></li>
+<li><p>Tests d’intégration : testent le système sur une plate-forme proche
+de la plate-forme cible</p></li>
+<li><p>Tests de sécurité : testent que l’application ne contient pas de
+failles de sécurité connues (injection de code, attaque XSS, …)</p></li>
+<li><p>Tests de robustesse : testent le comportement de l’application au
+limite des ressources disponibles (mémoire, CPU, …) sur la
+plate-forme</p></li>
+</ul>
+<div class="section" id="tests-unitaires-first">
+<h2>Tests unitaires FIRST<a class="headerlink" href="#tests-unitaires-first" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les tests unitaires doivent répondre à certaines caractéristiques résumées par
+l’acronyme FIRST : <em>Fast</em>, <em>Isolated</em>, <em>Repeatable</em>, <em>Self-Validating</em>, <em>Thorough</em>.</p>
+<dl class="simple">
+<dt>Fast (rapide)</dt><dd><p>Un test unitaire doit être rapide à exécuter (quelques millisecondes). En
+effet, les tests unitaires doivent pouvoir être exécutés très fréquemment.</p>
+</dd>
+<dt>Isolated (isolé)</dt><dd><p>Les tests unitaires doivent être indépendants les uns des autres. Ils peuvent
+ainsi être exécutés isolément ou dans n’importe quel ordre.</p>
+</dd>
+<dt>Repeatable (répétable)</dt><dd><p>Un test unitaire doit pouvoir être exécuté de manière répétée. Il ne doit
+donc pas se baser sur un environnement (comme les données par exemple) qu’il
+ne maîtrise pas ni altérer cet environnement au point de ne pas pouvoir être à
+nouveau exécuté.</p>
+</dd>
+<dt>Self-validating</dt><dd><p>Un test unitaire doit être capable de déterminer son succès ou son échec.
+Il ne doit pas dépendre d’une observation humaine pour cela.</p>
+</dd>
+<dt>Thorough (exhaustif)</dt><dd><p>Il n’est généralement pas possible de tester complètement le comportement
+d’une portion de code avec un seul test. Un ensemble de tests doivent permettre
+de tester les cas nominaux, les cas au limite ainsi que les erreurs éventuelles</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="junit">
+<h2>JUnit<a class="headerlink" href="#junit" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://www.junit.org">JUnit</a> est le framework de tests unitaires le plus utilisé en Java.</p>
+<div class="section" id="integration-de-junit-dans-un-projet-maven">
+<h3>Intégration de JUnit dans un projet Maven<a class="headerlink" href="#integration-de-junit-dans-un-projet-maven" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour intégrer <a class="reference external" href="https://www.junit.org">JUnit</a> dans un projet Maven, il faut d’abord ajouter le jar
+de <a class="reference external" href="https://www.junit.org">JUnit</a> dans le projet. Pour cela, il suffit d’ajouter la déclaration
+suivante dans le fichier <code class="file docutils literal notranslate"><span class="pre">pom.xml</span></code> du projet dans la section
+<code class="docutils literal notranslate"><span class="pre">&lt;dependencies&gt;</span></code> :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.13<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p>L’attribut scope est positionné à <code class="docutils literal notranslate"><span class="pre">test</span></code> dans la déclaration de
+dépendance ci-dessus. Cela indique à Maven que la bibliothèque <a class="reference external" href="https://www.junit.org">JUnit</a> ne
+doit être prise en compte que pour la compilation et l’exécution des
+classes de test. Ainsi la bibliothèque <a class="reference external" href="https://www.junit.org">JUnit</a> ne sera pas incluse dans le
+packaging de l’application finale. Par exemple, elle ne sera pas ajoutée
+dans le fichier war si le projet est une application Web.</p>
+<p>Les classes de test peuvent maintenant être implémentées en les plaçant
+dans le répertoire de source <code class="file docutils literal notranslate"><span class="pre">src/test/java</span></code> du projet.</p>
+</div>
+<div class="section" id="structure-d-une-classe-de-test-junit">
+<h3>Structure d’une classe de test JUnit<a class="headerlink" href="#structure-d-une-classe-de-test-junit" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Comme Java est un langage orienté Objet, les tests <a class="reference external" href="https://www.junit.org">JUnit</a> sont regroupés
+dans des classes de test. Généralement, on groupe dans une classe les
+tests ayant la même classe comme point d’entrée et on nomme la classe de
+test à partir du nom de la classe testée préfixé ou suffixé par <code class="docutils literal notranslate"><span class="pre">Test</span></code>
+en la plaçant dans le même package. Par exemple, pour tester la classe
+<code class="docutils literal notranslate"><span class="pre">DateFormatter</span></code>, on créera une classe <code class="docutils literal notranslate"><span class="pre">TestDateFormatter</span></code> ou
+<code class="docutils literal notranslate"><span class="pre">DateFormatterTest</span></code>.</p>
+<p>Suffixer ou post-fixer par <code class="docutils literal notranslate"><span class="pre">Test</span></code> le nom de la classe de test est juste une
+convention. Néanmoins, il est très fortement conseillé de la respecter
+car les IDE et Maven utilisent également cette convention pour découvrir
+les classes de test à exécuter.</p>
+<div class="section" id="execution-des-tests-junit">
+<h4>Exécution des tests JUnit<a class="headerlink" href="#execution-des-tests-junit" title="Lien permanent vers ce titre">¶</a></h4>
+<p><a class="reference external" href="https://www.junit.org">JUnit</a> est pris en charge par les IDE Java et par les outils de build
+comme Maven.</p>
+<p>Dans Eclipse, il suffit de faire un clic droit dans l’explorateur de
+projet sur un fichier source, une classe de Test ou un package et de
+choisir <strong>« Run as… &gt; JUnit Test »</strong>. On peut également presser la
+touche <kbd class="kbd docutils literal notranslate">F11</kbd> dans l’éditeur de code source de la classe de test.</p>
+<p>Avec Maven, il suffit de lancer le goal <strong>test</strong> :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mvn <span class="nb">test</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="les-methodes-de-test">
+<h4>Les méthodes de test<a class="headerlink" href="#les-methodes-de-test" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Une classe de test est simplement une classe déclarant des méthodes
+publiques sans paramètre et sans valeur de retour et qui sont annotées par <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/Test.html">&#64;Test</a>.</p>
+<p>Une méthode de test contient :</p>
+<ul class="simple">
+<li><p>un ensemble d’instructions correspondant à la phase <em>arrange</em> (si nécessaire),</p></li>
+<li><p>un ensemble d’instructions correspondant à la phase <em>act</em> (qui se limite
+généralement à l’appel de la méthode à tester),</p></li>
+<li><p>un ensemble d’instructions correspondant à la phase <em>assert</em>.</p></li>
+</ul>
+<p>L’exemple ci-dessous teste la méthode <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#toUpperCase--">String.toUpperCase</a> :</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Exemple d’une classe de test</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">upperCaseProduitUneChaineEnMajuscules</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="c1">// Bloc arrange</span>
+    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Bonjour le monde&quot;</span><span class="o">;</span>
+
+    <span class="c1">// Bloc act</span>
+    <span class="n">String</span> <span class="n">maj</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+
+    <span class="c1">// Bloc assert</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;BONJOUR LE MONDE&quot;</span><span class="o">,</span> <span class="n">maj</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Une méthode de test ne devrait pas contenir d’instruction <code class="docutils literal notranslate"><span class="pre">if</span></code> ou <code class="docutils literal notranslate"><span class="pre">switch</span></code>
+puisqu’un test traduit un cas d’utilisation simple sans choix possible. De même,
+une méthode de test ne devrait contenir qu’exceptionnellement des boucles <code class="docutils literal notranslate"><span class="pre">for</span></code>
+ou <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
+</div>
+<div class="section" id="les-assertions">
+<h4>Les assertions<a class="headerlink" href="#les-assertions" title="Lien permanent vers ce titre">¶</a></h4>
+<p>La classe <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/Assert.html">Assert</a> est une
+classe outil contenant des méthodes statiques pour déclarer des
+assertions. Ces méthodes permettent de vérifier la valeur d’un
+paramètre ou de comparer deux valeurs passées en paramètres. Si l’assertion
+est fausse, ces méthodes produisent une exception de type <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code>
+qui fait échouer le test.</p>
+<p>Parmi les méthodes d’assertion, on trouve :</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Méthode</p></th>
+<th class="head"><p>Utilisation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>assertTrue(boolean condition)</p></td>
+<td><p>Vérifie que la condition passée en paramètre est vraie.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertFalse(boolean condition)</p></td>
+<td><p>Vérifie que la condition passée en paramètre est fausse.</p></td>
+</tr>
+<tr class="row-even"><td><p>assertEquals(Object expected, Object actual)</p></td>
+<td><p>Compare les deux paramètres pour vérifier qu’ils sont égaux.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertNotEquals(Object expected, Object actual)</p></td>
+<td><p>Compare les deux paramètres pour vérifier qu’ils ne sont pas égaux.</p></td>
+</tr>
+<tr class="row-even"><td><p>assertSame(Object expected, Object actual)</p></td>
+<td><p>Vérifie que les deux objets passés en paramètre sont en fait le même objet (en utilisant l’opérateur <code class="docutils literal notranslate"><span class="pre">==</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertNotSame(Object expected, Object actual)</p></td>
+<td><p>Vérifie que les deux objets passés en paramètre ne sont pas les mêmes objets (en utilisant l’opérateur <code class="docutils literal notranslate"><span class="pre">!=</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>assertNull(Object actual)</p></td>
+<td><p>Vérifie que l’expression passée en paramètre s’évalue à <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertNotNull(Object actual)</p></td>
+<td><p>Vérifie que l’expression passée en paramètre ne s’évalue pas à <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>fail()</p></td>
+<td><p>Il ne s’agit pas vraiment d’une assertion puisqu’un appel à cette méthode fait échouer le test immédiatement. Nous verrons plus bas que cette méthode est utile pour tester les exceptions.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Il existe une surcharge de méthode pour chacune des méthodes précédentes qui accepte
+une chaîne de caractères comme premier paramètre. Il s’agit du message d’erreur
+produit par le test si l’assertion échoue.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pour les méthodes d’assertion qui attendent deux valeurs pour les comparer,
+notez que la première valeur correspond à la valeur attendue pour ce test
+et la deuxième valeur correspond à la valeur produite au moment du test.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Exemple d’utilisation des assertions</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testString</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Bonjour le monde&quot;</span><span class="o">;</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;Bonjour le monde&quot;</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+    <span class="n">assertNotEquals</span><span class="o">(</span><span class="s">&quot;Bonsoir le monde&quot;</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+    <span class="n">assertFalse</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">isBlank</span><span class="o">());</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Tests unitaires de java.util.Math#abs(int)</p>
+<p>Écrire les tests unitaires pour la méthode <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html#abs-int-">java.util.Math#abs(int)</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>L’exercice précédent propose de tester une méthode sans effet de bord
+(ce que l’on appelle également une <a class="reference external" href="https://fr.wikipedia.org/wiki/Fonction_pure">fonction
+pure</a>). Les tests sur ce
+type de méthodes sont faciles à écrire. Ils restent cependant
+l’exception lorsqu’on utilise la programmation orientée objet. En effet,
+l’appel d’une méthode sur un objet modifie le plus souvent son état et
+provoque généralement des effets de bord en sollicitant d’autres objets
+avec lesquels l’objet entretient des dépendances.</p>
+</div>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Tests unitaires de la classe Phrase</p>
+<p>Soit la classe <code class="docutils literal notranslate"><span class="pre">Phrase</span></code> :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm">* Permet de construire une phrase en ajoutant des mots. On peut définir le</span>
+<span class="cm">* séparateur entre deux mots. La phrase est créée grâce à la méthode #toString.</span>
+<span class="cm">* Une phrase se termine par un point.</span>
+<span class="cm">*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Phrase</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SEPARATEUR_PAR_DEFAUT</span> <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="o">;</span>
+
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">mots</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">separateur</span> <span class="o">=</span> <span class="n">SEPARATEUR_PAR_DEFAUT</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNbLettres</span><span class="o">()</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">nbLettres</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">mots</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isAlphabetic</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+                                <span class="o">++</span><span class="n">nbLettres</span><span class="o">;</span>
+                        <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="k">return</span> <span class="n">nbLettres</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ajouter</span><span class="o">(</span><span class="n">String</span> <span class="n">mot</span><span class="o">,</span> <span class="kt">int</span> <span class="n">nbMots</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nbMots</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">ajouter</span><span class="o">(</span><span class="n">mot</span><span class="o">);</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ajouter</span><span class="o">(</span><span class="n">String</span> <span class="n">premierMot</span><span class="o">,</span> <span class="n">String</span><span class="o">...</span> <span class="n">mots</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">ajouter</span><span class="o">(</span><span class="n">premierMot</span><span class="o">);</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">mot</span> <span class="o">:</span> <span class="n">mots</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">ajouter</span><span class="o">(</span><span class="n">mot</span><span class="o">);</span>
+                <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">ajouter</span><span class="o">(</span><span class="n">String</span> <span class="n">mot</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">mots</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">))</span> <span class="o">{</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">mots</span> <span class="o">+=</span> <span class="k">this</span><span class="o">.</span><span class="na">separateur</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">mots</span> <span class="o">+=</span> <span class="n">mot</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSeparateur</span><span class="o">(</span><span class="n">String</span> <span class="n">separateur</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">separateur</span> <span class="o">=</span> <span class="n">separateur</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSeparateur</span><span class="o">(</span><span class="kt">char</span> <span class="n">separateur</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">separateur</span> <span class="o">=</span> <span class="n">Character</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">separateur</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">mots</span> <span class="o">+</span> <span class="sc">&#39;.&#39;</span><span class="o">;</span>
+        <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Écrire les tests unitaires pour la classe <code class="docutils literal notranslate"><span class="pre">Phrase</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="les-fixtures">
+<h3>Les fixtures<a class="headerlink" href="#les-fixtures" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour réaliser un test, il est parfois nécessaire un grand nombre d’objets et
+de préparer le SUT (<em>System Under Test</em>). Plutôt que d’écrire le code nécessaire
+au début d’un test (au risque de le rendre moins lisible), on préfère écrire
+ce code dans une classe à part ou une méthode à part. Dans ce cas, on qualifie
+ce nouvel objet ou cette nouvelle méthode de <strong>fixtures</strong>.</p>
+<p>Avec <a class="reference external" href="https://www.junit.org">JUnit</a>, il est possible d’exécuter des méthodes avant et après chaque test
+pour allouer et désallouer des ressources nécessaires à l’exécution des
+tests. On déclare pour cela des méthodes publiques sans paramètre annotées avec
+<a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/Before.html">&#64;Before</a> ou <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/After.html">&#64;After</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Exemple d’une classe de test avec <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/Before.html">&#64;Before</a> et <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/After.html">&#64;After</a></span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">org.junit.After</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UneClasseTest</span> <span class="o">{</span>
+
+  <span class="nd">@Before</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initTestEnvironment</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// cette méthode est exécutée avant chaque test</span>
+  <span class="o">}</span>
+
+  <span class="nd">@After</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroyTestEnvironment</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// cette méthode est exécutée après chaque test</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">methodeDeTest</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="c1">// la méthode de test</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il est également possible de déclarer des méthodes <strong>static</strong> annotées avec
+<a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/BeforeClass.html">&#64;BeforeClass</a> ou <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/AfterClass.html">&#64;AfterClass</a>. Ces méthodes ne sont appelées qu’une seule
+fois respectivement avant ou après l’ensemble des méthodes de test de la classe.</p>
+</div>
+</div>
+<div class="section" id="tester-les-exceptions">
+<h3>Tester les exceptions<a class="headerlink" href="#tester-les-exceptions" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Grâce aux tests unitaires, il est également plus facile de tester les cas non
+nominaux qui se traduisent la plupart du temps par la production d’une exception
+en Java. Si on désire tester un cas d’erreur par exemple, cela signifie que le
+test sera ok si une exception précise est produite lors de la phase <em>act</em>.</p>
+<p>Avec JUnit, il existe plusieurs façons d’écrire un test pour une telle situation.
+Pour les exemples suivants, nous testerons la méthode <a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#parseInt(java.lang.String)">Integer#parseInt</a> qui
+produit une exception de type <a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/lang/NumberFormatException.html">NumberFormatException</a> lorsqu’une chaîne de caractères
+qui ne correspond pas à un nombre est passée en paramètre d’appel.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Tester une exception (façon 1)</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.fail</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">parseIntThrowsExceptionWhenNotANumber</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+     <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;not a number&quot;</span><span class="o">);</span>
+     <span class="n">fail</span><span class="o">(</span><span class="s">&quot;NumberFormatException expected&quot;</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Dans l’exemple ci-dessus, on utilise une structure <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">catch</span></code> pour attraper
+l’exception qui est attendue. Dans le bloc <code class="docutils literal notranslate"><span class="pre">try</span></code>, l’appel à la méthode <code class="docutils literal notranslate"><span class="pre">Assert.fail</span></code>
+pour faire échouer le test si jamais la phase <em>act</em> (c’est-à-dire l’appel à
+<a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#parseInt(java.lang.String)">Integer#parseInt</a>) n’a pas produit d’exception. Cette façon d’écrire le test
+est simple mais rend le test parfois difficile à lire à cause de la présence des
+blocs <code class="docutils literal notranslate"><span class="pre">try</span> <span class="pre">...</span> <span class="pre">catch</span></code> et de l’absence d’une phase <em>assert</em> remplacée par l’appel
+à <code class="docutils literal notranslate"><span class="pre">Assert.fail</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Tester une exception (façon 2)</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span><span class="o">(</span><span class="n">expected</span> <span class="o">=</span> <span class="n">NumberFormatException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">parseIntThrowsExceptionWhenNotANumber</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;not a number&quot;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Dans l’exemple ci-dessus, on utilise l’attribut <code class="docutils literal notranslate"><span class="pre">expected</span></code> de l’annotation
+<a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/Test.html">&#64;Test</a> qui permet d’indiquer que l’on s’attend à ce que le test échoue à cause
+de la propagation d’une exception (si ce n’est pas le cas, le test sera considéré
+en échec). Cette façon d’écrire le test est plus simple que précédemment mais
+elle peut être difficile à comprendre car la phase <em>assert</em> n’est pas explicite
+dans la méthode.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Tester une exception (façon 3)</span><a class="headerlink" href="#id7" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Rule</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.rules.ExpectedException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerTest</span> <span class="o">{</span>
+
+  <span class="nd">@Rule</span>
+  <span class="kd">public</span> <span class="n">ExpectedException</span> <span class="n">expectedException</span> <span class="o">=</span> <span class="n">ExpectedException</span><span class="o">.</span><span class="na">none</span><span class="o">();</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">parseIntThrowsExceptionWhenNotANumber</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">expectedException</span><span class="o">.</span><span class="na">expect</span><span class="o">(</span><span class="n">NumberFormatException</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;not a number&quot;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Dans l’exemple ci-dessus, on utilise une <a class="reference external" href="https://junit.org/junit4/javadoc/4.13/org/junit/Rule.html">rule</a> JUnit pour signaler avant la phase
+<em>act</em> que l’on attend une exception. Comme précédemment, cette façon d’écrire
+peut être difficile à comprendre car la phase <em>assert</em> est remplacée par un attendu
+lors de la phase <em>arrange</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cette approche est dépréciée à partir de JUnit 4.13.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Tester une exception (façon 4)</span><a class="headerlink" href="#id8" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.junit.Assert.assertThrows</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IntegerTest</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">parseIntThrowsExceptionWhenNotANumber</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">assertThrows</span><span class="o">(</span><span class="n">NumberFormatException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+      <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;not a number&quot;</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Avec l’introduction des lambdas depuis Java 8, il est plus direct d’encapsuler
+un appel d’un code produisant une exception dans une fonction anonyme. On utilise
+pour cela <code class="docutils literal notranslate"><span class="pre">Assert.assertThrows</span></code> en précisant le type de l’exception attendue.
+Si cette approche est élégante, elle mélange tout de même les codes de la phase
+<em>act</em> et de la phase <em>assert</em>.</p>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Tests unitaires de la classe Rectangle</p>
+<p>Soit la classe <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> suivante :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">fr.epsi.atlas</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rectangle</span> <span class="o">{</span>
+
+        <span class="kd">private</span> <span class="kt">double</span> <span class="n">longueur</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kt">double</span> <span class="n">largeur</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="nf">Rectangle</span><span class="o">(</span><span class="kt">double</span> <span class="n">longueur</span><span class="o">,</span> <span class="kt">double</span> <span class="n">largeur</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">LongueurLargeurInvalideException</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">longueur</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">throw</span> <span class="k">new</span> <span class="n">LongueurLargeurInvalideException</span><span class="o">(</span><span class="s">&quot;La longueur doit être un nom positif !&quot;</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">largeur</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">throw</span> <span class="k">new</span> <span class="n">LongueurLargeurInvalideException</span><span class="o">(</span><span class="s">&quot;La largeur doit être un nom positif !&quot;</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">longueur</span> <span class="o">=</span> <span class="n">longueur</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">largeur</span> <span class="o">=</span> <span class="n">largeur</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPerimetre</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">longueur</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">largeur</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getAire</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">longueur</span> <span class="o">*</span> <span class="k">this</span><span class="o">.</span><span class="na">largeur</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="s">&quot;Rectangle de longueur &quot;</span> <span class="o">+</span> <span class="n">longueur</span> <span class="o">+</span> <span class="s">&quot; et de largeur &quot;</span> <span class="o">+</span> <span class="n">largeur</span><span class="o">;</span>
+        <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Et l’exception <code class="docutils literal notranslate"><span class="pre">LongueurLargeurInvalideException</span></code> :</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LongueurLargeurInvalideException</span> <span class="kd">extends</span> <span class="n">GeometrieException</span><span class="o">{</span>
+
+        <span class="kd">public</span> <span class="nf">LongueurLargeurInvalideException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+        <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Écrire les tests unitaires pour la classe <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code>.
+N’oubliez pas de tester les cas pour lesquels le constructeur de la classe peut
+produire une <code class="docutils literal notranslate"><span class="pre">LongueurLargeurInvalideException</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="utilisation-de-doublure">
+<h2>Utilisation de doublure<a class="headerlink" href="#utilisation-de-doublure" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Parfois, il est utile de contrôler l’environnement de test d’un objet ou
+d’une collaboration d’objets. Pour cela, on peut faire appel à des
+doublures qui vont se substituer lors des tests aux objets réellement
+utilisés lors de l’exécution de l’application dans un environnement de
+production.</p>
+<dl class="simple">
+<dt>Simulateur</dt><dd><p>Un simulateur fournit une implémentation alternative d’un
+sous-système. Un simulateur remplace un sous-système qui n’est pas
+disponible pour l’environnement de test. Par exemple, on peut
+remplacer un système de base de données par une implémentation
+simplifiée en mémoire.</p>
+</dd>
+<dt>Fake object</dt><dd><p>Un fake object permet de remplacer un sous-système dont il est
+difficile de garantir le comportement. Le comportement du fake
+object est défini par le test et est donc déterministe. Par exemple,
+si un objet dépend des informations retournées par un service Web,
+il est souhaitable de remplacer pour les tests l’implémentation du
+client par une implémentation qui retournera une réponse déterminée
+par le test lui-même.</p>
+</dd>
+<dt>Mock object</dt><dd><p>Un objet mock est proche d’un fake object sauf qu’un objet mock est
+également capable de faire des assertions sur les méthodes qui sont
+appelées et les paramètres qui sont transmis à ces méthodes.</p>
+</dd>
+</dl>
+<div class="section" id="implementation-d-objet-mock-avec-mockito">
+<h3>Implémentation d’objet mock avec Mockito<a class="headerlink" href="#implementation-d-objet-mock-avec-mockito" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://site.mockito.org/">Mockito</a> est un <em>framework</em> Java
+pour faciliter la création d’objets mocks à partir d’une classe ou d’une
+interface.</p>
+<p>Pour ajouter <a class="reference external" href="https://site.mockito.org/">Mockito</a> à un projet Maven, il suffit d’ajouter dans la
+section <code class="docutils literal notranslate"><span class="pre">&lt;dependencies&gt;</span></code> du fichier <code class="file docutils literal notranslate"><span class="pre">pom.xml</span></code> :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.mockito<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>mockito-all<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.9.5<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p>La méthode statique <code class="docutils literal notranslate"><span class="pre">Mockito.mock(Class&lt;?&gt;)</span></code> permet de créer une
+instance d’un mock à partir d’une classe ou d’une interface. L’instance
+d’objet retournée par cette méthode est instrumentalisée par <a class="reference external" href="https://site.mockito.org/">Mockito</a>. Il
+est possible d’enregistrer sur ce mock des comportements lors de la
+phase <em>arrange</em> grâce, notamment, à la méthode <code class="docutils literal notranslate"><span class="pre">Mockito.when(Object)</span></code>.
+Lors de la phase <em>assert</em>, il est possible de vérifier que les appels de
+méthodes programmés sur le mock ont bien été réalisés grâce à la méthode
+<code class="docutils literal notranslate"><span class="pre">Mockito.verify(Object)</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Exemple d’une classe de test utilisant Mockito</span><a class="headerlink" href="#id9" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.mockito.Mockito</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestWithMockito</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDemoMockito</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">HttpServletRequest</span> <span class="n">mockedRequest</span> <span class="o">=</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">mock</span><span class="o">(</span><span class="n">HttpServletRequest</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">mockedRequest</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;login&quot;</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="s">&quot;monlogin&quot;</span><span class="o">);</span>
+
+    <span class="n">String</span> <span class="n">parameterValue</span> <span class="o">=</span> <span class="n">mockedRequest</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;login&quot;</span><span class="o">);</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;monlogin&quot;</span><span class="o">,</span> <span class="n">parameterValue</span><span class="o">);</span>
+    <span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">mockedRequest</span><span class="o">).</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;login&quot;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">Utilisation de Mockito avec import static</span><a class="headerlink" href="#id10" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import static</span> <span class="nn">org.junit.Assert.*</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.mockito.Mockito.*</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestWithMockito</span> <span class="o">{</span>
+
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDemoMockito</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+    <span class="n">HttpServletRequest</span> <span class="n">mockedRequest</span> <span class="o">=</span> <span class="n">mock</span><span class="o">(</span><span class="n">HttpServletRequest</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">when</span><span class="o">(</span><span class="n">mockedRequest</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;login&quot;</span><span class="o">)).</span><span class="na">thenReturn</span><span class="o">(</span><span class="s">&quot;monlogin&quot;</span><span class="o">);</span>
+
+    <span class="n">String</span> <span class="n">parameterValue</span> <span class="o">=</span> <span class="n">mockedRequest</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;login&quot;</span><span class="o">);</span>
+
+    <span class="n">assertEquals</span><span class="o">(</span><span class="s">&quot;monlogin&quot;</span><span class="o">,</span> <span class="n">parameterValue</span><span class="o">);</span>
+    <span class="n">verify</span><span class="o">(</span><span class="n">mockedRequest</span><span class="o">).</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;login&quot;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Les exemples de code ci-dessus ne sont bien évidemment pas de vrais
+tests <a class="reference external" href="https://www.junit.org">JUnit</a> puisqu’ils se contentent de tester le bon fonctionnement de
+<a class="reference external" href="https://site.mockito.org/">Mockito</a>.</p>
+<p>La documentation de <a class="reference external" href="https://site.mockito.org/">Mockito</a> est accessible
+<a class="reference external" href="https://github.com/mockito/mockito/wiki">ici</a>.</p>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Tests unitaires de la classe MonnaieService</p>
+<p>Écrire les tests unitaires pour la classe <code class="docutils literal notranslate"><span class="pre">fr.epsi.atlas.monnaie.service.MonnaieService</span></code>.
+Utilisez <a class="reference external" href="https://site.mockito.org/">Mockito</a> pour créer un <em>mock</em> de l’interface <code class="docutils literal notranslate"><span class="pre">MonnaieRepository</span></code>.</p>
+<p><strong>Modèle de projet Maven</strong></p>
+<p>Vous devez télécharger le modèle de projet Maven :</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="../_downloads/7d0fbc04da5b19bc87e7e8cc1cc0fae5/monnaie-david.zip"><code class="xref download docutils literal notranslate"><span class="pre">monnaie-david.zip</span></code></a></p>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tdd.html" class="btn btn-neutral float-right" title="TDD : Test Driven Development" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../http/annexe_xml.html" class="btn btn-neutral float-left" title="Annexe : XML" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
