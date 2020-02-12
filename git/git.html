@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Tutoriel pour démarrer avec Git" name="description" />
+<meta content="git, github, gestionnaire de sources" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Git &mdash; Documentation POEC Atlas </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Maven" href="../integration_continue/maven.html" />
+    <link rel="prev" title="Les tests d’acceptation" href="../test_acceptation/test_acceptation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POEC Atlas
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">API Web et service Web</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../http/introduction.html">Introduction : Service Web et API Web</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../http/api_web.html">HTTP, REST et les API Web</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/http.html">Le protocole HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#structure-des-messages">Structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-codes-de-statut">Les codes de statut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-methodes-http">Les méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#proprietes-des-methodes-http">Propriétés des méthodes HTTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http.html#les-en-tetes-http">Les en-têtes HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_cas_utilisation.html">HTTP : les cas d’utilisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#obtenir-la-representation-d-une-ressource">Obtenir la représentation d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#obtenir-uniquement-les-meta-informations-d-une-ressource">Obtenir uniquement les meta-informations d’une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#creer-une-ressource-dont-on-connait-l-uri">Créer une ressource dont on connait l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#creer-une-ressource-dont-on-ne-connait-pas-l-uri">Créer une ressource dont on ne connait pas l’URI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#supprimer-l-acces-a-une-ressource">Supprimer l’accès à une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#mettre-a-jour-une-ressource">Mettre à jour une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#mettre-a-jour-partiellement-une-ressource">Mettre à jour partiellement une ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#executer-un-processus-de-traitement">Exécuter un processus de traitement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#connaitre-les-methodes-autorisees">Connaître les méthodes autorisées</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#traitement-asynchrone-d-une-requete">Traitement asynchrone d’une requête</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_cas_utilisation.html#les-redirections">Les redirections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#evolution-du-service">Évolution du service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#uri-volatile-et-canonicalisation-d-uri">URI volatile et canonicalisation d’URI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/http_cas_utilisation.html#separer-le-traitement-de-la-requete-de-son-resultat">Séparer le traitement de la requête de son résultat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_negociation_contenu.html">HTTP : la négociation de contenu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-type-de-contenu">La négociation de type de contenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-jeu-de-caracteres">La négociation de jeu de caractères</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#la-negociation-de-langue">La négociation de langue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_negociation_contenu.html#l-en-tete-vary">L’en-tête Vary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_requetes_conditionnelles.html">HTTP : les requêtes conditionnelles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#demander-une-representation-a-jour">Demander une représentation à jour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#creer-une-ressource-si-elle-n-existe-pas-deja">Créer une ressource si elle n’existe pas déjà</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#alterer-une-ressource-sous-condition">Altérer une ressource sous condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_requetes_conditionnelles.html#alterer-une-ressource-si-elle-existe">Altérer une ressource si elle existe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_gestion_cache.html">HTTP : la gestion du cache</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#serveur-d-origine-et-intermediaires">Serveur d’origine et intermédiaires</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#principe-generale-de-la-gestion-du-cache">Principe générale de la gestion du cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#la-fraicheur-d-une-reponse">La fraîcheur d’une réponse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#la-revalidation">La revalidation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#les-directives-de-strategie-de-cache">Les directives de stratégie de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#l-invalidation-de-cache">L’invalidation de cache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_gestion_cache.html#enrichissement-des-en-tetes-par-les-intermediaires">Enrichissement des en-têtes par les intermédiaires</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/http_liens.html">HTTP : les liens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#les-types-de-relation">Les types de relation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/http_liens.html#les-attributs-optionnels-d-un-lien">Les attributs optionnels d’un lien</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/rest.html">REST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#la-ressource">La ressource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#uri-informative-ou-uri-opaque">URI informative ou URI opaque ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#ressource-contre-rpc">Ressource contre RPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#la-representation">La représentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#les-contraintes-rest">Les contraintes REST</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#client-serveur">Client/Serveur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#interface-uniforme">Interface uniforme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#sans-etat-stateless">Sans état (stateless)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#mise-en-cache-caching">Mise en cache (caching)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#layered-system">Layered system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#code-on-demand">Code on demand</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#hypermedia">Hypermédia</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#les-formats-hypermedias">Les formats hypermédias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#l-en-tete-link">L’en-tête Link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#les-apports-de-l-hypermedia">Les apports de l’hypermédia</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#rest-ca-veut-dire-quoi">REST : ça veut dire quoi ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#les-api-web">Les API Web</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#references">Références</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#sites-web-articles">Sites Web &amp; articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#livres">Livres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../http/rest.html#applications-de-demo">Applications de démo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/rest.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../http/spring_mvc_apiweb.html">Les API Web avec Spring MVC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#l-annotation-restcontroller">L’annotation &#64;RestController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#support-du-format-json">Support du format JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#un-controleur-pour-une-api-web">Un contrôleur pour une API Web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#l-envoi-de-donnees">L’envoi de données</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#la-reponse">La réponse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#la-negociation-de-contenu">La négociation de contenu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#les-annotations-jackson">Les annotations Jackson</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/spring_mvc_apiweb.html#les-vues-json">Les vues JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/spring_mvc_apiweb.html#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../http/web_services.html">Les services Web SOAP / WSDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../http/java_ws.html">Les services Web avec Java</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#la-quete-de-l-interoperabilite">La quête de l’interopérabilité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#soap-structure-des-messages">SOAP : structure des messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#web-service-description-language-wsdl">Web Service Description Language (WSDL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#developper-un-service-web-soap">Développer un service Web SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#les-outils-java-de-generation">Les outils Java de génération</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../http/java_ws.html#wsdl-java-contract-first">WSDL → Java (Contract first)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#consommer-un-service-web-avec-jax-ws">Consommer un service Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#implementer-des-services-web-avec-jax-ws">Implémenter des services Web avec JAX-WS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#deployer-un-service-web-dans-un-serveur-tomcat">Déployer un service Web dans un serveur Tomcat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#id2">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/java_ws.html#pour-aller-plus-loin">Pour aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../http/annexe_xml.html">Annexe : XML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#structure-du-langage">Structure du langage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#structure-du-document">Structure du document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#espaces-de-noms-xml">Espaces de noms XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#schemas-xml">Schémas XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../http/annexe_xml.html#pour-aller-plus-loin">Pour aller plus loin…</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Les tests unitaires</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test/junit.html">Les tests unitaires automatisés avec JUnit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../test/junit.html#tests-unitaires-first">Tests unitaires FIRST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../test/junit.html#junit">JUnit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test/junit.html#integration-de-junit-dans-un-projet-maven">Intégration de JUnit dans un projet Maven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test/junit.html#structure-d-une-classe-de-test-junit">Structure d’une classe de test JUnit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../test/junit.html#execution-des-tests-junit">Exécution des tests JUnit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test/junit.html#les-methodes-de-test">Les méthodes de test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../test/junit.html#les-assertions">Les assertions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../test/junit.html#les-fixtures">Les fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test/junit.html#tester-les-exceptions">Tester les exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test/junit.html#utilisation-de-doublure">Utilisation de doublure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test/junit.html#implementation-d-objet-mock-avec-mockito">Implémentation d’objet mock avec Mockito</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../test/tdd.html">TDD : Test Driven Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../test/tdd.html#qu-est-ce-qu-un-test">Qu’est-ce qu’un test ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../test/tdd.html#test-driven-development">Test Driven Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test/tdd.html#le-mantra-du-tdd">Le Mantra du TDD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test/tdd.html#qu-est-ce-que-concevoir">Qu’est-ce que concevoir ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../test/tdd.html#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Les tests d'acceptation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../test_acceptation/test_acceptation.html">Les tests d’acceptation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../test_acceptation/test_acceptation.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#les-7-principes-des-tests">Les 7 principes des tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#les-differents-types-de-test">Les différents types de test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../test_acceptation/test_acceptation.html#id1">Les tests d’acceptation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#recette-fonctionnelle">Recette fonctionnelle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#test-d-acceptation-agile">Test d’acceptation agile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#notion-de-cas-de-test">Notion de cas de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#scenario-de-test">Scénario de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#rapport-de-test">Rapport de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../test_acceptation/test_acceptation.html#exercice">Exercice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Introduction à Git</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initialisation-d-un-depot">Initialisation d’un dépôt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#suivi-des-modifications-du-depot">Suivi des modifications du dépôt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validation-des-modifications">Validation des modifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utilisation-d-un-depot-distant">Utilisation d’un dépôt distant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exclusion-de-fichiers">Exclusion de fichiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-etiquettes">Les étiquettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-branches">Les branches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rebase">Rebase</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#git-hub">Git Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">Références</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercices">Exercices</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Intégration continue et déploiement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../integration_continue/maven.html">Maven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/maven.html#utilisation-de-maven-en-ligne-de-commandes">Utilisation de Maven en ligne de commandes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/maven.html#exercice">Exercice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/maven.html#gestion-des-plugins-dans-maven">Gestion des plugins dans Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/maven.html#association-d-un-plugin-a-une-phase-d-execution">Association d’un plugin à une phase d’exécution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../integration_continue/jenkins.html">Intégration continue avec Jenkins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/jenkins.html#installation-de-jenkins">Installation de Jenkins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/jenkins.html#exercices">Exercices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../integration_continue/heroku.html">Déploiement vers Heroku</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/heroku.html#installation-de-heroku-cli">Installation de heroku-CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/heroku.html#creation-d-une-application-heroku">Création d’une application Heroku</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/heroku.html#deploiement-d-une-application">Déploiement d’une application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integration_continue/heroku.html#associer-a-un-depot-git-existant">Associer à un dépôt Git existant</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POEC Atlas</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Accueil</a> &raquo;</li>
+        
+      <li>Git</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="../integration_continue/maven.html" class="btn btn-neutral float-right" title="Maven" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../test_acceptation/test_acceptation.html" class="btn btn-neutral" title="Les tests d’acceptation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="git">
+<h1>Git<a class="headerlink" href="#git" title="Lien permanent vers ce titre">¶</a></h1>
+<p><a class="reference external" href="https://git-scm.com">Git</a> est un gestionnaire de contrôle de source
+(Source Control Management ou SCM). Il permet de partager efficacement
+les fichiers source d’un projet. Pour ce cours, <a class="reference external" href="https://git-scm.com">Git</a> va nous permettre de
+partager et de suivre les modifications du code source de nos
+applications et la configuration de nos machines cibles. Un système de
+contrôle de version tel que <a class="reference external" href="https://git-scm.com">Git</a> est fondamental pour permettre à une
+équipe de travailler collectivement sur une base de code commune. <a class="reference external" href="https://git-scm.com">Git</a>
+est avant tout conçu gérer des fichiers en mode texte.</p>
+<p><a class="reference external" href="https://git-scm.com">Git</a> a été originellement développé par Linus Torvalds pour gérer les
+évolutions du code source du noyau Linux.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://git-scm.com">Git</a> est disponible dans tous les dépôts de logiciels des distributions
+Linux. Pour une distribution basée sur Debian (Ubuntu, Mint…), il
+suffit de taper en ligne de commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt install git
+</pre></div>
+</div>
+<p>Pour Mac, vous pouvez télécharger l’installeur à l’adresse :
+<a class="reference external" href="https://git-scm.com/download/mac">https://git-scm.com/download/mac</a></p>
+<p>Pour Windows, vous pouvez télécharger l’installeur à l’adresse :
+<a class="reference external" href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></p>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Avant votre première utilisation, il est conseillé de configurer <a class="reference external" href="https://git-scm.com">Git</a> en
+indiquant l’identité que vous utiliserez. Pour cela vous devez définir
+votre nom et votre email avec les commandes :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;VOTRE_NOM&quot;</span>
+git config --global user.email <span class="s2">&quot;VOTRE_EMAIL&quot;</span>
+</pre></div>
+</div>
+<p>Si vous avez un éditeur de texte préféré, vous pouvez également donner
+son chemin avec la commande</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git config --global core.editor <span class="s2">&quot;CHEMIN DE L&#39;EDITEUR&quot;</span>
+</pre></div>
+</div>
+<p>La commande git config permet de modifier la configuration de votre
+projet ou la configuration globale si l’option <code class="docutils literal notranslate"><span class="pre">--global</span></code> est
+présente. La configuration globale est sauvegardée dans le fichier
+<code class="docutils literal notranslate"><span class="pre">~/.gitconfig</span></code> et pour chaque projet dans le fichier <code class="docutils literal notranslate"><span class="pre">.git/config</span></code>.
+Vous pouvez vérifier le contenu de votre configuration grâce à la
+commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git config -l
+</pre></div>
+</div>
+</div>
+<div class="section" id="initialisation-d-un-depot">
+<h2>Initialisation d’un dépôt<a class="headerlink" href="#initialisation-d-un-depot" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Si vous partez d’un répertoire dont vous désirez suivre les changements
+avec <a class="reference external" href="https://git-scm.com">Git</a>, vous initialisez votre dépôt local en vous positionnant dans
+le répertoire souhaité et tapant la commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git init
+</pre></div>
+</div>
+<p>Cette commande crée un répertoire caché <code class="docutils literal notranslate"><span class="pre">.git</span></code> qui va contenir
+l’ensemble des informations permettant à <a class="reference external" href="https://git-scm.com">Git</a> de suivre les
+modifications.</p>
+<p>Si vous disposez d’une URL d’un dépôt <a class="reference external" href="https://git-scm.com">Git</a>, vous pouvez le cloner pour
+commencer à modifier son contenu localement grâce à la commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone &lt;URL&gt; <span class="o">[</span>&lt;répertoire&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<p>Vous pouvez éventuellement désigner le répertoire à créer qui contiendra
+le résultat du clone sinon <a class="reference external" href="https://git-scm.com">Git</a> le déduit du contenu de l’URL.</p>
+</div>
+<div class="section" id="suivi-des-modifications-du-depot">
+<h2>Suivi des modifications du dépôt<a class="headerlink" href="#suivi-des-modifications-du-depot" title="Lien permanent vers ce titre">¶</a></h2>
+<p>À tout moment, vous pouvez utiliser la commande</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git status
+</pre></div>
+</div>
+<p>Cette commande vous permet de connaître l’état des fichiers qui ont
+évolué par rapport à votre dépôt local.</p>
+<p>Pour <a class="reference external" href="https://git-scm.com">Git</a>, un fichier peut avoir quatre états :</p>
+<dl class="simple">
+<dt>Untracked (non suivi) :</dt><dd><p>Le fichier existe sur le disque mais ne fait pas partie du dépôt.</p>
+</dd>
+<dt>Unmodified (non modifié) :</dt><dd><p>Le fichier existe sur le disque et dans le dépôt et ce fichier n’a
+pas été modifié localement. La commande <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> ignore les
+fichiers dans cet état.</p>
+</dd>
+<dt>Modified (modifié) :</dt><dd><p>Le fichier existe sur le disque et dans le dépôt et ce fichier a été
+modifié.</p>
+</dd>
+<dt>Staged :</dt><dd><p>Ce fichier est dans un état différent par rapport au dépôt. Il peut
+avoir été modifié, ajouté ou supprimé. Et l’utilisateur l’a ajouté à
+la <strong>staging area</strong>. Dans ce cas, les modifications seront
+incorporées au dépôt au prochain commit.</p>
+</dd>
+</dl>
+<p><a class="reference external" href="https://git-scm.com">Git</a> ne connaît pas directement la notion de répertoire. Il ne suit que
+les fichiers et les liens symboliques. Un répertoire existe pour <a class="reference external" href="https://git-scm.com">Git</a> dès
+qu’il contient un fichier et, à l’opposé, un répertoire n’existe plus
+dès qu’il ne contient plus de fichier ou de sous répertoire contenant
+eux-mêmes des fichiers.</p>
+<p>Les commandes ci-dessous permettent de gérer les états d’un fichier :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git add &lt;fichier/répertoire&gt;
+</pre></div>
+</div>
+<p>Permet d’ajouter le fichier à la <strong>staging area</strong>. S’il s’agit d’un
+nouveau fichier ou s’il a été modifié, le fichier passe à l’état Staged
+sinon cette commande est sans effet.</p>
+<p>Pour ajouter tous les fichiers modifiés à la staging area :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git add .
+</pre></div>
+</div>
+<p>Pour ajouter tous les fichiers modifiés et tous les fichiers créés à la
+staging area :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git add -A .
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git rm &lt;fichier&gt;
+</pre></div>
+</div>
+<p>Permet d’ajouter le fichier à la staging area en demandant sa
+suppression. Le fichier passe à l’état Staged et est supprimé du
+répertoire de travail.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git reset -- &lt;fichier/répertoire&gt;
+</pre></div>
+</div>
+<p>Permet de retirer de la staging area un fichier qui y a été ajouté.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout &lt;fichier/répertoire&gt;
+</pre></div>
+</div>
+<p>Permet d’annuler les modifications locales d’un fichier. Le fichier ne
+doit pas être dans la staging area (utilisez git reset pour l’en
+sortir). Le checkout annule les modifications et les suppressions.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git diff &lt;fichier/répertoire&gt;
+</pre></div>
+</div>
+<p>Permet de visualiser les différences entre les modifications locales et
+le dépôt local.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git diff --staged &lt;fichier/répertoire&gt;
+</pre></div>
+</div>
+<p>Permet de visualiser les différences entre les modifications dans la
+staging area et le dépôt local.</p>
+</div>
+<div class="section" id="validation-des-modifications">
+<h2>Validation des modifications<a class="headerlink" href="#validation-des-modifications" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une fois que vous êtes satisfaits des modifications que vous avez
+apportées à vos fichiers, il vous suffit de les ajouter à la staging
+area et d’utiliser la commande commit :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;un message explicatif&quot;</span>
+</pre></div>
+</div>
+<p>L’option -m permet de passer un message explicatif des modifications. Si
+vous n’ajoutez pas cette option, <a class="reference external" href="https://git-scm.com">Git</a> ouvrira un éditeur de texte pour
+vous permettre de saisir ce message. La commande commit permet d’ajouter
+les modifications de la staging area au dépôt local.</p>
+<p>Pour suivre l’historique des opérations de commit, vous pouvez utiliser
+la commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git log
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://git-scm.com">Git</a> vous permet de créer des alias, c’est-à-dire de définir vos propres
+commandes personnalisées et de les sauvegarder dans la configuration de
+votre dépôt local ou même de votre configuration globale. Essayez :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git config --global alias.lg <span class="s2">&quot;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</span>
+</pre></div>
+</div>
+<p>Vous aurez ainsi accès à l’alias lg. En tapant :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git lg
+</pre></div>
+</div>
+<p><a class="reference external" href="https://git-scm.com">Git</a> vous affiche maintenant un historique moins verbeux et plus élégant.</p>
+</div>
+</div></div>
+<div class="section" id="utilisation-d-un-depot-distant">
+<h2>Utilisation d’un dépôt distant<a class="headerlink" href="#utilisation-d-un-depot-distant" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://git-scm.com">Git</a> vous permet de connecter votre dépôt local à un ou plusieurs dépôt
+distants (appelés remote repositories). Il devient possible de
+synchroniser votre dépôt local avec eux afin de partager vos
+modifications et d’intégrer les modifications effectuées par d’autres.
+<a class="reference external" href="https://git-scm.com">Git</a> est un système décentralisé dans la mesure ou il ne présuppose pas
+l’existence d’un dépôt de référence. Dans la pratique, il existe souvent
+un dépôt distant privilégié que l’on nomme par convention <em>origin</em>.</p>
+<p>Si vous créez un dépôt local par clonage (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">...</span></code>) alors cette
+opération a pour résultat de créer un dépôt local rattaché au dépôt
+d’origine justement nommé <em>origin</em>. Si vous avez initialisé un dépôt
+local (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>) alors vous pouvez le rattacher à un dépôt distant à
+tout moment.</p>
+<p>Pour connaître la liste des dépôts distants associés à votre dépôt
+local, vous utilisez la commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git remote -v
+</pre></div>
+</div>
+<p>Pour associer un dépôt distant à votre dépôt local, vous utilisez la
+commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git remote add &lt;nom du dépôt&gt; &lt;URL du dépôt&gt;
+</pre></div>
+</div>
+<p>Vous êtes libres de choisir le nom que vous désirez mais par convention,
+on utilise <em>origin</em> pour désigner le dépôt distant qui est à l’origine
+du dépôt local.</p>
+<p>Pour récupérer les modifications du dépôt distant, utilisez la
+commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git pull &lt;nom du dépôt&gt; master
+</pre></div>
+</div>
+<p>Pour envoyer les évolutions de votre dépôt local dans le dépôt distant :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git push &lt;nom du dépôt&gt; master
+</pre></div>
+</div>
+<p>Dans les commandes ci-dessus, <em>master</em> désigne le nom de la branche. Un
+branche permet d’isoler les modifications afin d’avoir simultanément
+plusieurs étapes de développement des fichiers. Nous verrons plus en
+détail cette notion plus tard. Retenez pour l’instant que, par
+convention, la branche par défault est la plupart du temps appelé
+<code class="docutils literal notranslate"><span class="pre">master</span></code>.</p>
+<p>Les opérations de pull/push peuvent générer des fusions et des conflits
+si les mêmes fichiers sont modifiés par des utilisateurs différents.
+Dans ce cas, <a class="reference external" href="https://git-scm.com">Git</a> arrête l’opération en cours et demande à l’utilisateur
+de résoudre les conflits.</p>
+</div>
+<div class="section" id="exclusion-de-fichiers">
+<h2>Exclusion de fichiers<a class="headerlink" href="#exclusion-de-fichiers" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La plupart du temps, il n’est pas souhaitable d’ajouter des fichiers au
+dépôt <a class="reference external" href="https://git-scm.com">Git</a>. Il s’agit le plus souvent de fichiers résultants de la
+compilation ou de tout procédé de génération. Ils peuvent donc être
+facilement recréés. Un dépôt <a class="reference external" href="https://git-scm.com">Git</a> n’oublie rien ! Même si vous supprimez
+un fichier, ce dernier est toujours présent dans des versions
+antérieures et donc il est toujours conservé quelque part dans le dépôt.
+Il est donc fortement conseillé de n’ajouter à un dépôt que les fichiers
+nécessaires. Vous pouvez créer un fichier <code class="file docutils literal notranslate"><span class="pre">.gitignore</span></code> dans votre
+répertoire de travail. Ce fichier permet de lister tous les
+fichiers/répertoires que <a class="reference external" href="https://git-scm.com">Git</a> doit totalement ignorer.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Exemple de contenu du fichier .gitignore pour un projet Java :</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># fichiers temporaires pour Maven
+target
+
+# fichiers de configuration Eclipse
+.classpath
+.project
+.settings
+
+# fichiers de configuration Itellij IDEA
+.idea
+*.iml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="les-etiquettes">
+<h2>Les étiquettes<a class="headerlink" href="#les-etiquettes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il est possible de poser une étiquette à un moment de l’évolution des sources
+pour marquer un événement. La plupart du temps, il s’agit de tracer une nouvelle
+version d’une solution logicielle en indiquant la nouvelle version.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git tag &lt;étiquette&gt;
+</pre></div>
+</div>
+<p>Une étiquette est créée localement. Pour la partager, il faut ensuite pousser
+l’étiquette sur le dépôt distant avec la commande <code class="docutils literal notranslate"><span class="pre">push</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git push &lt;remote&gt; &lt;étiquette&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="les-branches">
+<h2>Les branches<a class="headerlink" href="#les-branches" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une branche permet de gérer une version alternative d’un dépôt. Les branches
+peuvent permettre de maintenir et corriger une version antérieure. Avec <a class="reference external" href="https://git-scm.com">Git</a>,
+les branches sont aussi utilisées pour ajouter des nouvelles fonctionnalités
+dans un logiciel sans impacter immédiatement la version principale du logiciel.</p>
+<p>Par défaut, les fichiers gérés par <a class="reference external" href="https://git-scm.com">Git</a> sont attachés à la branche <strong>master</strong>.
+Pour créer une branche :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch &lt;nom de la branche&gt;
+</pre></div>
+</div>
+<p>Une branche a pour point de départ la dernière modification commitée sur la branche
+courante.</p>
+<p>On peut ensuite naviguer de branche en branche avec la commande <code class="docutils literal notranslate"><span class="pre">checkout</span></code> :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout &lt;nom de la branche&gt;
+</pre></div>
+</div>
+<p>Toutes les modifications faites et commitées sur une branche ne sont visibles
+que sur cette branche.</p>
+<p>Pour lister les branches :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch
+</pre></div>
+</div>
+<p>Pour rapatrier tous les commits d’une branche vers la branche qui a servi de
+point de départ, on utilise la commande <code class="docutils literal notranslate"><span class="pre">merge</span></code> :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout &lt;nom de la branche origine&gt;
+git merge &lt;nom de la branche à rapatrier&gt;
+</pre></div>
+</div>
+<p>Pour détruire une branche :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch -d &lt;nom de la branche&gt;
+</pre></div>
+</div>
+<p>Pour pousser une branche sur le dépôt distant, il suffit d’utiliser la commande
+<code class="docutils literal notranslate"><span class="pre">push</span></code> en précisant le nom de la branche distante :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git push &lt;remote&gt; &lt;nom de la branche&gt;
+</pre></div>
+</div>
+<p>Pour supprimer une branche sur le dépôt distant, il faut également utiliser
+la commande <code class="docutils literal notranslate"><span class="pre">push</span></code> en ajoutant <code class="docutils literal notranslate"><span class="pre">:</span></code> devant le nom de la branche.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git push &lt;remote&gt; :&lt;nom de la branche&gt;
+</pre></div>
+</div>
+<div class="section" id="rebase">
+<h3>Rebase<a class="headerlink" href="#rebase" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il est possible de déplacer l’origine d’une branche avec la commande <code class="docutils literal notranslate"><span class="pre">rebase</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git rebase &lt;nom de la branche qui va servir de point de départ&gt;
+</pre></div>
+</div>
+<p><a class="reference external" href="https://git-scm.com">Git</a> permet de suivre un modèle de développement par <em>feature branch</em>. Lorsqu’un
+développeur veut ajouter une nouvelle fonctionnalité, il peut démarrer une
+nouvelle branche (la plupart du temps depuis la branche <code class="docutils literal notranslate"><span class="pre">master</span></code> mise à jour).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout master
+git pull
+git branch mabranche
+git checkout mabranche
+</pre></div>
+</div>
+<p>Puis le développeur réalise les modifications sur sa branche en commitant autant
+de fois que nécessaire. Une fois le développement terminé, il faut utiliser
+la commande <code class="docutils literal notranslate"><span class="pre">rebase</span></code> pour s’assurer que la branche prend bien en compte
+tous les commits qui auraient pu être ajoutés sur la branche d’origine (dans
+cette exemple la branche <code class="docutils literal notranslate"><span class="pre">master</span></code>).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git pull
+git rebase master
+</pre></div>
+</div>
+<p>Cette commande peut entraîner des conflits qui seront corrigés sur la branche.
+Cela permet de ne pas avoir de conflit directement sur la branche principale.
+Une fois les conflits résolus (s’il y en a), il suffit de rapatrier les commits
+de la branche sur la branche principale grâce à la commande <code class="docutils literal notranslate"><span class="pre">merge</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git checkout master
+git merge mabranche
+git push
+</pre></div>
+</div>
+<p>Si la branche n’est plus utile, on peut ensuite la détruire :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git branch -d &lt;nom de la branche&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Il existe également un mode interactif pour la commande <code class="docutils literal notranslate"><span class="pre">rebase</span></code> :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git rebase -i &lt;nom de la branche qui va servir de point de départ&gt;
+</pre></div>
+</div>
+<p>Le <code class="docutils literal notranslate"><span class="pre">rebase</span></code> interactif permet de revoir l’intégralité des commits. Il est
+possible de réordonner, de fusionner et même de supprimer des commits.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Si vous effectuez un <em>rebase</em> sur une branche qui déjà été poussée sur
+un dépôt distant, <a class="reference external" href="https://git-scm.com">Git</a> vous interdira de pousser à nouveau vos modifications
+sur le dépôt distant. En effet, lors d’une opération de <em>rebase</em>, <a class="reference external" href="https://git-scm.com">Git</a> tente
+de réappliquer vos modifications en générant de nouveaux commits. Donc, après
+une opération de <em>rebase</em>, la branche a été recréée à partir de la nouvelle
+base est diffère complètement de l’ancienne version de la branche. Pour
+pousser votre nouvelle version de la branche, vous devez utiliser l’option
+<code class="docutils literal notranslate"><span class="pre">-f</span></code> pour forcer le serveur distant à accepter vos nouveaux commits en
+remplacement des anciens :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git push -f
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="git-hub">
+<h2>Git Hub<a class="headerlink" href="#git-hub" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://github.com">Git Hub</a> est un site permettant de créer et
+d’héberger des dépôts <a class="reference external" href="https://git-scm.com">Git</a> distants. Son utilisation est gratuite pour
+les dépôts libres de droit. Si ce n’est pas déjà fait, créez-vous un
+compte afin de pouvoir ultérieurement partager vos projets.</p>
+</div>
+<div class="section" id="references">
+<h2>Références<a class="headerlink" href="#references" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><p>Documentation officielle : <a class="reference external" href="https://git-scm.com/doc">https://git-scm.com/doc</a></p></li>
+<li><p>Pro Git : <a class="reference external" href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a></p></li>
+<li><p>Le tutoriel de Git Hub :
+<a class="reference external" href="https://guides.github.com/activities/hello-world/">https://guides.github.com/activities/hello-world/</a></p></li>
+<li><p>Learn Git Branches (tutoriel visuel pour comprendre les branches) : <a class="reference external" href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></p></li>
+</ul>
+</div>
+<div class="section" id="exercices">
+<h2>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="hint admonition">
+<p class="admonition-title">projet Git local</p>
+<dl class="simple">
+<dt>Objectif</dt><dd><p>Comprendre et maîtriser les commandes <a class="reference external" href="https://git-scm.com">Git</a></p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Initialisez un dépôt <a class="reference external" href="https://git-scm.com">Git</a> local à partir d’un répertoire contenant un
+projet.</p></li>
+<li><p>Ajoutez les fichiers et ajoutez un fichier <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> si
+nécessaire.</p></li>
+<li><p>Faites un premier commit pour ajouter les fichiers du projet dans le
+dépôt local.</p></li>
+<li><p>Essayez de modifier des fichiers du projet et de réaliser des commits</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">projet Git distant</p>
+<dl class="simple">
+<dt>Objectif</dt><dd><p>Comprendre et maîtriser les commandes <a class="reference external" href="https://git-scm.com">Git</a></p>
+</dd>
+</dl>
+<p>Créez un compte sur <a class="reference external" href="https://github.com">Git Hub</a> (si ce n’est pas
+déjà fait). Puis en reprenant votre projet de l’exercice précédent :</p>
+<ul class="simple">
+<li><p>Créez un dépôt distant sur <a class="reference external" href="https://github.com">Git Hub</a>.</p></li>
+<li><p>Associez votre dépôt local avec le dépôt distant sur
+<a class="reference external" href="https://github.com">Git Hub</a>.</p></li>
+<li><p>Envoyez les modifications de votre dépôt local dans le dépôt distant
+(push).</p></li>
+</ul>
+</div>
+<div class="hint admonition">
+<p class="admonition-title">partagez votre projet Git</p>
+<dl class="simple">
+<dt>Objectif</dt><dd><p>Travailler de manière collaborative avec <a class="reference external" href="https://git-scm.com">Git</a></p>
+</dd>
+</dl>
+<p>Autorisez un autre étudiant à effectuer des commandes push sur votre
+dépôt distant. Avec <a class="reference external" href="https://github.com">Git Hub</a>, cela se fait avec
+l’option <em>Collaborators</em> dans les <em>Settings</em> du dépôt.</p>
+<p>Puis modifiez le contenu du projet en parallèle et envoyez chacun vos
+modifications dans le dépôt distant.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../integration_continue/maven.html" class="btn btn-neutral float-right" title="Maven" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../test_acceptation/test_acceptation.html" class="btn btn-neutral float-left" title="Les tests d’acceptation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright David Gayerie - david.gayerie@reseau-cd.net - CC-BY-SA
+
+    </p>
+  </div>
+    <div>Téléchargez ce support au format <a class="reference download" href="https://github.com/spoonless/epsi-atlas/archive/gh-pages.zip">HTML</a>
+    </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
